@@ -6,16 +6,23 @@
 //
 
 import SwiftUI
+import AVFoundation
 
-struct Helper {
-    static func PlayerColor(_ board: [String], _ index: Int) -> Color {
-        if board[index] == "X" {
-            return .crewBlue
-        } else {
-            return .crewGreen
+enum SoundError: Error, LocalizedError {
+    case nilResource(String = "Sound file not found")
+    case nilURL(String = "Sound URL is nil")
+    
+    var errorDescription: String? {
+        switch self {
+            case .nilResource(let message):
+            return message
+            case .nilURL(let message):
+            return message
         }
     }
-    
+}
+
+struct Helper {
     static func generateBoardContent() -> [String] {
         var freeBoardPosition = (0...8).map { $0 }
         freeBoardPosition.shuffle()
@@ -26,9 +33,9 @@ struct Helper {
         return LazyVGrid(columns: Array(repeating: GridItem(), count: 3)) {
             ForEach(board.indices, id: \.self) { index in
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(.gray)
+                    .fill(.crewDarkGray)
                     .aspectRatio(contentMode: .fit)
-                    .frame(maxWidth: 100, maxHeight: 100)
+                    .padding(10)
                     .overlay {
                         Text(board[index])
                             .fontWeight(.black)
@@ -36,6 +43,20 @@ struct Helper {
                     }
             }
         }
+    }
+    
+    static func PlayerColor(_ board: [String], _ index: Int) -> Color {
+        if board[index] == "X" {
+            return .crewBlue
+        } else {
+            return .crewGreen
+        }
+    }
+    
+    static func configureSound(_ soundEffect: inout AVAudioPlayer?, _ fileName: String, _ ofType: String) throws -> URL {
+        guard let url = Bundle.main.url(forResource: fileName, withExtension: ofType) else { throw SoundError.nilResource() }
+        soundEffect = try AVAudioPlayer(contentsOf: url)
+        return url
     }
 }
 
@@ -61,5 +82,24 @@ struct ButtonAnimationModifier: ViewModifier {
 extension View {
     func buttonAnimation(wasPressed: Binding<Bool>, completion: @escaping () -> Void) -> some View {
         return self.modifier(ButtonAnimationModifier(wasPressed: wasPressed, completion: completion))
+    }
+}
+
+struct ButtonReturnAnimationModifier: ViewModifier {
+    let wasPressed: Bool
+    
+    func body(content: Content) -> some View {
+        content
+            .phaseAnimator([false, true], trigger: wasPressed) { content, phase in
+                content.scaleEffect(phase ? 1.10 : 1.0)
+            } animation: { phase in
+                phase ? .spring.speed(2.0) : .easeIn.speed(2.0)
+            }
+    }
+}
+
+extension View {
+    func buttonReturnAnimation(_ wasPressed: Bool) -> some View {
+        return self.modifier(ButtonReturnAnimationModifier(wasPressed: wasPressed))
     }
 }
