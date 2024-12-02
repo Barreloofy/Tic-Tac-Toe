@@ -17,8 +17,10 @@ struct ResultView: View {
     @State private var buttonSoundEffect: AVAudioPlayer?
     private var buttonSoundEffectURL: URL?
     let gameData: GameData
-    init(_ gameData: GameData) {
+    let vsComputer: Bool
+    init(_ gameData: GameData, _ vsComputer: Bool) {
         self.gameData = gameData
+        self.vsComputer = vsComputer
         self.buttonSoundEffectURL = try? Helper.configureSound(&buttonSoundEffect, "pop-1", "mp3")
     }
     
@@ -68,7 +70,7 @@ struct ResultView: View {
                 .foregroundStyle(.crewOrange)
                 .shadow(color: .gray, radius: 8, x: 5, y: -5)
                 .navigationDestination(isPresented: $playAgain) {
-                    GameView()
+                    GameView(vsComputer ? true : false)
                         .navigationBarBackButtonHidden()
                 }
                 .onAppear {
@@ -80,7 +82,7 @@ struct ResultView: View {
 }
 
 #Preview {
-    ResultView(GameData())
+    ResultView(GameData(), false)
 }
 
 

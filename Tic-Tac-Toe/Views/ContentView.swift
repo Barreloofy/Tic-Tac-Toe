@@ -10,7 +10,7 @@ import AVFoundation
 
 struct ContentView: View {
     @State private var vsPlayerWasPressed = false
-    @State private var vsPCWasPressed = false
+    @State private var vsComputerWasPressed = false
     @State private var buttonSoundEffect: AVAudioPlayer?
     private var soundEffectURL: URL?
     init() {
@@ -45,7 +45,7 @@ struct ContentView: View {
                         .padding(.top, 50)
                         .onTapGesture {
                             try? playSound()
-                            vsPCWasPressed.toggle()
+                            vsComputerWasPressed.toggle()
                         }
                     Spacer()
                         
@@ -56,7 +56,11 @@ struct ContentView: View {
                 .foregroundStyle(.crewOrange)
                 .shadow(color: .gray, radius: 8, x: 5, y: -5)
                 .navigationDestination(isPresented: $vsPlayerWasPressed) {
-                    GameView()
+                    GameView(false)
+                        .navigationBarBackButtonHidden()
+                }
+                .navigationDestination(isPresented: $vsComputerWasPressed) {
+                    GameView(true)
                         .navigationBarBackButtonHidden()
                 }
             }

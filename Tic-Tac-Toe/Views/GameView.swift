@@ -12,10 +12,12 @@ struct GameView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var gameData = GameData()
     @State private var gameOver = false
+    @State var vsComputer: Bool
     @State private var tappedIndex: Int?
     @State private var tapButtonSE: AVAudioPlayer?
     private var buttonSoundEffectURL: URL?
-    init() {
+    init(_ vsComputer: Bool) {
+        self.vsComputer = vsComputer
         buttonSoundEffectURL = try? Helper.configureSound(&tapButtonSE, "notification-beep", "mp3")
     }
     
@@ -40,8 +42,11 @@ struct GameView: View {
                 .fontWeight(.black)
                 .foregroundStyle(.crewOrange)
                 .shadow(color: .gray, radius: 8, x: 5, y: -5)
+                .onChange(of: gameData.turnCount, initial: true) {
+                    computerMove()
+                }
                 .navigationDestination(isPresented: $gameOver) {
-                    ResultView(gameData)
+                    ResultView(gameData, vsComputer)
                         .navigationBarBackButtonHidden()
                 }
                 .onDisappear {
@@ -108,12 +113,36 @@ private extension GameView {
             
             await buttonSound
             await buttonTap
-            gameData.updateBoard(index: index)
-            gameOver = gameData.endGame()
+            if vsComputer == true && gameData.turnCount % 2 != 0 {
+                gameData.updateBoard(index: index)
+                gameOver = gameData.endGame()
+            } else {
+                gameData.updateBoard(index: index)
+                gameOver = gameData.endGame()
+            }
+        }
+    }
+    
+    func computerMove() {
+        if vsComputer && gameData.turnCount % 2 == 0 {
+            Task {
+                try await Task.sleep(nanoseconds: gameData.turnCount == 0 ? 0 : 500_000_000)
+                guard let computerMove = miniMax(gameData, true).index else {
+                    gameOver = true
+                    return
+                }
+                async let buttonSound: () = playButtonSound()
+                async let buttonTap: () = animateTap(computerMove)
+                
+                await buttonSound
+                await buttonTap
+                gameData.updateBoard(index: computerMove)
+                gameOver = gameData.endGame()
+            }
         }
     }
 }
 
 #Preview {
-    GameView()
+    GameView(false)
 }
