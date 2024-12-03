@@ -12,9 +12,9 @@ struct ContentView: View {
     @State private var vsPlayerWasPressed = false
     @State private var vsComputerWasPressed = false
     @State private var buttonSoundEffect: AVAudioPlayer?
-    private var soundEffectURL: URL?
+    private let soundEffectURL: URL?
     init() {
-        soundEffectURL = try? Helper.configureSound(&buttonSoundEffect, "pop-1", "mp3")
+        (buttonSoundEffect, soundEffectURL) = try! configureSound("pop-1", "mp3")
     }
     
     var body: some View {
@@ -29,7 +29,7 @@ struct ContentView: View {
                     ZStack {
                         Grid()
                             .stroke(.crewPurple, lineWidth: 5)
-                        Helper.DrawBoard()
+                        DrawBoard()
                     }
                     .frame(width: 350, height: 350)
                     Text("VS Player!")

@@ -9,16 +9,15 @@ import SwiftUI
 import AVFoundation
 
 struct GameView: View {
-    @Environment(\.dismiss) private var dismiss
     @State private var gameData = GameData()
     @State private var gameOver = false
     @State var vsComputer: Bool
     @State private var tappedIndex: Int?
-    @State private var tapButtonSE: AVAudioPlayer?
+    @State private var buttonSoundEffect: AVAudioPlayer?
     private var buttonSoundEffectURL: URL?
     init(_ vsComputer: Bool) {
         self.vsComputer = vsComputer
-        buttonSoundEffectURL = try? Helper.configureSound(&tapButtonSE, "notification-beep", "mp3")
+        (self.buttonSoundEffect, self.buttonSoundEffectURL) = try! configureSound("notification-beep", "mp3")
     }
     
     var body: some View {
@@ -33,7 +32,11 @@ struct GameView: View {
                     ZStack {
                         Grid()
                             .stroke(.crewPurple, lineWidth: 5)
-                        DrawBoard()
+                        DrawBoard(board: gameData.board, action: { index in handleTap(index: index) }) { view, index in
+                            view
+                                .scaleEffect(tappedIndex == index ? 1.05 : 1.0)
+                                .animation(.spring, value: tappedIndex)
+                        }
                     }
                     .frame(width: 350, height: 350)
                     Spacer()
@@ -50,7 +53,7 @@ struct GameView: View {
                         .navigationBarBackButtonHidden()
                 }
                 .onDisappear {
-                    tapButtonSE?.stop()
+                    buttonSoundEffect?.stop()
                 }
             }
         }
@@ -59,29 +62,8 @@ struct GameView: View {
 
 private extension GameView {
     
-    func DrawBoard() -> some View {
-        return LazyVGrid(columns: Array(repeating: GridItem(), count: 3)) {
-            ForEach(gameData.board.indices, id: \.self) { index in
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(.crewDarkGray)
-                    .aspectRatio(contentMode: .fit)
-                    .padding(10)
-                    .overlay {
-                        Text(gameData.board[index])
-                            .font(.largeTitle)
-                            .foregroundStyle(Helper.PlayerColor(gameData.board, index))
-                    }
-                    .scaleEffect(tappedIndex == index ? 1.05 : 1.0)
-                    .animation(.spring, value: tappedIndex)
-                    .onTapGesture {
-                        handleTap(index: index)
-                    }
-            }
-        }
-    }
-    
     func animateTap(_ index: Int) {
-        guard gameData.board[index] != "X", gameData.board[index] != "O" else { return }
+        guard gameData.board[index] == "" else { return }
         tappedIndex = index
         Task {
             try await Task.sleep(nanoseconds: 250_000_000)
@@ -89,10 +71,11 @@ private extension GameView {
         }
     }
     
-    func playButtonSound() {
-        guard let url = buttonSoundEffectURL else { return }
-        tapButtonSE = try? AVAudioPlayer(contentsOf: url)
-        tapButtonSE?.play()
+    func playButtonSound(_ index: Int) throws {
+        guard gameData.board[index] == "" else { return }
+        guard let url = buttonSoundEffectURL else { throw SoundError.nilURL() }
+        buttonSoundEffect = try? AVAudioPlayer(contentsOf: url)
+        buttonSoundEffect?.play()
     }
     
     func playerTurn() -> String {
@@ -108,10 +91,10 @@ private extension GameView {
     
     func handleTap(index: Int) {
         Task {
-            async let buttonSound: () = playButtonSound()
+            async let buttonSound: () = playButtonSound(index)
             async let buttonTap: () = animateTap(index)
             
-            await buttonSound
+            try? await buttonSound
             await buttonTap
             if vsComputer == true && gameData.turnCount % 2 != 0 {
                 gameData.updateBoard(index: index)
@@ -131,10 +114,10 @@ private extension GameView {
                     gameOver = true
                     return
                 }
-                async let buttonSound: () = playButtonSound()
+                async let buttonSound: () = playButtonSound(computerMove)
                 async let buttonTap: () = animateTap(computerMove)
                 
-                await buttonSound
+                try? await buttonSound
                 await buttonTap
                 gameData.updateBoard(index: computerMove)
                 gameOver = gameData.endGame()
@@ -146,3 +129,28 @@ private extension GameView {
 #Preview {
     GameView(false)
 }
+
+/*
+ 
+ func DrawBoard() -> some View {
+     return LazyVGrid(columns: Array(repeating: GridItem(), count: 3)) {
+         ForEach(gameData.board.indices, id: \.self) { index in
+             RoundedRectangle(cornerRadius: 10)
+                 .fill(.crewDarkGray)
+                 .aspectRatio(contentMode: .fit)
+                 .padding(10)
+                 .overlay {
+                     Text(gameData.board[index])
+                         .font(.largeTitle)
+                         .foregroundStyle(PlayerColor(gameData.board, index))
+                 }
+                 .scaleEffect(tappedIndex == index ? 1.05 : 1.0)
+                 .animation(.spring, value: tappedIndex)
+                 .onTapGesture {
+                     handleTap(index: index)
+                 }
+         }
+     }
+ }
+ 
+ */

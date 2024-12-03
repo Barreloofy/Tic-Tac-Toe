@@ -35,15 +35,18 @@ func minimaxForPlayer(_ game: GameData, isMaximizer: Bool) -> (score: Int, index
         return (score: 0, index: nil)
     }
     var bestScore = isMaximizer ? Int.min : Int.max
-    var bestMove: Int?
+    var bestMoves = [Int]()
     for emptyCell in emptyBoardCells {
         let updatedGame = makeMove(game, at: emptyCell, with: currentPlayer)
         let (score, _) = miniMax(updatedGame, !isMaximizer)
         
         if bestScoreComparison(score, bestScore) {
             bestScore = score
-            bestMove = emptyCell
+            bestMoves = [emptyCell]
+        } else if score == bestScore {
+            bestMoves.append(emptyCell)
         }
     }
-    return (score: bestScore, index: bestMove)
+    let randomBestMove = bestMoves.randomElement()
+    return (score: bestScore, index: randomBestMove)
 }

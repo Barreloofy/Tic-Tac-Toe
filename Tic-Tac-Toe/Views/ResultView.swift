@@ -15,13 +15,13 @@ struct ResultView: View {
     @State private var wasPressedHome = false
     @State private var resultSoundEffect: AVAudioPlayer?
     @State private var buttonSoundEffect: AVAudioPlayer?
-    private var buttonSoundEffectURL: URL?
+    private let buttonSoundEffectURL: URL?
     let gameData: GameData
     let vsComputer: Bool
     init(_ gameData: GameData, _ vsComputer: Bool) {
         self.gameData = gameData
         self.vsComputer = vsComputer
-        self.buttonSoundEffectURL = try? Helper.configureSound(&buttonSoundEffect, "pop-1", "mp3")
+        (self.buttonSoundEffect, self.buttonSoundEffectURL) = try! configureSound("pop-1", "mp3")
     }
     
     var body: some View {
@@ -33,10 +33,10 @@ struct ResultView: View {
                     ZStack {
                         Grid()
                             .stroke(.crewPurple, lineWidth: 5)
-                        Helper.DrawBoard(gameData.board)
+                        DrawBoard(board: gameData.board)
                     }
                     .frame(width: 350, height: 350)
-                    Text(gameData.result != nil ? "\(gameData.result!) won" : "It's a Draw!")
+                    Text(presentResult())
                         .rotationEffect(Angle(degrees: 5))
                         .underline()
                         .padding(.top, 50)
@@ -45,10 +45,7 @@ struct ResultView: View {
                         .opacity(wasPressedPlayAgain ? 0.5 : 1.0)
                         .padding(.top, 50)
                         .onTapGesture {
-                            Task {
-                                try? playSound($buttonSoundEffect, buttonSoundEffectURL)
-                                try await Task.sleep(nanoseconds: 150_000_000)
-                            }
+                            try? playSound($buttonSoundEffect, buttonSoundEffectURL)
                         }
                         .buttonAnimation(wasPressed: $wasPressedPlayAgain) { playAgain = true }
                     Text("Home")
@@ -56,10 +53,7 @@ struct ResultView: View {
                         .opacity(wasPressedHome ? 0.5 : 1.0)
                         .padding(.top, 50)
                         .onTapGesture {
-                            Task {
-                                try? playSound($buttonSoundEffect, buttonSoundEffectURL)
-                                try await Task.sleep(nanoseconds: 150_000_000)
-                            }
+                            try? playSound($buttonSoundEffect, buttonSoundEffectURL)
                         }
                         .buttonAnimation(wasPressed: $wasPressedHome) { dismiss() }
                     Spacer()
@@ -88,8 +82,16 @@ struct ResultView: View {
 
 private extension ResultView {
     func playSound(_ soundEffect: Binding<AVAudioPlayer?>, _ url: URL?) throws {
-        guard let url = url else { throw SoundError.nilURL() }
-        soundEffect.wrappedValue = try AVAudioPlayer(contentsOf: url)
-        soundEffect.wrappedValue?.play()
+        Task {
+            guard let url = url else { throw SoundError.nilURL() }
+            soundEffect.wrappedValue = try AVAudioPlayer(contentsOf: url)
+            soundEffect.wrappedValue?.play()
+            try await Task.sleep(nanoseconds: 150_000_000)
+        }
+    }
+    
+    func presentResult() -> String {
+        guard let result = gameData.result else { return "It's a Draw!" }
+        return "\(result) won"
     }
 }

@@ -22,42 +22,43 @@ enum SoundError: Error, LocalizedError {
     }
 }
 
-struct Helper {
-    static func generateBoardContent() -> [String] {
-        var freeBoardPosition = (0...8).map { $0 }
-        freeBoardPosition.shuffle()
-        return freeBoardPosition.map { $0 % 2 == 0 ? "X" : "O"}
-    }
-    
-    static func DrawBoard(_ board: [String] = generateBoardContent()) -> some View {
-        return LazyVGrid(columns: Array(repeating: GridItem(), count: 3)) {
-            ForEach(board.indices, id: \.self) { index in
-                RoundedRectangle(cornerRadius: 10)
-                    .fill(.crewDarkGray)
-                    .aspectRatio(contentMode: .fit)
-                    .padding(10)
-                    .overlay {
-                        Text(board[index])
-                            .fontWeight(.black)
-                            .foregroundStyle(PlayerColor(board, index))
-                    }
-            }
+ func generateBoardContent() -> [String] {
+    var freeBoardPosition = (0...8).map { $0 }
+    freeBoardPosition.shuffle()
+    return freeBoardPosition.map { $0 % 2 == 0 ? "X" : "O"}
+}
+
+func DrawBoard(
+    board: [String] = generateBoardContent(),
+    action: @escaping (Int) -> Void = { _ in },
+    modifier: @escaping (AnyView, Int) -> some View = { content, index in content}
+) -> some View {
+    return LazyVGrid(columns: Array(repeating: GridItem(), count: 3)) {
+        ForEach(board.indices, id: \.self) { index in
+            let content = RoundedRectangle(cornerRadius: 10)
+                .fill(.crewDarkGray)
+                .aspectRatio(contentMode: .fit)
+                .padding(10)
+                .overlay {
+                    Text(board[index])
+                        .font(.largeTitle)
+                        .foregroundStyle(PlayerColor(board[index]))
+                }
+                .onTapGesture {
+                    action(index)
+                }
+            modifier(AnyView(content), index)
         }
     }
-    
-    static func PlayerColor(_ board: [String], _ index: Int) -> Color {
-        if board[index] == "X" {
-            return .crewBlue
-        } else {
-            return .crewGreen
-        }
-    }
-    
-    static func configureSound(_ soundEffect: inout AVAudioPlayer?, _ fileName: String, _ ofType: String) throws -> URL {
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: ofType) else { throw SoundError.nilResource() }
-        soundEffect = try AVAudioPlayer(contentsOf: url)
-        return url
-    }
+}
+
+func PlayerColor(_ content: String) -> Color {
+    return content == "X" ? .crewBlue : .crewGreen
+}
+
+func configureSound(_ fileName: String, _ ofType: String) throws -> (AVAudioPlayer?, URL?) {
+    guard let url = Bundle.main.url(forResource: fileName, withExtension: ofType) else { throw SoundError.nilResource() }
+    return (try AVAudioPlayer(contentsOf: url), url)
 }
 
 struct ButtonAnimationModifier: ViewModifier {
