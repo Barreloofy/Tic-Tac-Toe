@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var vsComputerWasPressed = false
     @State private var buttonSoundEffect: AVAudioPlayer?
     private let soundEffectURL: URL?
+    
     init() {
         (buttonSoundEffect, soundEffectURL) = try! configureSound("pop-1", "mp3")
     }
@@ -26,12 +27,18 @@ struct ContentView: View {
                     Text("Tic Tac Toe")
                         .rotationEffect(Angle(degrees: -5))
                         .padding(.top, 50)
-                    ZStack {
-                        Grid()
-                            .stroke(.crewPurple, lineWidth: 5)
-                        DrawBoard()
-                    }
-                    .frame(width: 350, height: 350)
+                    GeometryReader { geometry in
+                        let sizeLimit = min(geometry.size.width, geometry.size.height) * 0.8
+                            Grid()
+                                .stroke(.crewPurple, lineWidth: 5)
+                                .frame(width: sizeLimit, height: sizeLimit)
+                                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+
+                            DrawBoard()
+                                .frame(width: sizeLimit, height: sizeLimit)
+                                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                        }
+                    .aspectRatio(contentMode: .fit)
                     Text("VS Player!")
                         .buttonReturnAnimation(vsPlayerWasPressed)
                         .rotationEffect(Angle(degrees: 5))

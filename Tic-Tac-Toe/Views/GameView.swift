@@ -11,13 +11,16 @@ import AVFoundation
 struct GameView: View {
     @State private var gameData = GameData()
     @State private var gameOver = false
-    @State var vsComputer: Bool
+    @State private var vsComputer: Bool
     @State private var tappedIndex: Int?
     @State private var buttonSoundEffect: AVAudioPlayer?
-    private var buttonSoundEffectURL: URL?
+    private let buttonSoundEffectURL: URL?
+    private var computerIsPlayerX = false
+    
     init(_ vsComputer: Bool) {
         self.vsComputer = vsComputer
         (self.buttonSoundEffect, self.buttonSoundEffectURL) = try! configureSound("notification-beep", "mp3")
+        self.computerIsPlayerX = assignPlayerX(vsComputer)
     }
     
     var body: some View {
@@ -26,19 +29,25 @@ struct GameView: View {
                 Color.crewDarkGray
                     .ignoresSafeArea()
                 VStack {
-                    Text(playerTurn())
+                    Text(newPlayerTurn())
+                        .padding(.top, 10)
                         .font(.title)
                         .rotationEffect(Angle(degrees: -2.5))
-                    ZStack {
+                    GeometryReader { geometry in
+                        let sizeLimit = min(geometry.size.width, geometry.size.height) * 0.8
                         Grid()
                             .stroke(.crewPurple, lineWidth: 5)
+                            .frame(width: sizeLimit, height: sizeLimit)
+                            .position(CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2))
                         DrawBoard(board: gameData.board, action: { index in handleTap(index: index) }) { view, index in
                             view
                                 .scaleEffect(tappedIndex == index ? 1.05 : 1.0)
                                 .animation(.spring, value: tappedIndex)
                         }
+                        .frame(width: sizeLimit, height: sizeLimit)
+                        .position(CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2))
                     }
-                    .frame(width: 350, height: 350)
+                    .aspectRatio(contentMode: .fit)
                     Spacer()
                 }
                 .padding(10)
@@ -49,7 +58,7 @@ struct GameView: View {
                     computerMove()
                 }
                 .navigationDestination(isPresented: $gameOver) {
-                    ResultView(gameData, vsComputer)
+                    ResultView(gameData, vsComputer, computerIsPlayerX)
                         .navigationBarBackButtonHidden()
                 }
                 .onDisappear {
@@ -61,6 +70,11 @@ struct GameView: View {
 }
 
 private extension GameView {
+    
+    func assignPlayerX(_ vsComputer: Bool) -> Bool {
+        guard vsComputer else { return false }
+        return Bool.random()
+    }
     
     func animateTap(_ index: Int) {
         guard gameData.board[index] == "" else { return }
@@ -78,15 +92,14 @@ private extension GameView {
         buttonSoundEffect?.play()
     }
     
-    func playerTurn() -> String {
-        guard gameData.turnCount > 0 else {
-            return "Player X begins"
+    func newPlayerTurn() -> String {
+        if gameData.turnCount == 0 {
+            return computerIsPlayerX ? "Computer begins" : "Player X begins"
         }
         if gameData.turnCount % 2 == 0 {
-            return "It's Player X's turn"
-        } else {
-            return "It's Player O's turn"
+            return computerIsPlayerX ? "Computer's turn" : "It's Player X's turn"
         }
+        return (vsComputer == true && computerIsPlayerX == false) ? "Computer's turn" : "It's Player O's turn"
     }
     
     func handleTap(index: Int) {
@@ -107,10 +120,11 @@ private extension GameView {
     }
     
     func computerMove() {
-        if vsComputer && gameData.turnCount % 2 == 0 {
+        guard vsComputer == true else { return }
+        if (computerIsPlayerX == true && gameData.turnCount % 2 == 0) || (computerIsPlayerX == false && gameData.turnCount % 2 != 0) {
             Task {
                 try await Task.sleep(nanoseconds: gameData.turnCount == 0 ? 0 : 500_000_000)
-                guard let computerMove = miniMax(gameData, true).index else {
+                guard let computerMove = miniMax(gameData, true, computerIsPlayerX).index else {
                     gameOver = true
                     return
                 }
@@ -129,28 +143,3 @@ private extension GameView {
 #Preview {
     GameView(false)
 }
-
-/*
- 
- func DrawBoard() -> some View {
-     return LazyVGrid(columns: Array(repeating: GridItem(), count: 3)) {
-         ForEach(gameData.board.indices, id: \.self) { index in
-             RoundedRectangle(cornerRadius: 10)
-                 .fill(.crewDarkGray)
-                 .aspectRatio(contentMode: .fit)
-                 .padding(10)
-                 .overlay {
-                     Text(gameData.board[index])
-                         .font(.largeTitle)
-                         .foregroundStyle(PlayerColor(gameData.board, index))
-                 }
-                 .scaleEffect(tappedIndex == index ? 1.05 : 1.0)
-                 .animation(.spring, value: tappedIndex)
-                 .onTapGesture {
-                     handleTap(index: index)
-                 }
-         }
-     }
- }
- 
- */

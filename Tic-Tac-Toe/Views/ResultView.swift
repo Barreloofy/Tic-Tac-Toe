@@ -16,11 +16,14 @@ struct ResultView: View {
     @State private var resultSoundEffect: AVAudioPlayer?
     @State private var buttonSoundEffect: AVAudioPlayer?
     private let buttonSoundEffectURL: URL?
-    let gameData: GameData
-    let vsComputer: Bool
-    init(_ gameData: GameData, _ vsComputer: Bool) {
+    private let gameData: GameData
+    private let vsComputer: Bool
+    private let computerIsPlayerX: Bool
+    
+    init(_ gameData: GameData, _ vsComputer: Bool, _ computerIsPlayerX: Bool) {
         self.gameData = gameData
         self.vsComputer = vsComputer
+        self.computerIsPlayerX = computerIsPlayerX
         (self.buttonSoundEffect, self.buttonSoundEffectURL) = try! configureSound("pop-1", "mp3")
     }
     
@@ -30,12 +33,17 @@ struct ResultView: View {
                 Color.crewDarkGray
                     .ignoresSafeArea()
                 VStack {
-                    ZStack {
+                    GeometryReader { geometry in
+                        let sizeLimit = min(geometry.size.width, geometry.size.height) * 0.8
                         Grid()
                             .stroke(.crewPurple, lineWidth: 5)
+                            .frame(width: sizeLimit, height: sizeLimit)
+                            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                         DrawBoard(board: gameData.board)
+                            .frame(width: sizeLimit, height: sizeLimit)
+                            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
                     }
-                    .frame(width: 350, height: 350)
+                    .aspectRatio(contentMode: .fit)
                     Text(presentResult())
                         .rotationEffect(Angle(degrees: 5))
                         .underline()
@@ -76,7 +84,7 @@ struct ResultView: View {
 }
 
 #Preview {
-    ResultView(GameData(), false)
+    ResultView(GameData(), false, false)
 }
 
 
@@ -92,6 +100,19 @@ private extension ResultView {
     
     func presentResult() -> String {
         guard let result = gameData.result else { return "It's a Draw!" }
-        return "\(result) won"
+        switch result {
+            case "Player X":
+                if vsComputer == true && computerIsPlayerX == true {
+                return "Computer won"
+                } else {
+                return "Player X won"
+                }
+            default:
+                if vsComputer == true && computerIsPlayerX == false {
+                return "Computer won"
+                } else {
+                return "Player O won"
+                }
+        }
     }
 }
