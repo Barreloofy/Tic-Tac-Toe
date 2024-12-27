@@ -29,15 +29,14 @@ struct ContentView: View {
                         .padding(.top, 50)
                     GeometryReader { geometry in
                         let sizeLimit = min(geometry.size.width, geometry.size.height) * 0.8
-                            Grid()
-                                .stroke(.crewPurple, lineWidth: 5)
-                                .frame(width: sizeLimit, height: sizeLimit)
-                                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-
-                            DrawBoard()
-                                .frame(width: sizeLimit, height: sizeLimit)
-                                .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
-                        }
+                        Grid(.crewPurple, 4)
+                            .frame(width: sizeLimit, height: sizeLimit)
+                            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                        
+                        DrawBoard()
+                            .frame(width: sizeLimit, height: sizeLimit)
+                            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                    }
                     .aspectRatio(contentMode: .fit)
                     Text("VS Player!")
                         .buttonReturnAnimation(vsPlayerWasPressed)
@@ -55,7 +54,7 @@ struct ContentView: View {
                             vsComputerWasPressed.toggle()
                         }
                     Spacer()
-                        
+                    
                 }
                 .padding(10)
                 .font(.largeTitle)

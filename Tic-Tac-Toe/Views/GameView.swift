@@ -35,8 +35,7 @@ struct GameView: View {
                         .rotationEffect(Angle(degrees: -2.5))
                     GeometryReader { geometry in
                         let sizeLimit = min(geometry.size.width, geometry.size.height) * 0.8
-                        Grid()
-                            .stroke(.crewPurple, lineWidth: 5)
+                        Grid(.crewPurple, 4)
                             .frame(width: sizeLimit, height: sizeLimit)
                             .position(CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2))
                         DrawBoard(board: gameData.board, action: { index in handleTap(index: index) }) { view, index in

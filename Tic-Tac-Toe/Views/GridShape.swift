@@ -7,33 +7,44 @@
 
 import SwiftUI
 
-struct Grid: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        let width = rect.width
-        let height = rect.height
-        let rows = 3
-        let columns = 3
-        
-        for num in 0..<columns {
-            let xPosition = rect.minX + CGFloat(num) * (width / CGFloat(columns))
-            path.move(to: CGPoint(x: xPosition, y: rect.minY))
-            path.addLine(to: CGPoint(x: xPosition, y: rect.maxY))
+struct Grid<S>: View where S: ShapeStyle {
+    let style: S
+    let lineWidth: CGFloat
+    
+    init(_ style: S = .black, _ lineWidth: CGFloat = 1) {
+        self.style = style
+        self.lineWidth = lineWidth
+    }
+    
+    var body: some View {
+        return GridShape().stroke(style, lineWidth: lineWidth)
+    }
+    
+    private struct GridShape: Shape {
+        func path(in rect: CGRect) -> Path {
+            var path = Path()
+            
+            //path.move(to: CGPointZero)
+            //path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
+            //path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+            //path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+            //path.addLine(to: CGPointZero)
+            
+            var yFactor: CGFloat = 0.33
+            for _ in 0..<2 {
+                path.move(to: CGPoint(x: rect.minX, y: rect.maxY * yFactor))
+                path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY * yFactor))
+                yFactor += 0.33
+            }
+            
+            var xFactor: CGFloat = 0.33
+            for _ in 0..<2 {
+                path.move(to: CGPoint(x: rect.maxX * xFactor, y: rect.minY))
+                path.addLine(to: CGPoint(x: rect.maxX * xFactor, y: rect.maxY))
+                xFactor += 0.33
+            }
+            
+            return path
         }
-        
-        for num in 0..<rows {
-            let yPosition = rect.minY + CGFloat(num) * (height / CGFloat(rows))
-            path.move(to: CGPoint(x: rect.minX, y: yPosition))
-            path.addLine(to: CGPoint(x: rect.maxX, y: yPosition))
-        }
-        
-        path.move(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        
-        return path
     }
 }
