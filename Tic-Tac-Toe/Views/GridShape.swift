@@ -24,24 +24,25 @@ struct Grid<S>: View where S: ShapeStyle {
         func path(in rect: CGRect) -> Path {
             var path = Path()
             
-            //path.move(to: CGPointZero)
-            //path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
-            //path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-            //path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-            //path.addLine(to: CGPointZero)
+            path.move(to: CGPointZero)
+            path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
+            path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+            path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+            path.addLine(to: CGPoint(x: rect.minX, y: rect.minY))
+            path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
             
-            var yFactor: CGFloat = 0.33
+            var yFactor: CGFloat = 0.333
             for _ in 0..<2 {
                 path.move(to: CGPoint(x: rect.minX, y: rect.maxY * yFactor))
                 path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY * yFactor))
-                yFactor += 0.33
+                yFactor += 0.333
             }
             
-            var xFactor: CGFloat = 0.33
+            var xFactor: CGFloat = 0.333
             for _ in 0..<2 {
                 path.move(to: CGPoint(x: rect.maxX * xFactor, y: rect.minY))
                 path.addLine(to: CGPoint(x: rect.maxX * xFactor, y: rect.maxY))
-                xFactor += 0.33
+                xFactor += 0.333
             }
             
             return path

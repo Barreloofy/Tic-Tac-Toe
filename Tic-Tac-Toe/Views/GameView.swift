@@ -10,24 +10,22 @@ import AVFoundation
 
 struct GameView: View {
     @State private var gameData = GameData()
+    @State private var computerIsPlayerX = false
     @State private var gameOver = false
     @State private var vsComputer: Bool
     @State private var tappedIndex: Int?
     @State private var buttonSoundEffect: AVAudioPlayer?
     private let buttonSoundEffectURL: URL?
-    private var computerIsPlayerX = false
     
     init(_ vsComputer: Bool) {
         self.vsComputer = vsComputer
         (self.buttonSoundEffect, self.buttonSoundEffectURL) = try! configureSound("notification-beep", "mp3")
-        self.computerIsPlayerX = assignPlayerX(vsComputer)
     }
     
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.crewDarkGray
-                    .ignoresSafeArea()
+                Color(.crewDarkGray).ignoresSafeArea()
                 VStack {
                     Text(newPlayerTurn())
                         .padding(.top, 10)
@@ -53,6 +51,9 @@ struct GameView: View {
                 .fontWeight(.black)
                 .foregroundStyle(.crewOrange)
                 .shadow(color: .gray, radius: 8, x: 5, y: -5)
+                .onAppear {
+                    computerIsPlayerX = assignPlayerX(vsComputer)
+                }
                 .onChange(of: gameData.turnCount, initial: true) {
                     computerMove()
                 }

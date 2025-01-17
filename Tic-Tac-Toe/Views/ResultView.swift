@@ -30,8 +30,7 @@ struct ResultView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.crewDarkGray
-                    .ignoresSafeArea()
+                Color(.crewDarkGray).ignoresSafeArea()
                 VStack {
                     GeometryReader { geometry in
                         let sizeLimit = min(geometry.size.width, geometry.size.height) * 0.8
@@ -93,7 +92,7 @@ private extension ResultView {
             guard let url = url else { throw SoundError.nilURL() }
             soundEffect.wrappedValue = try AVAudioPlayer(contentsOf: url)
             soundEffect.wrappedValue?.play()
-            try await Task.sleep(nanoseconds: 150_000_000)
+            try await Task.sleep(nanoseconds: 200_000_000)
         }
     }
     

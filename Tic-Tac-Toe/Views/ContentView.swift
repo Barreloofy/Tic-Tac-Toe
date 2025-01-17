@@ -21,23 +21,24 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.crewDarkGray
-                    .ignoresSafeArea()
+                Color(.crewDarkGray).ignoresSafeArea()
                 VStack {
                     Text("Tic Tac Toe")
                         .rotationEffect(Angle(degrees: -5))
                         .padding(.top, 50)
                     GeometryReader { geometry in
-                        let sizeLimit = min(geometry.size.width, geometry.size.height) * 0.8
+                        let width = geometry.size.width
+                        let height = geometry.size.height
+                        let sizeLimit = min(width, height) * 0.8
                         Grid(.crewPurple, 4)
                             .frame(width: sizeLimit, height: sizeLimit)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                            .position(x: width / 2, y: height / 2)
                         
                         DrawBoard()
                             .frame(width: sizeLimit, height: sizeLimit)
-                            .position(x: geometry.size.width / 2, y: geometry.size.height / 2)
+                            .position(x: width / 2, y: height / 2)
                     }
-                    .aspectRatio(contentMode: .fit)
+                    .scaledToFit()
                     Text("VS Player!")
                         .buttonReturnAnimation(vsPlayerWasPressed)
                         .rotationEffect(Angle(degrees: 5))
