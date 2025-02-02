@@ -30,7 +30,9 @@ struct ResultView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                #if os(iOS)
                 Color(.crewDarkGray).ignoresSafeArea()
+                #endif
                 VStack {
                     GeometryReader { geometry in
                         let sizeLimit = min(geometry.size.width, geometry.size.height) * 0.8

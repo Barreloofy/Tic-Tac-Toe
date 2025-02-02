@@ -25,7 +25,9 @@ struct GameView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                #if os(iOS)
                 Color(.crewDarkGray).ignoresSafeArea()
+                #endif
                 VStack {
                     Text(newPlayerTurn())
                         .padding(.top, 10)

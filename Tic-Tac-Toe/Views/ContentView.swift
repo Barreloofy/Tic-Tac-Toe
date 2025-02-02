@@ -21,7 +21,9 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                #if os(iOS)
                 Color(.crewDarkGray).ignoresSafeArea()
+                #endif
                 VStack {
                     Text("Tic Tac Toe")
                         .rotationEffect(Angle(degrees: -5))

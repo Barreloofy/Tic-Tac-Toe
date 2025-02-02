@@ -12,6 +12,13 @@ struct Tic_Tac_ToeApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            #if os(macOS)
+                .containerBackground(.ultraThinMaterial, for: .window)
+            #endif
         }
+        #if os(macOS)
+        .windowStyle(.hiddenTitleBar)
+        .windowBackgroundDragBehavior(.enabled)
+        #endif
     }
 }
