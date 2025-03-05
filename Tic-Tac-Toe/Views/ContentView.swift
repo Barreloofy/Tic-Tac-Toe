@@ -44,14 +44,14 @@ struct ContentView: View {
                     Text("VS Player!")
                         .buttonReturnAnimation(vsPlayerWasPressed)
                         .rotationEffect(Angle(degrees: 5))
-                        .padding(.top, 50)
+                        .padding(.top, 25)
                         .onTapGesture {
                             try? playSound()
                             vsPlayerWasPressed.toggle()
                         }
                     Text("VS Computer!")
                         .rotationEffect(Angle(degrees: -5))
-                        .padding(.top, 50)
+                        .padding(.top, 25)
                         .onTapGesture {
                             try? playSound()
                             vsComputerWasPressed.toggle()
@@ -59,7 +59,7 @@ struct ContentView: View {
                     Spacer()
                     
                 }
-                .padding(10)
+                .padding(.bottom)
                 .font(.largeTitle)
                 .fontWeight(.black)
                 .foregroundStyle(.crewOrange)
