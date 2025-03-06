@@ -28,7 +28,8 @@ enum SoundError: Error, LocalizedError {
     return freeBoardPosition.map { $0 % 2 == 0 ? "X" : "O"}
 }
 
-func DrawBoard(
+func DrawBoard
+(
     board: [String] = generateBoardContent(),
     action: @escaping (Int) -> Void = { _ in },
     modifier: @escaping (AnyView, Int) -> some View = { content, index in content}
