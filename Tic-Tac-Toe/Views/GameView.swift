@@ -6,20 +6,12 @@
 //
 
 import SwiftUI
-import AVFoundation
 
 struct GameView: View {
-    @State private var gameData = GameData()
-    @State private var computerIsPlayerX = false
-    @State private var gameOver = false
-    @State private var vsComputer: Bool
-    @State private var tappedIndex: Int?
-    @State private var buttonSoundEffect: AVAudioPlayer?
-    private let buttonSoundEffectURL: URL?
+    @State private var viewModel: GameViewModel
     
     init(_ vsComputer: Bool) {
-        self.vsComputer = vsComputer
-        (self.buttonSoundEffect, self.buttonSoundEffectURL) = try! configureSound("notification-beep", "mp3")
+        self._viewModel = State(initialValue: GameViewModel(vsComputer))
     }
     
     var body: some View {
@@ -28,117 +20,57 @@ struct GameView: View {
                 #if os(iOS)
                 Color(.crewDarkGray).ignoresSafeArea()
                 #endif
-                VStack {
-                    Text(newPlayerTurn())
-                        .padding(.top, 10)
-                        .font(.title)
-                        .rotationEffect(Angle(degrees: -2.5))
-                    GeometryReader { geometry in
-                        let sizeLimit = min(geometry.size.width, geometry.size.height) * 0.8
-                        Grid(.crewPurple, 4)
-                            .frame(width: sizeLimit, height: sizeLimit)
-                            .position(CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2))
-                        DrawBoard(board: gameData.board, action: { index in handleTap(index: index) }) { view, index in
-                            view
-                                .scaleEffect(tappedIndex == index ? 1.05 : 1.0)
-                                .animation(.spring, value: tappedIndex)
-                        }
-                        .frame(width: sizeLimit, height: sizeLimit)
-                        .position(CGPoint(x: geometry.size.width / 2, y: geometry.size.height / 2))
+                content
+                    .padding(10)
+                    .fontWeight(.black)
+                    .foregroundStyle(.crewOrange)
+                    .shadow(color: .gray, radius: 8, x: 5, y: -5)
+                    .onChange(of: viewModel.gameData.turnCount, initial: true) {
+                        viewModel.computerMove()
                     }
-                    .aspectRatio(contentMode: .fit)
-                    Spacer()
-                }
-                .padding(10)
-                .fontWeight(.black)
-                .foregroundStyle(.crewOrange)
-                .shadow(color: .gray, radius: 8, x: 5, y: -5)
-                .onAppear {
-                    computerIsPlayerX = assignPlayerX(vsComputer)
-                }
-                .onChange(of: gameData.turnCount, initial: true) {
-                    computerMove()
-                }
-                .navigationDestination(isPresented: $gameOver) {
-                    ResultView(gameData, vsComputer, computerIsPlayerX)
-                        .navigationBarBackButtonHidden()
-                }
-                .onDisappear {
-                    buttonSoundEffect?.stop()
-                }
+                    .navigationDestination(isPresented: $viewModel.gameOver) {
+                        ResultView(viewModel.gameData, viewModel.vsComputer, viewModel.computerIsPlayerX)
+                            .navigationBarBackButtonHidden()
+                    }
             }
         }
     }
-}
-
-private extension GameView {
     
-    func assignPlayerX(_ vsComputer: Bool) -> Bool {
-        guard vsComputer else { return false }
-        return Bool.random()
-    }
-    
-    func animateTap(_ index: Int) {
-        guard gameData.board[index] == "" else { return }
-        tappedIndex = index
-        Task {
-            try await Task.sleep(nanoseconds: 250_000_000)
-            tappedIndex = nil
-        }
-    }
-    
-    func playButtonSound(_ index: Int) throws {
-        guard gameData.board[index] == "" else { return }
-        guard let url = buttonSoundEffectURL else { throw SoundError.nilURL() }
-        buttonSoundEffect = try? AVAudioPlayer(contentsOf: url)
-        buttonSoundEffect?.play()
-    }
-    
-    func newPlayerTurn() -> String {
-        if gameData.turnCount == 0 {
-            return computerIsPlayerX ? "Computer begins" : "Player X begins"
-        }
-        if gameData.turnCount % 2 == 0 {
-            return computerIsPlayerX ? "Computer's turn" : "It's Player X's turn"
-        }
-        return (vsComputer == true && computerIsPlayerX == false) ? "Computer's turn" : "It's Player O's turn"
-    }
-    
-    func handleTap(index: Int) {
-        Task {
-            async let buttonSound: () = playButtonSound(index)
-            async let buttonTap: () = animateTap(index)
+    @ViewBuilder private var content: some View {
+        VStack {
+            Text(viewModel.newPlayerTurn())
+                .font(.title)
+                .rotationEffect(Angle(degrees: -2.5))
+                .padding(.top, 10)
             
-            try? await buttonSound
-            await buttonTap
-            if vsComputer == true && gameData.turnCount % 2 != 0 {
-                gameData.updateBoard(index: index)
-                gameOver = gameData.endGame()
-            } else {
-                gameData.updateBoard(index: index)
-                gameOver = gameData.endGame()
+            GeometryReader { geometry in
+                
+                let sizeLimit = min(geometry.size.width, geometry.size.height) * 0.8
+                let xPosition = geometry.size.width / 2
+                let yPosition = geometry.size.height / 2
+                
+                Grid(.crewPurple, 4)
+                    .frame(width: sizeLimit, height: sizeLimit)
+                    .position(x: xPosition, y: yPosition)
+                
+                DrawBoard(
+                    board: viewModel.gameData.board,
+                    action: { index in viewModel.playerMove(index: index) },
+                    modifier: { view, index in boardModifier(view, index) }
+                )
+                    .frame(width: sizeLimit, height: sizeLimit)
+                    .position(CGPoint(x: xPosition, y: yPosition))
             }
+            .aspectRatio(contentMode: .fit)
+            
+            Spacer()
         }
     }
     
-    func computerMove() {
-        guard vsComputer == true else { return }
-        if (computerIsPlayerX == true && gameData.turnCount % 2 == 0) || (computerIsPlayerX == false && gameData.turnCount % 2 != 0) {
-            Task {
-                try await Task.sleep(nanoseconds: gameData.turnCount == 0 ? 0 : 500_000_000)
-                guard let computerMove = miniMax(gameData, true, computerIsPlayerX).index else {
-                    gameOver = true
-                    return
-                }
-                async let buttonSound: () = playButtonSound(computerMove)
-                async let buttonTap: () = animateTap(computerMove)
-                
-                try? await buttonSound
-                await buttonTap
-                gameData.updateBoard(index: computerMove)
-                gameOver = gameData.endGame()
-            }
-        }
+    private func boardModifier(_ view: some View, _ index: Int) -> some View {
+        view
+            .scaleEffect(viewModel.tappedIndex == index ? 1.05 : 1.0)
+            .animation(.spring, value: viewModel.tappedIndex)
     }
 }
 

@@ -9,10 +9,12 @@
 /* Begin PBXBuildFile section */
 		293BC8452CED115500B4EECF /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 293BC83E2CED115500B4EECF /* Preview Assets.xcassets */; };
 		293BC8462CED115500B4EECF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 293BC8402CED115500B4EECF /* Assets.xcassets */; };
-		293BC8472CED115500B4EECF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BC8412CED115500B4EECF /* ContentView.swift */; };
+		293BC8472CED115500B4EECF /* EntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BC8412CED115500B4EECF /* EntryView.swift */; };
 		293BC8482CED115500B4EECF /* Tic_Tac_ToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BC8432CED115500B4EECF /* Tic_Tac_ToeApp.swift */; };
 		293BC84A2CED1B2000B4EECF /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BC8492CED1B2000B4EECF /* GameView.swift */; };
 		293BC84C2CED2AD700B4EECF /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293BC84B2CED2AD700B4EECF /* GameLogic.swift */; };
+		294503102D7B9319009EEFD6 /* ResultVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2945030F2D7B9319009EEFD6 /* ResultVM.swift */; };
+		294503122D7BA451009EEFD6 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 294503112D7BA451009EEFD6 /* Launch Screen.storyboard */; platformFilters = (ios, xros, ); };
 		29789C912CEFBE3500283CF9 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29789C902CEFBE3500283CF9 /* ResultView.swift */; };
 		2984E0EF2CFCD52F00F7C3B9 /* ComputerPlayerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2984E0EE2CFCD52F00F7C3B9 /* ComputerPlayerLogic.swift */; };
 		298F8C552CF2368500F04243 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298F8C542CF2368500F04243 /* HelperFunctions.swift */; };
@@ -20,6 +22,8 @@
 		29AD07052CF8B9F2007B51CE /* GridShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AD07042CF8B9F2007B51CE /* GridShape.swift */; };
 		29B0ED3F2CF78D0600FFC4EA /* notification-beep.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29B0ED3E2CF78D0600FFC4EA /* notification-beep.mp3 */; };
 		29B0ED422CF794F200FFC4EA /* level-up-3.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29B0ED412CF794F200FFC4EA /* level-up-3.mp3 */; };
+		29B6F9822D7B46E100F24EE8 /* EntryViewVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B6F9812D7B46CE00F24EE8 /* EntryViewVM.swift */; };
+		29B6F9842D7B565200F24EE8 /* GameVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29B6F9832D7B565200F24EE8 /* GameVM.swift */; };
 		29BB1D472CFA744A006553B4 /* pop-1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 29BB1D462CFA744A006553B4 /* pop-1.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -27,11 +31,13 @@
 		293BC82C2CED112800B4EECF /* Tic-Tac-Toe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tic-Tac-Toe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		293BC83E2CED115500B4EECF /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		293BC8402CED115500B4EECF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		293BC8412CED115500B4EECF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		293BC8412CED115500B4EECF /* EntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryView.swift; sourceTree = "<group>"; };
 		293BC8422CED115500B4EECF /* Tic_Tac_Toe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tic_Tac_Toe.entitlements; sourceTree = "<group>"; };
 		293BC8432CED115500B4EECF /* Tic_Tac_ToeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tic_Tac_ToeApp.swift; sourceTree = "<group>"; };
 		293BC8492CED1B2000B4EECF /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		293BC84B2CED2AD700B4EECF /* GameLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
+		2945030F2D7B9319009EEFD6 /* ResultVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVM.swift; sourceTree = "<group>"; };
+		294503112D7BA451009EEFD6 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		29789C902CEFBE3500283CF9 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		2984E0EE2CFCD52F00F7C3B9 /* ComputerPlayerLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerPlayerLogic.swift; sourceTree = "<group>"; };
 		298F8C542CF2368500F04243 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
@@ -39,6 +45,8 @@
 		29AD07042CF8B9F2007B51CE /* GridShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridShape.swift; sourceTree = "<group>"; };
 		29B0ED3E2CF78D0600FFC4EA /* notification-beep.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "notification-beep.mp3"; sourceTree = "<group>"; };
 		29B0ED412CF794F200FFC4EA /* level-up-3.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "level-up-3.mp3"; sourceTree = "<group>"; };
+		29B6F9812D7B46CE00F24EE8 /* EntryViewVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewVM.swift; sourceTree = "<group>"; };
+		29B6F9832D7B565200F24EE8 /* GameVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVM.swift; sourceTree = "<group>"; };
 		29BB1D462CFA744A006553B4 /* pop-1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "pop-1.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +91,7 @@
 			children = (
 				293BC8432CED115500B4EECF /* Tic_Tac_ToeApp.swift */,
 				29F4C7F32CFE374700C04593 /* Views */,
+				29B6F9802D7B465400F24EE8 /* ViewModels */,
 				29F4C7F52CFE375C00C04593 /* Logic */,
 				29B0ED402CF794C600FFC4EA /* Resources */,
 			);
@@ -97,15 +106,26 @@
 				29B0ED3E2CF78D0600FFC4EA /* notification-beep.mp3 */,
 				293BC8402CED115500B4EECF /* Assets.xcassets */,
 				293BC8422CED115500B4EECF /* Tic_Tac_Toe.entitlements */,
+				294503112D7BA451009EEFD6 /* Launch Screen.storyboard */,
 				293BC83F2CED115500B4EECF /* Preview Content */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		29B6F9802D7B465400F24EE8 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				29B6F9812D7B46CE00F24EE8 /* EntryViewVM.swift */,
+				29B6F9832D7B565200F24EE8 /* GameVM.swift */,
+				2945030F2D7B9319009EEFD6 /* ResultVM.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		29F4C7F32CFE374700C04593 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				293BC8412CED115500B4EECF /* ContentView.swift */,
+				293BC8412CED115500B4EECF /* EntryView.swift */,
 				293BC8492CED1B2000B4EECF /* GameView.swift */,
 				29789C902CEFBE3500283CF9 /* ResultView.swift */,
 				29AD07042CF8B9F2007B51CE /* GridShape.swift */,
@@ -190,6 +210,7 @@
 				293BC8462CED115500B4EECF /* Assets.xcassets in Resources */,
 				29A650DC2CF6A94000833949 /* .gitIgnore in Resources */,
 				29B0ED3F2CF78D0600FFC4EA /* notification-beep.mp3 in Resources */,
+				294503122D7BA451009EEFD6 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,12 +222,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				29AD07052CF8B9F2007B51CE /* GridShape.swift in Sources */,
-				293BC8472CED115500B4EECF /* ContentView.swift in Sources */,
+				293BC8472CED115500B4EECF /* EntryView.swift in Sources */,
 				293BC84A2CED1B2000B4EECF /* GameView.swift in Sources */,
 				29789C912CEFBE3500283CF9 /* ResultView.swift in Sources */,
 				293BC84C2CED2AD700B4EECF /* GameLogic.swift in Sources */,
+				294503102D7B9319009EEFD6 /* ResultVM.swift in Sources */,
 				293BC8482CED115500B4EECF /* Tic_Tac_ToeApp.swift in Sources */,
+				29B6F9822D7B46E100F24EE8 /* EntryViewVM.swift in Sources */,
 				2984E0EF2CFCD52F00F7C3B9 /* ComputerPlayerLogic.swift in Sources */,
+				29B6F9842D7B565200F24EE8 /* GameVM.swift in Sources */,
 				298F8C552CF2368500F04243 /* HelperFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,6 +377,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -394,6 +419,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

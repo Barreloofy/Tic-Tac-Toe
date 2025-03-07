@@ -13,10 +13,10 @@ struct Tic_Tac_ToeApp: App {
     var body: some Scene {
         WindowGroup {
             #if os(macOS)
-            ContentView()
+            EntryView()
                 .containerBackground(.thinMaterial, for: .window)
             #else
-            ContentView()
+            EntryView()
             #endif
         }
         #if os(macOS)

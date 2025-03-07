@@ -15,14 +15,14 @@ enum SoundError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
             case .nilResource(let message):
-            return message
+                return message
             case .nilURL(let message):
-            return message
+                return message
         }
     }
 }
 
- func generateBoardContent() -> [String] {
+func generateBoardContent() -> [String] {
     var freeBoardPosition = (0...8).map { $0 }
     freeBoardPosition.shuffle()
     return freeBoardPosition.map { $0 % 2 == 0 ? "X" : "O"}
@@ -57,9 +57,9 @@ func PlayerColor(_ content: String) -> Color {
     return content == "X" ? .crewBlue : .crewGreen
 }
 
-func configureSound(_ fileName: String, _ ofType: String) throws -> (AVAudioPlayer?, URL?) {
+func configureSound(_ fileName: String, _ ofType: String) throws -> AVAudioPlayer {
     guard let url = Bundle.main.url(forResource: fileName, withExtension: ofType) else { throw SoundError.nilResource() }
-    return (try AVAudioPlayer(contentsOf: url), url)
+    return try AVAudioPlayer(contentsOf: url)
 }
 
 struct ButtonAnimationModifier: ViewModifier {

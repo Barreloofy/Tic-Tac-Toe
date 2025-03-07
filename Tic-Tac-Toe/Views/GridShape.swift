@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Grid<S>: View where S: ShapeStyle {
+struct Grid<S: ShapeStyle>: View {
     let style: S
     let lineWidth: CGFloat
     
