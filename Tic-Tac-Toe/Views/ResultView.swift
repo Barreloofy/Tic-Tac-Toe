@@ -41,6 +41,7 @@ struct ResultView: View {
         }
     }
     
+    
     @ViewBuilder private var content: some View {
         VStack {
             GeometryReader { geometry in
@@ -72,6 +73,7 @@ struct ResultView: View {
             
         }
     }
+    
     
     @ViewBuilder private func navigationButton(_ title: String, _ wasPressed: Binding<Bool>, _ rotation: Double, _ action: @escaping () -> Void) -> some View {
         Text(title)

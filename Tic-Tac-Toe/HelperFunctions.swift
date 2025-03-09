@@ -8,6 +8,14 @@
 import SwiftUI
 import AVFoundation
 
+extension UserDefaults {
+    func difficulty(forKey key: String) -> Difficulty {
+        guard let rawValue = self.string(forKey: key) else { return .normal }
+        guard let difficulty = Difficulty(rawValue: rawValue) else { return .normal }
+        return difficulty
+    }
+}
+
 enum SoundError: Error, LocalizedError {
     case nilResource(String = "Sound file not found")
     case nilURL(String = "Sound URL is nil")

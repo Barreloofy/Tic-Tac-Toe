@@ -92,7 +92,8 @@
 				293BC8432CED115500B4EECF /* Tic_Tac_ToeApp.swift */,
 				29F4C7F32CFE374700C04593 /* Views */,
 				29B6F9802D7B465400F24EE8 /* ViewModels */,
-				29F4C7F52CFE375C00C04593 /* Logic */,
+				29F4C7F52CFE375C00C04593 /* Model */,
+				298F8C542CF2368500F04243 /* HelperFunctions.swift */,
 				29B0ED402CF794C600FFC4EA /* Resources */,
 			);
 			path = "Tic-Tac-Toe";
@@ -133,14 +134,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		29F4C7F52CFE375C00C04593 /* Logic */ = {
+		29F4C7F52CFE375C00C04593 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				293BC84B2CED2AD700B4EECF /* GameLogic.swift */,
 				2984E0EE2CFCD52F00F7C3B9 /* ComputerPlayerLogic.swift */,
-				298F8C542CF2368500F04243 /* HelperFunctions.swift */,
 			);
-			path = Logic;
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

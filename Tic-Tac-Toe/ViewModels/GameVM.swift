@@ -17,12 +17,14 @@ final class GameViewModel {
     var gameData = GameData()
     var computerIsPlayerX = false
     var gameOver = false
-    var vsComputer: Bool
     var tappedIndex: Int?
-    private let buttonSoundEffect: AVAudioPlayer!
+    let vsComputer: Bool
+    private let difficulty: Difficulty
+    let buttonSoundEffect: AVAudioPlayer!
     
     init(_ vsComputer: Bool) {
         self.vsComputer = vsComputer
+        self.difficulty = UserDefaults.standard.difficulty(forKey: "difficultyChoice")
         
         do {
             #if os(iOS)
@@ -71,8 +73,12 @@ final class GameViewModel {
     }
     
     func playerMove(index: Int) {
+        
+        buttonSoundEffect.prepareToPlay()
         Task(priority: .high) {
             do {
+                try await Task.sleep(nanoseconds: 100_000_000)
+                
                 playButtonSound(index)
                 try await animateTap(index)
                 
@@ -93,11 +99,12 @@ final class GameViewModel {
         guard vsComputer == true else { return }
         guard computerIsPlayerX == true && gameData.turnCount % 2 == 0 || computerIsPlayerX == false && gameData.turnCount % 2 != 0 else { return }
         
+        buttonSoundEffect.prepareToPlay()
         Task(priority: .high) {
             do {
-                try await Task.sleep(nanoseconds: gameData.turnCount == 0 ? 0 : 500_000_000)
+                try await Task.sleep(nanoseconds: gameData.turnCount == 0 ? 250_000_000 : 500_000_000)
                 
-                guard let computerMove = miniMax(gameData, true, computerIsPlayerX).index else {
+                guard let computerMove = miniMax(gameData, true, computerIsPlayerX, difficulty: difficulty).index else {
                     gameOver = true
                     return
                 }
@@ -110,5 +117,10 @@ final class GameViewModel {
                 logger.error("\(error.localizedDescription)")
             }
         }
+    }
+    
+    func setResult(_ value: Bool) {
+        buttonSoundEffect.stop()
+        gameOver = value
     }
 }

@@ -34,7 +34,11 @@ struct GameView: View {
                     }
             }
         }
+        .onDisappear {
+            viewModel.buttonSoundEffect.stop()
+        }
     }
+    
     
     @ViewBuilder private var content: some View {
         VStack {

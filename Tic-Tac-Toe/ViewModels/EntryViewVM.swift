@@ -16,7 +16,17 @@ private let logger = Logger(subsystem: "com.Tic-Tac-Toe.EntryVM", category: "Err
 final class EntryViewModel {
     var vsPlayerWasPressed = false
     var vsComputerWasPressed = false
+    var showDifficultySheet = false
     let buttonSoundEffect: AVAudioPlayer!
+    
+    var choice: Difficulty {
+        get {
+            UserDefaults.standard.difficulty(forKey: "difficultyChoice")
+        }
+        set {
+            UserDefaults.standard.set(newValue.rawValue, forKey: "difficultyChoice")
+        }
+    }
     
     init() {
         buttonSoundEffect = try! configureSound("pop-1", "mp3")
