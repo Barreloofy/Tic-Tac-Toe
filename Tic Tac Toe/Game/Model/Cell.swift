@@ -7,12 +7,43 @@
 
 import Foundation
 
-struct Cell: Identifiable {
-  enum State: String {
-    case empty = ""
-    case x, o
+typealias Cells = [Cell]
+@Observable
+class Cell: Identifiable {
+  let id = UUID()
+  var state: GameState.Player?
+
+  var description: String {
+    state?.rawValue ?? ""
+  }
+}
+
+
+extension Cell: Equatable {
+  static func == (lhs: Cell, rhs: Cell) -> Bool {
+    lhs.state == rhs.state
   }
 
-  var state = State.empty
-  let id = UUID()
+  static func == (lhs: Cell, rhs: GameState.Player?) -> Bool {
+    lhs.state == rhs
+  }
+
+  static func == (lhs: GameState.Player?, rhs: Cell) -> Bool {
+    lhs == rhs.state
+  }
+
+  static func != (lhs: Cell, rhs: GameState.Player?) -> Bool {
+    lhs.state != rhs
+  }
+
+  static func != (lhs: GameState.Player?, rhs: Cell) -> Bool {
+    lhs != rhs.state
+  }
+}
+
+
+extension Cell: Hashable {
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(id)
+  }
 }

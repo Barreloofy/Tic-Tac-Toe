@@ -10,26 +10,25 @@ import SwiftUI
 struct CellAnimation: ViewModifier {
   @State private var scale = 1.0
 
-  let state: Cell.State
+  let state: GameState.Player?
 
   func body(content: Content) -> some View {
     content
-      .onTapGesture {
-        guard state == .empty else { return }
+      .scaleEffect(scale)
+      .sensoryFeedback(.impact, trigger: scale)
+      .onChange(of: state) {
         withAnimation(.spring) {
           scale = 1.05
         } completion: {
           scale = 1.0
         }
       }
-      .scaleEffect(scale)
-      .sensoryFeedback(.impact, trigger: scale)
   }
 }
 
 
 extension View {
-  func cellAnimation(state: Cell.State) -> some View {
+  func cellAnimation(state: GameState.Player?) -> some View {
     modifier(CellAnimation(state: state))
   }
 }
