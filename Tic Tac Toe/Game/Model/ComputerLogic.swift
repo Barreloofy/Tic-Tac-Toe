@@ -6,67 +6,121 @@
 //
 
 enum ComputerLogic {
-  static func miniMax(game: GameState, depth: Int, isMaximizingPlayer: Bool) -> Int {
-    if let result = GameLogic.gameOver(for: game) {
-      switch result {
-      case .xWon:
-        return game.computerPlayer == .x ? 1 : -1
-      case .oWon:
-        return game.computerPlayer == .o ? 1 : -1
-      case .tie:
-        return 0
+  enum Difficulty: String, CaseIterable {
+    case normal, hard, extreme
+
+    var limit: Int {
+      switch self {
+      case .normal: 3
+      case .hard: 5
+      case .extreme: .max
       }
     }
+  }
 
+  static func miniMax(
+    game: Game,
+    depth: Int,
+    alpha: Int,
+    beta: Int ,
+    isMaximizingPlayer: Bool,
+    difficulty: Difficulty)
+  -> Int {
+    switch GameLogic.gameOver(for: game) {
+    case .xWon: return game.computerPlayer == .x ? (10 - depth) : (-10 + depth)
+    case .oWon: return game.computerPlayer == .o ? (10 - depth) : (-10 + depth)
+    case .tie: return 0
+    default: break
+    }
+
+    guard depth < difficulty.limit else { return 0 }
+
+    var alpha = alpha
+    var beta = beta
 
     if isMaximizingPlayer {
       var bestScore = Int.min
 
-      game.board.filter { $0 == nil }.forEach { cell in
+      for cell in game.board where cell == nil {
         cell.state = game.computerPlayer
-
-        let score = miniMax(game: game, depth: depth + 1, isMaximizingPlayer: false)
-
+        let score = miniMax(
+          game: game,
+          depth: depth + 1,
+          alpha: alpha,
+          beta: beta,
+          isMaximizingPlayer: false,
+          difficulty: difficulty)
         cell.state = nil
 
         bestScore = max(bestScore, score)
+        alpha = max(alpha, score)
+        if beta <= alpha { break }
       }
 
       return bestScore
     } else {
       var bestScore = Int.max
 
-      game.board.filter { $0 == nil }.forEach { cell in
+      for cell in game.board where cell == nil {
         cell.state = !game.computerPlayer
-
-        let score = miniMax(game: game, depth: depth + 1, isMaximizingPlayer: true)
-
+        let score = miniMax(
+          game: game,
+          depth: depth + 1,
+          alpha: alpha,
+          beta: beta,
+          isMaximizingPlayer: true,
+          difficulty: difficulty)
         cell.state = nil
 
         bestScore = min(bestScore, score)
+        beta = min(beta, score)
+        if beta <= alpha { break }
       }
 
       return bestScore
     }
   }
 
-  static func getBestMove(game: GameState) -> Int {
+  static func getBestMove(game: Game, difficulty: Difficulty) -> Int {
     var bestScore = Int.min
-    var bestMove = 0
+    var bestMoves = [Int]()
 
     game.board.enumerated().filter { $0.element == nil }.forEach { index, cell in
       cell.state = game.computerPlayer
-
-      let score = miniMax(game: game, depth: 0, isMaximizingPlayer: false)
-
+      let score = miniMax(
+        game: game,
+        depth: 0,
+        alpha: .min,
+        beta: .max,
+        isMaximizingPlayer: false,
+        difficulty: difficulty)
       cell.state = nil
 
       if score > bestScore {
         bestScore = score
-        bestMove = index
+        bestMoves = [index]
+      } else if score == bestScore {
+        bestMoves.append(index)
       }
     }
 
-    return bestMove
+    return bestMoves.randomElement()!
+  }
+}
+
+
+extension ComputerLogic {
+  static func makeBoard() -> Cells {
+    var game = Game()
+
+    game.board[.random(in: (0..<9))].state = game.currentPlayer
+    game.computerPlayer = .random()
+
+    while GameLogic.gameOver(for: game) == nil {
+      game.board[ComputerLogic.getBestMove(game: game, difficulty: .hard)].state = game.computerPlayer
+      game.computerPlayer = game.computerPlayer == .x ? .o : .x
+    }
+
+    return game.board
   }
 }

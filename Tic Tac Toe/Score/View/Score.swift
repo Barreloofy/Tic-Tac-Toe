@@ -8,13 +8,32 @@
 import SwiftUI
 
 struct Score: View {
-  let board: Cells
+  @Environment(Navigator.self) private var navigator
+
+  @Binding var state: Game
+
   let vsComputer: Bool
 
   var body: some View {
-    VStack {
-      Text("Hello, World!")
+    VStack(spacing: 40) {
+      BoardView(board: state.board)
+
+      Text(state.result?.description ?? "")
+        .prominent()
+
+      Button("Play, again") { state = .initiate(vsComputer) }
+        .buttonStyle(Impact(rotationDegrees: 5))
+
+      Button("Home") { navigator.popToRoot() }
+        .buttonStyle(Impact(rotationDegrees: -5))
+
+      Spacer()
     }
+    .padding()
+    .background(.crewDarkGray)
     .navigationBarBackButtonHidden()
+    .task {
+      await Sound.Retainer.shared.play("Score.mp3")
+    }
   }
 }

@@ -8,62 +8,42 @@
 import SwiftUI
 
 struct Home: View {
+  @State private var navigator = Navigator()
+  @State private var presentDifficulty = false
   @State private var board = Cells()
 
-  private let columns = Array(repeating: GridItem(spacing: 5), count: 3)
-
   var body: some View {
-    NavigationStack {
-      VStack(spacing: 50) {
+    NavigationStack(path: $navigator.path) {
+      VStack(spacing: 40) {
         Text("Tic Tac Toe")
           .prominent(size: 45)
 
-        ZStack {
-          GridShape()
-            .stroke(.crewPurple, lineWidth: 5)
-            .scaledToFit()
+        BoardView(board: board)
 
-          LazyVGrid(columns: columns, spacing: 5) {
-            ForEach(board) { cell in
-              ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                  .fill(.crewDarkGray)
-                  .shadow(color: .white, radius: 5)
-                  .scaledToFit()
+        NavigationLink("VS Player", value: false)
+          .buttonStyle(Impact(rotationDegrees: 5))
 
-                Text(cell.description)
-                  .font(.custom("Orbitron", size: 30))
-                  .textCase(.uppercase)
-              }
-              .padding()
-            }
+        NavigationLink("VS Computer", value: true)
+          .buttonStyle(Impact(rotationDegrees: -5))
+
+        Button("Difficulty") { presentDifficulty = true }
+          .prominent(size: 20, rotationDegrees: 5)
+          .offset(y: 25)
+          .sheet(isPresented: $presentDifficulty) {
+            Difficulty()
+              .presentationBackground(.crewDarkGray)
+              .presentationDetents([.fraction(0.10)])
           }
-        }
-        .padding(.horizontal, 50)
-
-        NavigationLink("VS Player") { Game(vsComputer: false) }
-        .buttonStyle(Impact(rotationDegrees: 5))
-
-        NavigationLink("VS Computer") { Game(vsComputer: true) }
-        .buttonStyle(Impact(rotationDegrees: -5))
 
         Spacer()
       }
       .padding()
       .background(.crewDarkGray)
-      .onAppear {
-        var game = GameState()
-
-        game.board[.random(in: (0..<9))].state = game.currentPlayer
-        game.computerPlayer = .random()
-
-        while GameLogic.gameOver(for: game) == nil {
-          game.board[ComputerLogic.getBestMove(game: game)].state = game.computerPlayer
-          game.computerPlayer = game.computerPlayer == .x ? .o : .x
-        }
-
-        board = game.board
+      .navigationDestination(for: Bool.self) { vsComputer in
+        GameView(vsComputer: vsComputer)
       }
+      .onAppear { board = ComputerLogic.makeBoard() }
     }
+    .environment(navigator)
   }
 }

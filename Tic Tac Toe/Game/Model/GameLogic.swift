@@ -12,9 +12,17 @@
 enum GameLogic {
   enum Outcome {
     case xWon, oWon, tie
+
+    var description: String {
+      switch self {
+      case .xWon: "Player X Won"
+      case .oWon: "Player O Won"
+      case .tie: "Tie"
+      }
+    }
   }
 
-  static func gameOver(for game: GameState) -> Outcome? {
+  static func gameOver(for game: Game) -> Outcome? {
     if let result = GameLogic.checkColumn(for: game.board) ??
        GameLogic.checkRows(for: game.board) ??
        GameLogic.checkDiagonals(for: game.board) {
@@ -30,7 +38,7 @@ enum GameLogic {
   }
 
   /// Checks each column for consecutive mark's of the same symbol, if present returns the appropriate mark else ".none"
-  static func checkColumn(for board: Cells) -> GameState.Player? {
+  static func checkColumn(for board: Cells) -> Game.Player? {
     let columns = [0, 1, 2]
 
     for offset in columns where board[offset] != nil {
@@ -43,7 +51,7 @@ enum GameLogic {
   }
 
   /// Checks each row for consecutive mark's of the same symbol, if present returns the appropriate mark else ".none"
-  static func checkRows(for board: Cells) -> GameState.Player? {
+  static func checkRows(for board: Cells) -> Game.Player? {
     let rows = [0, 3, 6]
 
     for offset in rows where board[offset] != nil {
@@ -56,7 +64,7 @@ enum GameLogic {
   }
 
   /// Checks each diagonal for consecutive mark's of the same symbol, if present returns the appropriate mark else ".none"
-  static func checkDiagonals(for board: Cells) -> GameState.Player? {
+  static func checkDiagonals(for board: Cells) -> Game.Player? {
     if board[0] == board[4] &&
        board[0] == board[8] &&
        board[0] != nil {

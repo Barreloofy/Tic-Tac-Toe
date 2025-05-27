@@ -9,12 +9,15 @@ import SwiftUI
 
 @main
 struct Tic_Tac_ToeApp: App {
-    var body: some Scene {
-        WindowGroup {
-            Home()
-            .foregroundStyle(.crewOrange)
-            .fontWeight(.bold)
-            .statusBarHidden()
-        }
+  @AppStorage("difficulty") private var difficulty = ComputerLogic.Difficulty.normal
+
+  var body: some Scene {
+    WindowGroup {
+      Home()
+        .foregroundStyle(.constructionOrange)
+        .fontWeight(.bold)
+        .statusBarHidden()
+        .environment(\.difficulty, difficulty)
     }
+  }
 }

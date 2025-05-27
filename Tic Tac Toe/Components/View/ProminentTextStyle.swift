@@ -13,7 +13,7 @@ struct Prominent: ViewModifier {
 
   func body(content: Content) -> some View {
     content
-      .font(.custom("Orbitron", size: 35))
+      .font(.orbitron(size))
       .rotationEffect(.degrees(rotationDegrees))
   }
 }
@@ -21,9 +21,9 @@ struct Prominent: ViewModifier {
 
 extension View {
   func prominent(
-    size: CGFloat,
-    rotationDegrees: Double = -5
-  ) -> some View {
+    size: CGFloat = 35,
+    rotationDegrees: Double = -5)
+  -> some View {
     modifier(Prominent(size: size, rotationDegrees: rotationDegrees))
   }
 }
