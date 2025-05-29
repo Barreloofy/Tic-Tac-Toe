@@ -18,7 +18,7 @@ struct Score: View {
     VStack(spacing: 40) {
       BoardView(board: state.board)
 
-      Text(state.result?.description ?? "")
+      Text(state.result?.rawValue ?? "")
         .prominent()
 
       Button("Play, again") { state = .initiate(vsComputer) }
@@ -30,10 +30,8 @@ struct Score: View {
       Spacer()
     }
     .padding()
-    .background(.crewDarkGray)
+    .background(.smokyBlack)
     .navigationBarBackButtonHidden()
-    .task {
-      await Sound.Retainer.shared.play("Score.mp3")
-    }
+    .onAppear { Sound.shared.play("Score.mp3") }
   }
 }

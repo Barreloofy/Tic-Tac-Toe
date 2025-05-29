@@ -14,6 +14,7 @@
 		294DFB342DD20D5D001150E2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 294DFB332DD20D5D001150E2 /* .gitignore */; };
 		294DFB352DD20D5D001150E2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 294DFB332DD20D5D001150E2 /* .gitignore */; };
 		295E67372DDE1F88009287DF /* Optional+Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E67362DDE1F73009287DF /* Optional+Player.swift */; };
+		2966EA4C2DE8D9F2009A7706 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2966EA4B2DE8D9E7009A7706 /* CellView.swift */; };
 		2969B6D82DE5BC86006199A8 /* OrbitronFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2969B6D72DE5BC7A006199A8 /* OrbitronFont.swift */; };
 		29715E522DDF7F50000C6F2F /* Difficulty+EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29715E512DDF7F2A000C6F2F /* Difficulty+EnvironmentValues.swift */; };
 		29715E542DDFB107000C6F2F /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29715E532DDFB0F7000C6F2F /* Navigator.swift */; };
@@ -63,6 +64,7 @@
 		294DFB202DD20928001150E2 /* Tic_Tac_ToeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tic_Tac_ToeApp.swift; sourceTree = "<group>"; };
 		294DFB332DD20D5D001150E2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		295E67362DDE1F73009287DF /* Optional+Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Optional+Player.swift"; sourceTree = "<group>"; };
+		2966EA4B2DE8D9E7009A7706 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		2969B6D72DE5BC7A006199A8 /* OrbitronFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitronFont.swift; sourceTree = "<group>"; };
 		29715E512DDF7F2A000C6F2F /* Difficulty+EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Difficulty+EnvironmentValues.swift"; sourceTree = "<group>"; };
 		29715E532DDFB0F7000C6F2F /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		2975E4902DD3C7D9006E5DBC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2966EA4B2DE8D9E7009A7706 /* CellView.swift */,
 				2987C9412DE120AC0012B7D2 /* BoardView.swift */,
 				299A276B2DE4BBDE00ADF382 /* Sound+ViewModifier.swift */,
 				2907814C2DD5018700670935 /* ProminentTextStyle.swift */,
@@ -230,8 +233,8 @@
 		29CB1C612DD37369000A39AD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				2987C9432DE123070012B7D2 /* Difficulty.swift */,
 				2975E47F2DD3B1CB006E5DBC /* Home.swift */,
+				2987C9432DE123070012B7D2 /* Difficulty.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2966EA4C2DE8D9F2009A7706 /* CellView.swift in Sources */,
 				298727892DDCB84D00470B66 /* Score.swift in Sources */,
 				297C352E2DD4B1D600A3E258 /* ImpactButtonStyle.swift in Sources */,
 				29715E522DDF7F50000C6F2F /* Difficulty+EnvironmentValues.swift in Sources */,

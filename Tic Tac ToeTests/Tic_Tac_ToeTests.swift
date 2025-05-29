@@ -12,19 +12,19 @@ final class Tic_Tac_ToeTests: XCTestCase {
   func testGameOver() {
     let board = (1...9).map { _ in Cell() }
 
-    board[0].state = .x
-    board[1].state = .x
-    board[2].state = .o
-    board[3].state = nil
-    board[4].state = nil
-    board[5].state = .o
-    board[6].state = .o
-    board[7].state = .x
-    board[8].state = .o
+    board[0].value = .x
+    board[1].value = .x
+    board[2].value = .o
+    board[3].value = nil
+    board[4].value = nil
+    board[5].value = .o
+    board[6].value = .o
+    board[7].value = .x
+    board[8].value = .o
 
     var gameState = Game()
     gameState.board = board
 
-    XCTAssert(GameLogic.gameOver(for: gameState) != nil)
+    XCTAssert(GameLogic.checkGameOver(for: gameState) != nil)
   }
 }

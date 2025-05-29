@@ -18,18 +18,8 @@ struct BoardView: View {
 
       LazyVGrid(columns: GridItem.widthThree, spacing: 5) {
         ForEach(board) { cell in
-          ZStack {
-            RoundedRectangle(cornerRadius: 10)
-              .fill(.crewDarkGray)
-              .shadow(color: .white, radius: 5)
-              .scaledToFit()
-
-            Text(cell.description)
-              .font(.orbitron())
-              .textCase(.uppercase)
-              .foregroundStyle(cell == .x ? .crewBlue : .crewGreen)
-          }
-          .padding()
+          CellView(cell: cell)
+            .padding()
         }
       }
     }

@@ -11,33 +11,33 @@ typealias Cells = [Cell]
 @Observable
 class Cell: Identifiable {
   let id = UUID()
-  var state: Game.Player?
+  var value: Game.Player?
 
   var description: String {
-    state?.rawValue ?? ""
+    value?.rawValue ?? ""
   }
 }
 
 
 extension Cell: Equatable {
   static func == (lhs: Cell, rhs: Cell) -> Bool {
-    lhs.state == rhs.state
+    lhs.value == rhs.value
   }
 
   static func == (lhs: Cell, rhs: Game.Player?) -> Bool {
-    lhs.state == rhs
+    lhs.value == rhs
   }
 
   static func == (lhs: Game.Player?, rhs: Cell) -> Bool {
-    lhs == rhs.state
+    lhs == rhs.value
   }
 
   static func != (lhs: Cell, rhs: Game.Player?) -> Bool {
-    lhs.state != rhs
+    lhs.value != rhs
   }
 
   static func != (lhs: Game.Player?, rhs: Cell) -> Bool {
-    lhs != rhs.state
+    lhs != rhs.value
   }
 }
 

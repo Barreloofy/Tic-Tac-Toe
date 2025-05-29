@@ -1,15 +1,78 @@
 //
-// ComputerLogic.swift
+// Game+MiniMax.swift
 // Tic Tac Toe
 //
 // Created by Barreloofy on 5/20/25 at 3:30 PM
 //
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
 enum ComputerLogic {
   enum Difficulty: String, CaseIterable {
     case normal, hard, extreme
 
-    var depthLimit: Int {
+    var limit: Int {
       switch self {
       case .normal: 3
       case .hard: 5
@@ -26,14 +89,19 @@ enum ComputerLogic {
     isMaximizingPlayer: Bool,
     difficulty: Difficulty)
   -> Int {
-    switch GameLogic.checkGameOver(for: game) {
+
+
+    game.hasEnded()
+
+
+    switch GameLogic.gameOver(for: game) {
     case .xWon: return game.computerPlayer == .x ? (10 - depth) : (-10 + depth)
     case .oWon: return game.computerPlayer == .o ? (10 - depth) : (-10 + depth)
     case .tie: return 0
     default: break
     }
 
-    guard depth < difficulty.depthLimit else { return 0 }
+    guard depth < difficulty.limit else { return 0 }
 
     var alpha = alpha
     var beta = beta
@@ -42,7 +110,7 @@ enum ComputerLogic {
       var bestScore = Int.min
 
       for cell in game.board where cell == nil {
-        cell.value = game.computerPlayer
+        cell.state = game.computerPlayer
         let score = miniMax(
           game: game,
           depth: depth + 1,
@@ -50,7 +118,7 @@ enum ComputerLogic {
           beta: beta,
           isMaximizingPlayer: false,
           difficulty: difficulty)
-        cell.value = nil
+        cell.state = nil
 
         bestScore = max(bestScore, score)
         alpha = max(alpha, score)
@@ -62,7 +130,7 @@ enum ComputerLogic {
       var bestScore = Int.max
 
       for cell in game.board where cell == nil {
-        cell.value = !game.computerPlayer
+        cell.state = !game.computerPlayer
         let score = miniMax(
           game: game,
           depth: depth + 1,
@@ -70,7 +138,7 @@ enum ComputerLogic {
           beta: beta,
           isMaximizingPlayer: true,
           difficulty: difficulty)
-        cell.value = nil
+        cell.state = nil
 
         bestScore = min(bestScore, score)
         beta = min(beta, score)
@@ -81,41 +149,64 @@ enum ComputerLogic {
     }
   }
 
-  static func makeBestMove(game: Game, difficulty: Difficulty) {
+  static func getBestMove(game: Game, difficulty: Difficulty) -> Int {
     var bestScore = Int.min
-    var bestMoves = [Cell]()
+    var bestMoves = [Int]()
 
-    game.board.filter { $0 == nil }.forEach { cell in
-      cell.value = game.computerPlayer
+    game.board.enumerated().filter { $0.element == nil }.forEach { index, cell in
+      cell.state = game.computerPlayer
       let score = miniMax(
         game: game,
-        depth: .zero,
+        depth: 0,
         alpha: .min,
         beta: .max,
         isMaximizingPlayer: false,
         difficulty: difficulty)
-      cell.value = nil
+      cell.state = nil
 
       if score > bestScore {
         bestScore = score
-        bestMoves = [cell]
+        bestMoves = [index]
       } else if score == bestScore {
-        bestMoves.append(cell)
+        bestMoves.append(index)
       }
     }
 
-    bestMoves.randomElement()?.value = game.computerPlayer
+    return bestMoves.randomElement()!
   }
+}
 
+
+extension ComputerLogic {
   static func makeBoard() -> Cells {
-    var game = Game(computerPlayer: .random())
+    var game = Game()
 
-    game.board.randomElement()?.value = game.currentPlayer
-    while GameLogic.checkGameOver(for: game) == nil {
-      makeBestMove(game: game, difficulty: .extreme)
-      game.computerPlayer = !game.computerPlayer
+    game.board[.random(in: (0..<9))].state = game.currentPlayer
+    game.computerPlayer = .random()
+
+    while GameLogic.gameOver(for: game) == nil {
+      game.board[ComputerLogic.getBestMove(game: game, difficulty: .hard)].state = game.computerPlayer
+      game.computerPlayer = game.computerPlayer == .x ? .o : .x
     }
 
     return game.board
+  }
+}
+*/
+
+
+extension Game.Computer {
+  static func makeBoard() -> Cells {
+    var game = Game()
+
+    game.board.array[.random(in: (0..<9))].value = game.currentPlayer
+    game.computerPlayer = .random()
+
+    while game.board.hasEnded() == nil {
+      game.board.array[Game.Computer.makeBestMove(game: game, difficulty: .hard)].value = game.currentPlayer
+      game.computerPlayer = game.computerPlayer == .x ? .o : .x
+    }
+
+    return game.board.array
   }
 }

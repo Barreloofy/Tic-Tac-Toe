@@ -14,8 +14,9 @@ struct Tic_Tac_ToeApp: App {
   var body: some Scene {
     WindowGroup {
       Home()
-        .foregroundStyle(.constructionOrange)
+        .font(.orbitron())
         .fontWeight(.bold)
+        .foregroundStyle(.constructionOrange)
         .statusBarHidden()
         .environment(\.difficulty, difficulty)
     }

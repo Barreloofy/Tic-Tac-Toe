@@ -24,15 +24,15 @@ struct SoundOnTap: ViewModifier {
 }
 
 
-struct SoundConditionally: ViewModifier {
+struct SoundConditionally<T: Hashable>: ViewModifier {
   @State private var soundEffect: AVAudioPlayer?
 
   let name: String
-  let isPlaying: Bool
+  let trigger: T
 
   func body(content: Content) -> some View {
     content
-      .onChange(of: isPlaying) { if isPlaying { soundEffect?.play() } }
+      .onChange(of: trigger) { soundEffect?.play() }
       .onAppear { soundEffect = Sound.prepare(name) }
       .onDisappear { soundEffect?.stop() }
   }
@@ -44,7 +44,7 @@ extension View {
     modifier(SoundOnTap(name: name))
   }
 
-  func sound(_ name: String, isPlaying: Bool) -> some View {
-    modifier(SoundConditionally(name: name, isPlaying: isPlaying))
+  func sound<T: Hashable>(_ name: String, trigger: T) -> some View {
+    modifier(SoundConditionally(name: name, trigger: trigger))
   }
 }

@@ -11,10 +11,6 @@ struct Game {
   enum Player: String, CaseIterable {
     case x, o
 
-    static prefix func ! (value: Player) -> Player {
-      value == .x ? .o : .x
-    }
-
     static func random() -> Player {
       allCases.randomElement()!
     }
@@ -24,27 +20,26 @@ struct Game {
     vsComputer ? Game(computerPlayer: .random()) : Game()
   }
 
+  mutating func initiate(_ vsComputer: Bool) {
+    guard vsComputer && computerPlayer == nil else { return }
+    computerPlayer = .random()
+  }
+
   var currentPlayer = Player.random()
   var computerPlayer: Player?
-  var isComputerMove: Bool { computerPlayer == currentPlayer }
+  var isComputerMove: Bool { currentPlayer == computerPlayer }
+  var turnDescription: String {
+    isComputerMove ? "Computer's turn" : "Player \(currentPlayer.rawValue.uppercased())'s turn"
+  }
 
   var board = (1...9).map { _ in Cell() }
   var result: GameLogic.Outcome?
 
-  mutating func initiate(_ vsComputer: Bool) {
-    guard vsComputer else { return }
-
-    computerPlayer = .random()
-  }
-
   mutating func makeMove(_ cell: Cell) {
     guard cell == nil else { return }
 
-    cell.state = currentPlayer == .x ? .x : .o
+    cell.value = currentPlayer
 
-    switch currentPlayer {
-    case .x: currentPlayer = .o
-    case .o: currentPlayer = .x
-    }
+    currentPlayer = !currentPlayer
   }
 }

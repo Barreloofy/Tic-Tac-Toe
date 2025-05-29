@@ -14,66 +14,49 @@ struct GameView: View {
 
   let vsComputer: Bool
 
-  private var player: String {
-    game.isComputerMove ? "Computer's turn" : "Player \(game.currentPlayer.rawValue.uppercased())'s turn"
-  }
-
   var body: some View {
-    VStack(spacing: 40) {
-      Text(player)
+    VStack {
+      Text(game.turnDescription)
         .prominent()
+        .animation(
+          .bouncy(duration: 0.25, extraBounce: 0.2),
+          value: game.currentPlayer)
 
       ZStack {
         GridShape()
-          .stroke(.crewPurple, lineWidth: 5)
+          .stroke(.neonPurple, lineWidth: 5)
           .scaledToFit()
 
         LazyVGrid(columns: GridItem.widthThree, spacing: 5) {
           ForEach(game.board) { cell in
-            ZStack {
-              RoundedRectangle(cornerRadius: 10)
-                .fill(.crewDarkGray)
-                .shadow(color: .white, radius: 5)
-                .scaledToFit()
-
-              Text(cell.description)
-                .font(.orbitron())
-                .textCase(.uppercase)
-                .foregroundStyle(cell == .x ? .crewBlue : .crewGreen)
-            }
-            .padding()
-            .contentShape(Rectangle())
-            .cellFeedback(cell.state)
-            .onTapGesture { game.makeMove(cell) }
-            .disabled(game.isComputerMove)
+            CellView(cell: cell)
+              .padding()
+              .contentShape(Rectangle())
+              .cellFeedback(for: cell)
+              .onTapGesture { game.makeMove(cell) }
+              .disabled(game.isComputerMove)
           }
         }
       }
       .padding(25)
-      
+
       Spacer()
     }
     .padding()
-    .background(.crewDarkGray)
+    .background(.smokyBlack)
     .navigationBarBackButtonHidden()
-    .onAppear { game.initiate(vsComputer) }
-    .task(id: game.currentPlayer) {
-      game.result = GameLogic.gameOver(for: game)
-
-      guard game.result == nil else { return }
-      guard game.currentPlayer == game.computerPlayer else { return }
-
-      try? await Task.sleep(for: .seconds(1))
-
-      game.board[ComputerLogic.getBestMove(game: game, difficulty: difficulty)].state = game.computerPlayer
-
-      switch game.currentPlayer {
-      case .x: game.currentPlayer = .o
-      case .o: game.currentPlayer = .x
-      }
-    }
     .navigationDestination(item: $game.result) { _ in
       Score(state: $game, vsComputer: vsComputer)
     }
+    .task(id: game.currentPlayer) {
+      game.result = GameLogic.checkGameOver(for: game)
+      guard game.result == nil && game.isComputerMove else { return }
+
+      try? await Task.sleep(for: .seconds(1))
+
+      ComputerLogic.makeBestMove(game: game, difficulty: difficulty)
+      game.currentPlayer = !game.currentPlayer
+    }
+    .onAppear { game.initiate(vsComputer) }
   }
 }

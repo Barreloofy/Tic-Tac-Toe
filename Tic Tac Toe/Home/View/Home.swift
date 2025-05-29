@@ -31,14 +31,14 @@ struct Home: View {
           .offset(y: 25)
           .sheet(isPresented: $presentDifficulty) {
             Difficulty()
-              .presentationBackground(.crewDarkGray)
+              .presentationBackground(.smokyBlack)
               .presentationDetents([.fraction(0.10)])
           }
 
         Spacer()
       }
       .padding()
-      .background(.crewDarkGray)
+      .background(.smokyBlack)
       .navigationDestination(for: Bool.self) { vsComputer in
         GameView(vsComputer: vsComputer)
       }
