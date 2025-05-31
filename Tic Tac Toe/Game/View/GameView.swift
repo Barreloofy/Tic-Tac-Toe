@@ -38,18 +38,17 @@ struct GameView: View {
           }
         }
       }
-      .padding(25)
+      .padding()
+      .offset(y: 25)
 
       Spacer()
     }
-    .padding()
-    .background(.smokyBlack)
-    .navigationBarBackButtonHidden()
+    .ticTacToeBackground()
     .navigationDestination(item: $game.result) { _ in
       Score(state: $game, vsComputer: vsComputer)
     }
     .task(id: game.currentPlayer) {
-      game.result = GameLogic.checkGameOver(for: game)
+      game.result = GameLogic.checkOutcome(for: game)
       guard game.result == nil && game.isComputerMove else { return }
 
       try? await Task.sleep(for: .seconds(1))

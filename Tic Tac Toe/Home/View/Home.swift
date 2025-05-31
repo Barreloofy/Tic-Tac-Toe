@@ -37,8 +37,7 @@ struct Home: View {
 
         Spacer()
       }
-      .padding()
-      .background(.smokyBlack)
+      .ticTacToeBackground()
       .navigationDestination(for: Bool.self) { vsComputer in
         GameView(vsComputer: vsComputer)
       }

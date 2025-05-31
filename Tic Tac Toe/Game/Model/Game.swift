@@ -5,8 +5,6 @@
 // Created by Barreloofy on 5/15/25 at 11:52 AM
 //
 
-import Foundation
-
 struct Game {
   enum Player: String, CaseIterable {
     case x, o
@@ -34,6 +32,7 @@ struct Game {
 
   var board = (1...9).map { _ in Cell() }
   var result: GameLogic.Outcome?
+  var resultDescription: String { result?.rawValue ?? "" }
 
   mutating func makeMove(_ cell: Cell) {
     guard cell == nil else { return }

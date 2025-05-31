@@ -8,6 +8,7 @@
 import Foundation
 
 typealias Cells = [Cell]
+
 @Observable
 class Cell: Identifiable {
   let id = UUID()
@@ -38,12 +39,5 @@ extension Cell: Equatable {
 
   static func != (lhs: Game.Player?, rhs: Cell) -> Bool {
     lhs != rhs.value
-  }
-}
-
-
-extension Cell: Hashable {
-  func hash(into hasher: inout Hasher) {
-    hasher.combine(id)
   }
 }

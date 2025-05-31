@@ -8,43 +8,26 @@
 import SwiftUI
 import AVFoundation
 
-struct SoundOnTap: ViewModifier {
+struct SoundOnChange<T: Hashable>: ViewModifier {
   @State private var soundEffect: AVAudioPlayer?
 
   let name: String
+  let value: T
 
   func body(content: Content) -> some View {
     content
-      .simultaneousGesture(
-        TapGesture()
-          .onEnded { soundEffect?.play() })
-      .onAppear { soundEffect = Sound.prepare(name) }
-      .onDisappear { soundEffect?.stop() }
-  }
-}
-
-
-struct SoundConditionally<T: Hashable>: ViewModifier {
-  @State private var soundEffect: AVAudioPlayer?
-
-  let name: String
-  let trigger: T
-
-  func body(content: Content) -> some View {
-    content
-      .onChange(of: trigger) { soundEffect?.play() }
-      .onAppear { soundEffect = Sound.prepare(name) }
+      .onChange(of: value) {
+        soundEffect?.currentTime = .zero
+        soundEffect?.play()
+      }
+      .onAppear { soundEffect = AudioManager.createPlayer(name) }
       .onDisappear { soundEffect?.stop() }
   }
 }
 
 
 extension View {
-  func sound(_ name: String) -> some View {
-    modifier(SoundOnTap(name: name))
-  }
-
   func sound<T: Hashable>(_ name: String, trigger: T) -> some View {
-    modifier(SoundConditionally(name: name, trigger: trigger))
+    modifier(SoundOnChange(name: name, value: trigger))
   }
 }

@@ -25,6 +25,6 @@ final class Tic_Tac_ToeTests: XCTestCase {
     var gameState = Game()
     gameState.board = board
 
-    XCTAssert(GameLogic.checkGameOver(for: gameState) != nil)
+    XCTAssert(GameLogic.checkOutcome(for: gameState) != nil)
   }
 }

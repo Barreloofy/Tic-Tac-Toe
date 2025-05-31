@@ -18,6 +18,7 @@ enum ComputerLogic {
     }
   }
 
+  /// MiniMax algorithm with Alpha–beta pruning and depth limit.
   static func miniMax(
     game: Game,
     depth: Int,
@@ -26,7 +27,7 @@ enum ComputerLogic {
     isMaximizingPlayer: Bool,
     difficulty: Difficulty)
   -> Int {
-    switch GameLogic.checkGameOver(for: game) {
+    switch GameLogic.checkOutcome(for: game) {
     case .xWon: return game.computerPlayer == .x ? (10 - depth) : (-10 + depth)
     case .oWon: return game.computerPlayer == .o ? (10 - depth) : (-10 + depth)
     case .tie: return 0
@@ -83,7 +84,7 @@ enum ComputerLogic {
 
   static func makeBestMove(game: Game, difficulty: Difficulty) {
     var bestScore = Int.min
-    var bestMoves = [Cell]()
+    var bestMoves = Cells()
 
     game.board.filter { $0 == nil }.forEach { cell in
       cell.value = game.computerPlayer
@@ -111,7 +112,7 @@ enum ComputerLogic {
     var game = Game(computerPlayer: .random())
 
     game.board.randomElement()?.value = game.currentPlayer
-    while GameLogic.checkGameOver(for: game) == nil {
+    while GameLogic.checkOutcome(for: game) == nil {
       makeBestMove(game: game, difficulty: .extreme)
       game.computerPlayer = !game.computerPlayer
     }

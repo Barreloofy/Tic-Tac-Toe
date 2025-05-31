@@ -19,10 +19,12 @@ struct Impact: ButtonStyle {
     ZStack {
       RoundedRectangle(cornerRadius: 10)
         .offset(y: yOffset)
+
       RoundedRectangle(cornerRadius: 10)
         .fill(.smokyBlack)
         .scaleEffect(1.01) // Needed for AA fix, simplest way to achieve this without creating custom shape.
         .offset(y: configuration.isPressed ? yOffset : 0)
+
       configuration.label
         .offset(y: configuration.isPressed ? yOffset : 0)
     }
