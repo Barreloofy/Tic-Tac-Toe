@@ -16,6 +16,7 @@ struct Tic_Tac_ToeApp: App {
       Home()
         .font(.orbitron())
         .fontWeight(.bold)
+        .dynamicTypeSize(.large)
         .foregroundStyle(.constructionOrange)
         .statusBarHidden()
         .environment(\.difficulty, difficulty)

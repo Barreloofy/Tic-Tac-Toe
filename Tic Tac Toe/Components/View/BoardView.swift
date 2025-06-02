@@ -12,14 +12,11 @@ struct BoardView: View {
 
   var body: some View {
     ZStack {
-      GridShape()
-        .stroke(.neonPurple, lineWidth: 5)
-        .scaledToFit()
+      GridTicTacToe()
 
       LazyVGrid(columns: GridItem.widthThree, spacing: 5) {
         ForEach(board) { cell in
           CellView(cell: cell)
-            .padding()
         }
       }
     }

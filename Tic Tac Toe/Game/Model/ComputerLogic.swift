@@ -111,9 +111,8 @@ enum ComputerLogic {
   static func makeBoard() -> Cells {
     var game = Game(computerPlayer: .random())
 
-    game.board.randomElement()?.value = game.currentPlayer
     while GameLogic.checkOutcome(for: game) == nil {
-      makeBestMove(game: game, difficulty: .extreme)
+      makeBestMove(game: game, difficulty: .normal)
       game.computerPlayer = !game.computerPlayer
     }
 

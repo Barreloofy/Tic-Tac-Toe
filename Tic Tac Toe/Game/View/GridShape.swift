@@ -12,25 +12,34 @@ struct GridShape: Shape {
     var path = Path()
     let factor: CGFloat = 1 / 3
 
-    path.move(to: CGPointZero)
-    path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
-    path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-    path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-    path.addLine(to: CGPointZero)
-    path.closeSubpath()
+    path.drawLine(from: CGPoint(x: rect.maxX * (factor * 1), y: rect.minY), toY: rect.maxY)
+    path.drawLine(from: CGPoint(x: rect.maxX * (factor * 2), y: rect.minY), toY: rect.maxY)
 
-    path.move(to: CGPoint(x: rect.maxX * (factor * 1), y: rect.minY))
-    path.addLine(to: CGPoint(x: rect.maxX * (factor * 1), y: rect.maxY))
-
-    path.move(to: CGPoint(x: rect.maxX * (factor * 2), y: rect.minY))
-    path.addLine(to: CGPoint(x: rect.maxX * (factor * 2), y: rect.maxY))
-
-    path.move(to: CGPoint(x: rect.minX, y: rect.maxY * (factor * 1)))
-    path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY * (factor * 1)))
-
-    path.move(to: CGPoint(x: rect.minX, y: rect.maxY * (factor * 2)))
-    path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY * (factor * 2)))
+    path.drawLine(from: CGPoint(x: rect.minX, y: rect.maxY * (factor * 1)), toX: rect.maxX)
+    path.drawLine(from: CGPoint(x: rect.minX, y: rect.maxY * (factor * 2)), toX: rect.maxX)
 
     return path
+  }
+}
+
+
+struct GridTicTacToe: View {
+  var strokeStyle = Color.neonPurple
+
+  var body: some View {
+    GridShape()
+      .stroke(strokeStyle, lineWidth: 5)
+      .scaledToFit()
+  }
+}
+
+
+extension Path {
+  /// Convenience method for drawing a line,adding line to path,
+  /// combines 'move(to:)' and 'addLine(to:)' but only the starting point and the deviating end point needs to be defined.
+  /// In cases where the end point vary slightly, e.g, one axes is diffrent, this method provides a streamlined interface.
+  mutating func drawLine(from start: CGPoint, toX x: CGFloat? = nil, toY y: CGFloat? = nil) {
+    self.move(to: start)
+    self.addLine(to: CGPoint(x: x ?? start.x, y: y ?? start.y))
   }
 }

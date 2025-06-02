@@ -15,7 +15,7 @@ struct Score: View {
   let vsComputer: Bool
 
   var body: some View {
-    VStack(spacing: 40) {
+    VStack(spacing: 50) {
       BoardView(board: state.board)
 
       Text(state.resultDescription)

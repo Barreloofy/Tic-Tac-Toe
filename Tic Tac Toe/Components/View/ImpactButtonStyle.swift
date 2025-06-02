@@ -8,25 +8,25 @@
 import SwiftUI
 
 struct Impact: ButtonStyle {
-  var width: CGFloat = 250
-  var height: CGFloat = 50
-  var size: CGFloat = 30
+  var width: CGFloat = 200
+  var height: CGFloat = 40
+  var size: CGFloat = 25
   let rotationDegrees: Double
 
-  private let yOffset = 5.0
+  private let offset = 8.0
 
   func makeBody(configuration: Configuration) -> some View {
     ZStack {
       RoundedRectangle(cornerRadius: 10)
-        .offset(y: yOffset)
+        .fill(.darkOrange)
+        .offset(y: offset)
 
       RoundedRectangle(cornerRadius: 10)
-        .fill(.smokyBlack)
-        .scaleEffect(1.01) // Needed for AA fix, simplest way to achieve this without creating custom shape.
-        .offset(y: configuration.isPressed ? yOffset : 0)
+        .offset(y: configuration.isPressed ? offset : 0)
 
       configuration.label
-        .offset(y: configuration.isPressed ? yOffset : 0)
+        .foregroundStyle(.smokyBlack)
+        .offset(y: configuration.isPressed ? offset : 0)
     }
     .font(.orbitron(size))
     .frame(width: width, height: height)

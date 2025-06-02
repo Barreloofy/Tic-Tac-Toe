@@ -22,5 +22,6 @@ struct CellView: View {
         .textCase(.uppercase)
         .foregroundStyle(cell == .x ? .crewBlue : .crewGreen)
     }
+    .padding()
   }
 }

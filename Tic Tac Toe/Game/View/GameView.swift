@@ -23,14 +23,11 @@ struct GameView: View {
           value: game.currentPlayer)
 
       ZStack {
-        GridShape()
-          .stroke(.neonPurple, lineWidth: 5)
-          .scaledToFit()
+        GridTicTacToe()
 
         LazyVGrid(columns: GridItem.widthThree, spacing: 5) {
           ForEach(game.board) { cell in
             CellView(cell: cell)
-              .padding()
               .contentShape(Rectangle())
               .cellFeedback(for: cell)
               .onTapGesture { game.makeMove(cell) }

@@ -14,9 +14,9 @@ struct Home: View {
 
   var body: some View {
     NavigationStack(path: $navigator.path) {
-      VStack(spacing: 40) {
+      VStack(spacing: 50) {
         Text("Tic Tac Toe")
-          .prominent(size: 45)
+          .prominent()
 
         BoardView(board: board)
 
@@ -27,10 +27,10 @@ struct Home: View {
           .buttonStyle(Impact(rotationDegrees: -5))
 
         Button("Difficulty") { presentDifficulty = true }
-          .prominent(size: 20, rotationDegrees: 5)
-          .offset(y: 25)
+          .buttonStyle(Impact(width: 125, height: 30, size: 20, rotationDegrees: 5))
           .sheet(isPresented: $presentDifficulty) {
             Difficulty()
+              .dynamicTypeSize(.large)
               .presentationBackground(.smokyBlack)
               .presentationDetents([.fraction(0.10)])
           }
