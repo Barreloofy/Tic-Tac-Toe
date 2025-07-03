@@ -10,26 +10,31 @@ import SwiftUI
 struct Score: View {
   @Environment(Navigator.self) private var navigator
 
-  @Binding var state: Game
+  @Binding var game: Game
 
   let vsComputer: Bool
 
   var body: some View {
     VStack(spacing: 50) {
-      BoardView(board: state.board)
+      BoardView(board: game.board)
 
-      Text(state.resultDescription)
+      Text(game.resultDescription)
         .prominent()
 
-      Button("Play, again") { state = .initiate(vsComputer) }
-        .buttonStyle(Impact(rotationDegrees: 5))
+      Button("Play, again") { game.reset() }
+        .buttonStyle(.impact(rotationDegrees: 5))
 
       Button("Home") { navigator.popToRoot() }
-        .buttonStyle(Impact(rotationDegrees: -5))
+        .buttonStyle(.impact(rotationDegrees: -5))
 
       Spacer()
     }
     .ticTacToeBackground()
     .onAppear { AudioManager.session.play("Score.mp3") }
+    .hapticFeedback(VictoryFeedback()) {
+      game.result != .tie &&
+      game.computerPlayer == nil ||
+      game.result != game.computerPlayer
+    }
   }
 }

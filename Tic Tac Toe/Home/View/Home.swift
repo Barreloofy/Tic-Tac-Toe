@@ -21,13 +21,13 @@ struct Home: View {
         BoardView(board: board)
 
         NavigationLink("VS Player", value: false)
-          .buttonStyle(Impact(rotationDegrees: 5))
+          .buttonStyle(.impact(rotationDegrees: 5))
 
         NavigationLink("VS Computer", value: true)
-          .buttonStyle(Impact(rotationDegrees: -5))
+          .buttonStyle(.impact(rotationDegrees: -5))
 
         Button("Difficulty") { presentDifficulty = true }
-          .buttonStyle(Impact(width: 125, height: 30, size: 20, rotationDegrees: 5))
+          .buttonStyle(.impact(width: 125, height: 30, size: 20, rotationDegrees: 5))
           .sheet(isPresented: $presentDifficulty) {
             Difficulty()
               .dynamicTypeSize(.large)

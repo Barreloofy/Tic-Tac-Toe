@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct Impact: ButtonStyle {
-  var width: CGFloat = 200
-  var height: CGFloat = 40
-  var size: CGFloat = 25
+  let width: CGFloat
+  let height: CGFloat
+  let size: CGFloat
   let rotationDegrees: Double
 
   private let offset = 8.0
@@ -35,5 +35,21 @@ struct Impact: ButtonStyle {
       .impact,
       trigger: configuration.isPressed)
     { _, _ in configuration.isPressed }
+  }
+}
+
+
+extension ButtonStyle where Self == Impact {
+  static func impact(
+    width: CGFloat = 200,
+    height: CGFloat = 40,
+    size: CGFloat = 25,
+    rotationDegrees: Double)
+  -> Impact {
+    Impact(
+      width: width,
+      height: height,
+      size: size,
+      rotationDegrees: rotationDegrees)
   }
 }

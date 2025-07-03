@@ -25,7 +25,7 @@ struct GameView: View {
       ZStack {
         GridTicTacToe()
 
-        LazyVGrid(columns: GridItem.widthThree, spacing: 5) {
+        LazyVGrid(columns: GridItem.threeColumnLayout, spacing: 5) {
           ForEach(game.board) { cell in
             CellView(cell: cell)
               .contentShape(Rectangle())
@@ -42,17 +42,17 @@ struct GameView: View {
     }
     .ticTacToeBackground()
     .navigationDestination(item: $game.result) { _ in
-      Score(state: $game, vsComputer: vsComputer)
+      Score(game: $game, vsComputer: vsComputer)
     }
+    .onAppear { game.initiate(vsComputer) }
     .task(id: game.currentPlayer) {
       game.result = GameLogic.checkOutcome(for: game)
       guard game.result == nil && game.isComputerMove else { return }
 
-      try? await Task.sleep(for: .seconds(1))
+      guard (try? await Task.sleep(for: .seconds(1))) != nil else { return }
 
       ComputerLogic.makeBestMove(game: game, difficulty: difficulty)
       game.currentPlayer = !game.currentPlayer
     }
-    .onAppear { game.initiate(vsComputer) }
   }
 }

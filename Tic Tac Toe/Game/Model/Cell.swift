@@ -7,10 +7,8 @@
 
 import Foundation
 
-typealias Cells = [Cell]
-
 @Observable
-class Cell: Identifiable {
+class Cell: Identifiable, CustomStringConvertible {
   let id = UUID()
   var value: Game.Player?
 
@@ -18,6 +16,7 @@ class Cell: Identifiable {
     value?.rawValue ?? ""
   }
 }
+typealias Cells = [Cell]
 
 
 extension Cell: Equatable {
@@ -31,6 +30,10 @@ extension Cell: Equatable {
 
   static func == (lhs: Game.Player?, rhs: Cell) -> Bool {
     lhs == rhs.value
+  }
+
+  static func != (lhs: Cell, rhs: Cell) -> Bool {
+    lhs.value != rhs.value
   }
 
   static func != (lhs: Cell, rhs: Game.Player?) -> Bool {

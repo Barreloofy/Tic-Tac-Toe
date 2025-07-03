@@ -82,6 +82,8 @@ enum ComputerLogic {
     }
   }
 
+  /// Returns the best move determined by miniMax(:Game, :Int, :Int, :Int, :Bool, :Difficulty) -> Int,
+  /// used by the computer-player for each of its turns.
   static func makeBestMove(game: Game, difficulty: Difficulty) {
     var bestScore = Int.min
     var bestMoves = Cells()
@@ -108,6 +110,7 @@ enum ComputerLogic {
     bestMoves.randomElement()?.value = game.computerPlayer
   }
 
+  /// Creates a full game where each player is the computer, used for the home view.
   static func makeBoard() -> Cells {
     var game = Game(computerPlayer: .random())
 

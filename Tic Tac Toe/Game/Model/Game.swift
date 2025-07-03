@@ -14,13 +14,12 @@ struct Game {
     }
   }
 
-  static func initiate(_ vsComputer: Bool) -> Game {
-    vsComputer ? Game(computerPlayer: .random()) : Game()
+  mutating func initiate(_ vsComputer: Bool) {
+    self = Game(computerPlayer: vsComputer ? .random() : nil)
   }
 
-  mutating func initiate(_ vsComputer: Bool) {
-    guard vsComputer && computerPlayer == nil else { return }
-    computerPlayer = .random()
+  mutating func reset() {
+    result = nil
   }
 
   var currentPlayer = Player.random()
@@ -30,7 +29,7 @@ struct Game {
     isComputerMove ? "Computer's turn" : "Player \(currentPlayer.rawValue.uppercased())'s turn"
   }
 
-  var board = (1...9).map { _ in Cell() }
+  let board = (1...9).map { _ in Cell() }
   var result: GameLogic.Outcome?
   var resultDescription: String { result?.rawValue ?? "" }
 

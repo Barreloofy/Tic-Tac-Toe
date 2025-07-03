@@ -35,9 +35,9 @@ struct GridTicTacToe: View {
 
 
 extension Path {
-  /// Convenience method for drawing a line,adding line to path,
-  /// combines 'move(to:)' and 'addLine(to:)' but only the starting point and the deviating end point needs to be defined.
-  /// In cases where the end point vary slightly, e.g, one axes is diffrent, this method provides a streamlined interface.
+  /// Convenience method for drawing a line, then appending it to path,
+  /// combines 'move(to:)' and 'addLine(to:)' but only requires the starting point and the deviating end point to be defined.
+  /// In cases where the end point varies, e.g, one axes deviated, this method provides a streamlined interface.
   mutating func drawLine(from start: CGPoint, toX x: CGFloat? = nil, toY y: CGFloat? = nil) {
     self.move(to: start)
     self.addLine(to: CGPoint(x: x ?? start.x, y: y ?? start.y))

@@ -14,7 +14,7 @@ struct BoardView: View {
     ZStack {
       GridTicTacToe()
 
-      LazyVGrid(columns: GridItem.widthThree, spacing: 5) {
+      LazyVGrid(columns: GridItem.threeColumnLayout, spacing: 5) {
         ForEach(board) { cell in
           CellView(cell: cell)
         }
