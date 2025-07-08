@@ -13,7 +13,7 @@ struct Prominent: ViewModifier {
 
   func body(content: Content) -> some View {
     content
-      .font(.orbitron(size))
+      .font(.orbitron(size: size))
       .rotationEffect(.degrees(rotationDegrees))
   }
 }

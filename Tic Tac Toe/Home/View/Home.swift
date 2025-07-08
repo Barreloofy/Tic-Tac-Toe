@@ -19,6 +19,7 @@ struct Home: View {
           .prominent()
 
         BoardView(board: board)
+          .resultBoardPadding()
 
         NavigationLink("VS Player", value: false)
           .buttonStyle(.impact(rotationDegrees: 5))
@@ -27,7 +28,7 @@ struct Home: View {
           .buttonStyle(.impact(rotationDegrees: -5))
 
         Button("Difficulty") { presentDifficulty = true }
-          .buttonStyle(.impact(width: 125, height: 30, size: 20, rotationDegrees: 5))
+          .buttonStyle(.impact(width: 125, height: 30, fontSize: 20, rotationDegrees: 5))
           .sheet(isPresented: $presentDifficulty) {
             Difficulty()
               .dynamicTypeSize(.large)
@@ -37,7 +38,7 @@ struct Home: View {
 
         Spacer()
       }
-      .ticTacToeBackground()
+      .backgroundConfiguration()
       .navigationDestination(for: Bool.self) { vsComputer in
         GameView(vsComputer: vsComputer)
       }

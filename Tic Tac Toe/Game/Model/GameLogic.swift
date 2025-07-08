@@ -22,7 +22,7 @@ enum GameLogic {
     checkTie(for: game.board)
   }
 
-  /// Checks each column for consecutive mark's of the same symbol, if present, returns the appropriate mark else ".none"
+  /// Checks each column for consecutive mark's of the same symbol, if present, returns the appropriate mark else nil.
   static func checkColumn(for board: Cells) -> Outcome? {
     let columns = [0, 1, 2]
 
@@ -35,7 +35,7 @@ enum GameLogic {
     return nil
   }
 
-  /// Checks each row for consecutive mark's of the same symbol, if present, returns the appropriate mark else ".none"
+  /// Checks each row for consecutive mark's of the same symbol, if present, returns the appropriate mark else nil.
   static func checkRows(for board: Cells) -> Outcome? {
     let rows = [0, 3, 6]
 
@@ -48,7 +48,7 @@ enum GameLogic {
     return nil
   }
 
-  /// Checks each diagonal for consecutive mark's of the same symbol, if present, returns the appropriate mark else ".none"
+  /// Checks each diagonal for consecutive mark's of the same symbol, if present, returns the appropriate mark else nil.
   static func checkDiagonals(for board: Cells) -> Outcome? {
     if board[0] == board[4] &&
        board[0] == board[8] &&
@@ -67,7 +67,7 @@ enum GameLogic {
 
   /// Checks for empty cells, if all cells are occupied, returns '.tie' else nil.
   /// - Important:
-  /// Calling this method before the other GameLogic methods or only this one may return's a false value.
+  /// Calling this method before other GameLogic methods or solely this one may return's a false value.
   /// Call this method as the last of the four GameLogic methods.
   static private func checkTie(for board: Cells) -> Outcome? {
     board.filter { $0 == nil }.isEmpty ? .tie : nil

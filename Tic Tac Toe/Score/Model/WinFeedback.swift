@@ -1,5 +1,5 @@
 //
-// VictoryFeedback.swift
+// WinFeedback.swift
 // Tic Tac Toe
 //
 // Created by Barreloofy on 7/1/25 at 2:10 PM
@@ -8,10 +8,14 @@
 import CoreHaptics
 
 extension Score {
-  func VictoryFeedback() -> CHHapticPattern? {
+  func winFeedback() -> CHHapticPattern? {
     let intensity = CHHapticEventParameter(parameterID: .hapticIntensity, value: 1)
     let sharpness = CHHapticEventParameter(parameterID: .hapticSharpness, value: 1)
-    let event = CHHapticEvent(eventType: .hapticContinuous, parameters: [intensity, sharpness], relativeTime: 0, duration: 2)
+    let event = CHHapticEvent(
+      eventType: .hapticContinuous,
+      parameters: [intensity, sharpness],
+      relativeTime: 0,
+      duration: 2)
 
     let initialIntensity = CHHapticParameterCurve.ControlPoint(relativeTime: 0, value: 0)
     let peakIntensity = CHHapticParameterCurve.ControlPoint(relativeTime: 1, value: 1)

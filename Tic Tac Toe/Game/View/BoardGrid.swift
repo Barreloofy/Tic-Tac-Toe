@@ -1,5 +1,5 @@
 //
-// GridShape.swift
+// BoardGrid.swift
 // Tic Tac Toe
 //
 // Created by Barreloofy on 5/13/25 at 2:34 PM
@@ -23,7 +23,7 @@ struct GridShape: Shape {
 }
 
 
-struct GridTicTacToe: View {
+struct BoardGrid: View {
   var strokeStyle = Color.neonPurple
 
   var body: some View {

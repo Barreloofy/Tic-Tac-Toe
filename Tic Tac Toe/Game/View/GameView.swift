@@ -18,41 +18,34 @@ struct GameView: View {
     VStack {
       Text(game.turnDescription)
         .prominent()
-        .animation(
-          .bouncy(duration: 0.25, extraBounce: 0.2),
-          value: game.currentPlayer)
+        .turnAnimation(trigger: game.currentPlayer)
 
-      ZStack {
-        GridTicTacToe()
-
-        LazyVGrid(columns: GridItem.threeColumnLayout, spacing: 5) {
-          ForEach(game.board) { cell in
-            CellView(cell: cell)
-              .contentShape(Rectangle())
-              .cellFeedback(for: cell)
-              .onTapGesture { game.makeMove(cell) }
-              .disabled(game.isComputerMove)
-          }
-        }
+      BoardView(board: game.board) { cell in
+        CellView(cell: cell)
+          .contentShape(Rectangle())
+          .cellFeedback(for: cell)
+          .onTapGesture { game.makeMove(cell) }
+          .disabled(game.isComputerMove)
       }
-      .padding()
-      .offset(y: 25)
+      .padding(.horizontal)
+      .offset(y: 50)
 
       Spacer()
     }
-    .ticTacToeBackground()
+    .backgroundConfiguration()
     .navigationDestination(item: $game.result) { _ in
       Score(game: $game, vsComputer: vsComputer)
     }
     .onAppear { game.initiate(vsComputer) }
-    .task(id: game.currentPlayer) {
+    .onChange(of: game.currentPlayer) {
       game.result = GameLogic.checkOutcome(for: game)
+    }
+    .task(id: game.currentPlayer) {
       guard game.result == nil && game.isComputerMove else { return }
 
       guard (try? await Task.sleep(for: .seconds(1))) != nil else { return }
 
-      ComputerLogic.makeBestMove(game: game, difficulty: difficulty)
-      game.currentPlayer = !game.currentPlayer
+      game.makeMove(ComputerLogic.bestMove(for: game, difficulty: difficulty))
     }
   }
 }

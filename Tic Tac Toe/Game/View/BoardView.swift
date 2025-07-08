@@ -7,19 +7,25 @@
 
 import SwiftUI
 
-struct BoardView: View {
+struct BoardView<Content: View>: View {
   let board: Cells
+
+  let cellContent: (Cell) -> Content
 
   var body: some View {
     ZStack {
-      GridTicTacToe()
+      BoardGrid()
 
       LazyVGrid(columns: GridItem.threeColumnLayout, spacing: 5) {
-        ForEach(board) { cell in
-          CellView(cell: cell)
-        }
+        ForEach(board) { cellContent($0) }
       }
     }
-    .padding(.horizontal, 50)
+  }
+}
+
+
+extension BoardView where Content == CellView {
+  init(board: Cells) {
+    self.init(board: board) { CellView(cell: $0) }
   }
 }

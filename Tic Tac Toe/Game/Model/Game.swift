@@ -29,12 +29,12 @@ struct Game {
     isComputerMove ? "Computer's turn" : "Player \(currentPlayer.rawValue.uppercased())'s turn"
   }
 
-  let board = (1...9).map { _ in Cell() }
+  let board = Range(1...9).map { _ in Cell() }
   var result: GameLogic.Outcome?
   var resultDescription: String { result?.rawValue ?? "" }
 
-  mutating func makeMove(_ cell: Cell) {
-    guard cell == nil else { return }
+  mutating func makeMove(_ cell: Cell?) {
+    guard let cell = cell, cell == .none else { return }
 
     cell.value = currentPlayer
 

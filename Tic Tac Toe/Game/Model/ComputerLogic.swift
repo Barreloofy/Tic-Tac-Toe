@@ -9,6 +9,7 @@ enum ComputerLogic {
   enum Difficulty: String, CaseIterable {
     case normal, hard, extreme
 
+    /// The recursion depth limit represented as an int, controls the recursion depth of miniMax.
     var depthLimit: Int {
       switch self {
       case .normal: 3
@@ -19,6 +20,16 @@ enum ComputerLogic {
   }
 
   /// MiniMax algorithm with Alpha–beta pruning and depth limit.
+  /// - Parameters:
+  ///   - game: Instance of type 'Game' to use.
+  ///   - depth: The current depth of recursion.
+  ///   - alpha: The highest score that the maximizer can guarantee.
+  ///   - beta: The lowest score that the minimizer can guarantee.
+  ///   - isMaximizingPlayer: A boolean to control if its the maximizer or minimizer's turn.
+  ///   - difficulty: The difficulty to use, which controls the recursion depth.
+  /// - Returns:
+  /// A score representing the value of the particular move,
+  /// the higher the score the better the move for the maximizer and vice-versa.
   static func miniMax(
     game: Game,
     depth: Int,
@@ -82,9 +93,10 @@ enum ComputerLogic {
     }
   }
 
-  /// Returns the best move determined by miniMax(:Game, :Int, :Int, :Int, :Bool, :Difficulty) -> Int,
+  /// Returns the best move determined by miniMax(game:, depth:, alpha:, beta:, isMaximizingPlayer:, difficulty:) -> Int,
   /// used by the computer-player for each of its turns.
-  static func makeBestMove(game: Game, difficulty: Difficulty) {
+  /// - Returns: The best possible move as a cell.
+  static func bestMove(for game: Game, difficulty: Difficulty) -> Cell? {
     var bestScore = Int.min
     var bestMoves = Cells()
 
@@ -107,15 +119,20 @@ enum ComputerLogic {
       }
     }
 
-    bestMoves.randomElement()?.value = game.computerPlayer
+    return bestMoves.randomElement()
   }
 
-  /// Creates a full game where each player is the computer, used for the home view.
+  /// Creates a board, where the computer plays against itself in alteranting turns.
+  /// - Returns: The board of a complete game of Tic-Tac-Toe.
   static func makeBoard() -> Cells {
     var game = Game(computerPlayer: .random())
+    var bestCell: Cell?
 
     while GameLogic.checkOutcome(for: game) == nil {
-      makeBestMove(game: game, difficulty: .normal)
+      bestCell = bestMove(for: game, difficulty: .normal)
+
+      bestCell?.value = game.computerPlayer
+
       game.computerPlayer = !game.computerPlayer
     }
 

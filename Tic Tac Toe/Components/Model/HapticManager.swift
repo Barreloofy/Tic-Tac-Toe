@@ -11,7 +11,7 @@ import os
 /// The underlying implementation for advanced haptic patterns for this App.
 class HapticManager {
   /// The shared session for HapticManager,
-  /// important, this property will always be initialized even when coreHaptics is not available.
+  /// important, this property will always be initialized even when CoreHaptics is not available.
   /// interacting with 'session' in such cases is safe, but will produce no effect.
   @MainActor static let session = HapticManager()
 

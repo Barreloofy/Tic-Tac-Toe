@@ -17,6 +17,7 @@ struct Score: View {
   var body: some View {
     VStack(spacing: 50) {
       BoardView(board: game.board)
+        .resultBoardPadding()
 
       Text(game.resultDescription)
         .prominent()
@@ -29,9 +30,9 @@ struct Score: View {
 
       Spacer()
     }
-    .ticTacToeBackground()
+    .backgroundConfiguration()
     .onAppear { AudioManager.session.play("Score.mp3") }
-    .hapticFeedback(VictoryFeedback()) {
+    .hapticFeedback(winFeedback()) {
       game.result != .tie &&
       game.computerPlayer == nil ||
       game.result != game.computerPlayer

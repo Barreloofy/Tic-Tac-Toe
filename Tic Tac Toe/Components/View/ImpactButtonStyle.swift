@@ -10,7 +10,7 @@ import SwiftUI
 struct Impact: ButtonStyle {
   let width: CGFloat
   let height: CGFloat
-  let size: CGFloat
+  let fontSize: CGFloat
   let rotationDegrees: Double
 
   private let offset = 8.0
@@ -28,7 +28,7 @@ struct Impact: ButtonStyle {
         .foregroundStyle(.smokyBlack)
         .offset(y: configuration.isPressed ? offset : 0)
     }
-    .font(.orbitron(size))
+    .font(.orbitron(size: fontSize))
     .frame(width: width, height: height)
     .rotationEffect(.degrees(rotationDegrees))
     .sensoryFeedback(
@@ -43,13 +43,13 @@ extension ButtonStyle where Self == Impact {
   static func impact(
     width: CGFloat = 200,
     height: CGFloat = 40,
-    size: CGFloat = 25,
+    fontSize: CGFloat = 25,
     rotationDegrees: Double)
   -> Impact {
     Impact(
       width: width,
       height: height,
-      size: size,
+      fontSize: fontSize,
       rotationDegrees: rotationDegrees)
   }
 }
