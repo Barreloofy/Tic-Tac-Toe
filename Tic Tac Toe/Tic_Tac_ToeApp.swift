@@ -19,6 +19,7 @@ struct Tic_Tac_ToeApp: App {
         .dynamicTypeSize(.large)
         .foregroundStyle(.constructionOrange)
         .statusBarHidden()
+        .accessibilityHidden(true)
     }
     .environment(\.difficulty, difficulty)
   }
