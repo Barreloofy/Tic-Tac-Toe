@@ -10,12 +10,15 @@ import SwiftUI
 struct CellView: View {
   let cell: Cell
 
+  private let partialOpacity = 0.5
+  private let shadowBlur: CGFloat = 4
+
   var body: some View {
     ZStack {
-      RoundedRectangle(cornerRadius: 10)
-        .fill(.smokyBlack)
-        .shadow(color: .white.opacity(0.4), radius: 5)
-        .shadow(color: .wistful.opacity(0.4), radius: 5)
+      RoundedRectangle(cornerRadius: 8)
+        .fill(UIConstants.background)
+        .shadow(color: .wistful.opacity(partialOpacity), radius: shadowBlur)
+        .shadow(color: .white.opacity(partialOpacity), radius: shadowBlur)
         .scaledToFit()
 
       Text(cell.description)

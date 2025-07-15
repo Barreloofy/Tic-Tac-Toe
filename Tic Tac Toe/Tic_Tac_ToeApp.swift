@@ -14,11 +14,11 @@ struct Tic_Tac_ToeApp: App {
   var body: some Scene {
     WindowGroup {
       Home()
-        .font(.orbitron())
+        .font(.orbitron)
         .fontWeight(.bold)
-        .dynamicTypeSize(.large)
-        .foregroundStyle(.constructionOrange)
+        .foregroundStyle(UIConstants.foreground)
         .statusBarHidden()
+        .dynamicTypeSize(.large)
         .accessibilityHidden(true)
     }
     .environment(\.difficulty, difficulty)

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		2907814B2DD4FE4600670935 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907814A2DD4FE3E00670935 /* GameView.swift */; };
 		2907814D2DD5018800670935 /* ProminentTextStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907814C2DD5018700670935 /* ProminentTextStyle.swift */; };
-		290D4EAA2E1407BE0098ED85 /* WinFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290D4EA92E1407BE0098ED85 /* WinFeedback.swift */; };
+		290D4EAA2E1407BE0098ED85 /* VictoryFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290D4EA92E1407BE0098ED85 /* VictoryFeedback.swift */; };
 		292693D62DEB3D740067B6EF /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292693D52DEB3D5A0067B6EF /* Background.swift */; };
 		294DFB222DD20928001150E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 294DFB1E2DD20928001150E2 /* Assets.xcassets */; };
 		294DFB242DD20928001150E2 /* Tic_Tac_ToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294DFB202DD20928001150E2 /* Tic_Tac_ToeApp.swift */; };
@@ -27,6 +27,7 @@
 		2987278B2DDCBB5E00470B66 /* ComputerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987278A2DDCBB4500470B66 /* ComputerLogic.swift */; };
 		2987C9422DE120B90012B7D2 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987C9412DE120AC0012B7D2 /* BoardView.swift */; };
 		2987C9442DE123080012B7D2 /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987C9432DE123070012B7D2 /* Difficulty.swift */; };
+		2988EEEF2E25544A0084A0EA /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2988EEEE2E25542A0084A0EA /* UIConstants.swift */; };
 		298951BE2DD62B2E00B41EA5 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298951BD2DD62B2C00B41EA5 /* Cell.swift */; };
 		298951C22DD65C7C00B41EA5 /* CellFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298951C12DD65C6F00B41EA5 /* CellFeedback.swift */; };
 		299A27622DE4774A00ADF382 /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299A27612DE4774100ADF382 /* AudioManager.swift */; };
@@ -64,7 +65,7 @@
 /* Begin PBXFileReference section */
 		2907814A2DD4FE3E00670935 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		2907814C2DD5018700670935 /* ProminentTextStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProminentTextStyle.swift; sourceTree = "<group>"; };
-		290D4EA92E1407BE0098ED85 /* WinFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinFeedback.swift; sourceTree = "<group>"; };
+		290D4EA92E1407BE0098ED85 /* VictoryFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryFeedback.swift; sourceTree = "<group>"; };
 		292693D52DEB3D5A0067B6EF /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		294DFAF42DD20843001150E2 /* Tic Tac Toe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tic Tac Toe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		294DFB012DD20844001150E2 /* Tic Tac ToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tic Tac ToeTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +85,7 @@
 		2987278A2DDCBB4500470B66 /* ComputerLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerLogic.swift; sourceTree = "<group>"; };
 		2987C9412DE120AC0012B7D2 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		2987C9432DE123070012B7D2 /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
+		2988EEEE2E25542A0084A0EA /* UIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
 		298951BD2DD62B2C00B41EA5 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		298951C12DD65C6F00B41EA5 /* CellFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellFeedback.swift; sourceTree = "<group>"; };
 		299A27612DE4774100ADF382 /* AudioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
@@ -142,7 +144,7 @@
 		290D4EA82E1407740098ED85 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				290D4EA92E1407BE0098ED85 /* WinFeedback.swift */,
+				290D4EA92E1407BE0098ED85 /* VictoryFeedback.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -240,6 +242,7 @@
 		2975E4902DD3C7D9006E5DBC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2988EEEE2E25542A0084A0EA /* UIConstants.swift */,
 				2969B6D72DE5BC7A006199A8 /* OrbitronFont.swift */,
 				292693D52DEB3D5A0067B6EF /* Background.swift */,
 				29CF8DF82E1C95A2007F8BEF /* ResultBoardPadding.swift */,
@@ -458,8 +461,9 @@
 				29E44C572DDB6C69009A5121 /* GameLogic.swift in Sources */,
 				2969B6D82DE5BC86006199A8 /* OrbitronFont.swift in Sources */,
 				29FAAE4C2DD5F0D600FB17D7 /* Game.swift in Sources */,
-				290D4EAA2E1407BE0098ED85 /* WinFeedback.swift in Sources */,
+				290D4EAA2E1407BE0098ED85 /* VictoryFeedback.swift in Sources */,
 				29715E542DDFB107000C6F2F /* Navigator.swift in Sources */,
+				2988EEEF2E25544A0084A0EA /* UIConstants.swift in Sources */,
 				292693D62DEB3D740067B6EF /* Background.swift in Sources */,
 				295E67372DDE1F88009287DF /* Player+PrefixOverloading.swift in Sources */,
 				29CC3A0B2E149518003FE83F /* HapticManager.swift in Sources */,

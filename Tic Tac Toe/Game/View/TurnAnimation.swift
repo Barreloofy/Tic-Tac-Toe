@@ -11,25 +11,30 @@ struct TurnAnimation<T: Equatable>: ViewModifier {
   @State private var offset: CGFloat = 0
 
   let value: T
+  let enabled: Bool
 
   func body(content: Content) -> some View {
-    content
-      .offset(x: offset)
-      .onChange(of: value) {
-        withAnimation(.bouncy(duration: 0.2, extraBounce: 0.2)) {
-          offset = 5
-        } completion: {
-          withAnimation(.bouncy(duration: 0.2)) {
-            offset = 0
-          }
+    switch enabled {
+    case true:
+      content
+        .offset(x: offset)
+        .onChange(of: value) {
+          withAnimation(
+            .bouncy(duration: 0.2, extraBounce: 0.2),
+            { offset = 5 },
+            completion: {
+              withAnimation(.bouncy(duration: 0.2)) { offset = 0 }
+            })
         }
-      }
+    case false:
+      content
+    }
   }
 }
 
 
 extension View {
-  func turnAnimation<T: Equatable>(trigger: T) -> some View {
-    modifier(TurnAnimation(value: trigger))
+  func turnAnimation<T: Equatable>(trigger: T, enabled: Bool) -> some View {
+    modifier(TurnAnimation(value: trigger, enabled: enabled))
   }
 }

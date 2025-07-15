@@ -22,18 +22,23 @@ struct Home: View {
           .resultBoardPadding()
 
         NavigationLink("VS Player", value: false)
-          .buttonStyle(.impact(rotationDegrees: 5))
+          .buttonStyle(.impact(rotationDegrees: UIConstants.rightRotation))
 
         NavigationLink("VS Computer", value: true)
-          .buttonStyle(.impact(rotationDegrees: -5))
+          .buttonStyle(.impact(rotationDegrees: UIConstants.leftRotation))
 
         Button("Difficulty") { presentDifficulty = true }
-          .buttonStyle(.impact(width: 125, height: 30, fontSize: 20, rotationDegrees: 5))
+          .buttonStyle(
+            .impact(
+              width: 125,
+              height: 30,
+              fontSize: UIConstants.fontVerySmall,
+              rotationDegrees: UIConstants.rightRotation))
           .sheet(isPresented: $presentDifficulty) {
             Difficulty()
-              .dynamicTypeSize(.large)
-              .presentationBackground(.smokyBlack)
+              .presentationBackground(UIConstants.background)
               .presentationDetents([.fraction(0.10)])
+              .dynamicTypeSize(.large)
           }
 
         Spacer()

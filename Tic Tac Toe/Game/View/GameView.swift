@@ -11,6 +11,7 @@ struct GameView: View {
   @Environment(\.difficulty) private var difficulty
 
   @State private var game = Game()
+  @State private var initializationComplete = false
 
   let vsComputer: Bool
 
@@ -18,11 +19,12 @@ struct GameView: View {
     VStack {
       Text(game.turnDescription)
         .prominent()
-        .turnAnimation(trigger: game.currentPlayer)
+        .turnAnimation(
+          trigger: game.currentPlayer,
+          enabled: initializationComplete)
 
       BoardView(board: game.board) { cell in
         CellView(cell: cell)
-          .contentShape(Rectangle())
           .cellFeedback(for: cell)
           .onTapGesture { game.makeMove(cell) }
           .disabled(game.isComputerMove)
@@ -36,7 +38,11 @@ struct GameView: View {
     .navigationDestination(item: $game.result) { _ in
       Score(game: $game, vsComputer: vsComputer)
     }
-    .onAppear { game.initiate(vsComputer) }
+    .onAppear {
+      game.initiate(vsComputer)
+      initializationComplete = true
+    }
+    .onDisappear { initializationComplete = false }
     .onChange(of: game.currentPlayer) {
       game.result = GameLogic.checkOutcome(for: game)
     }

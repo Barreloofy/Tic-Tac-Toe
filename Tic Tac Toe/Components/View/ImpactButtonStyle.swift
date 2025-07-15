@@ -17,15 +17,15 @@ struct Impact: ButtonStyle {
 
   func makeBody(configuration: Configuration) -> some View {
     ZStack {
-      RoundedRectangle(cornerRadius: 10)
+      RoundedRectangle(cornerRadius: 8)
         .fill(.darkOrange)
         .offset(y: offset)
 
-      RoundedRectangle(cornerRadius: 10)
+      RoundedRectangle(cornerRadius: 8)
         .offset(y: configuration.isPressed ? offset : 0)
 
       configuration.label
-        .foregroundStyle(.smokyBlack)
+        .foregroundStyle(UIConstants.background)
         .offset(y: configuration.isPressed ? offset : 0)
     }
     .font(.orbitron(size: fontSize))
@@ -43,7 +43,7 @@ extension ButtonStyle where Self == Impact {
   static func impact(
     width: CGFloat = 200,
     height: CGFloat = 40,
-    fontSize: CGFloat = 25,
+    fontSize: CGFloat = UIConstants.fontSmall,
     rotationDegrees: Double)
   -> Impact {
     Impact(

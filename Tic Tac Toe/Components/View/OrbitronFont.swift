@@ -8,7 +8,9 @@
 import SwiftUI
 
 extension Font {
-  static func orbitron(size: CGFloat = 30) -> Font {
+  static var orbitron: Font { .custom("Orbitron", size: UIConstants.fontRegular) }
+
+  static func orbitron(size: CGFloat = UIConstants.fontRegular) -> Font {
     .custom("Orbitron", size: size)
   }
 }

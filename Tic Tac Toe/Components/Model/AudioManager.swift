@@ -9,7 +9,7 @@ import AVFoundation
 
 /// The underlying implementation of the audio interface for this App.
 /// - Remark:
-/// Use the static method 'createPlayer(String)' to create an instance of AVAudioPlayer with the content of an audio-file.
+/// Use the static method 'createPlayer(:String)' to create an instance of AVAudioPlayer with the content of an audio-file.
 /// Use 'shared' with the method 'play(_ :String, with: TimeInterval)' to play an audio-file instantly.
 class AudioManager: NSObject, AVAudioPlayerDelegate {
   @MainActor static let session = AudioManager()

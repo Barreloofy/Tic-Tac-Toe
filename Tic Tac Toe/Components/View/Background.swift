@@ -11,7 +11,7 @@ struct BackgroundConfiguration: ViewModifier {
   func body(content: Content) -> some View {
     content
       .padding()
-      .background(.smokyBlack)
+      .background(UIConstants.background)
       .navigationBarBackButtonHidden()
   }
 }

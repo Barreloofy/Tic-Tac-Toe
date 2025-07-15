@@ -14,12 +14,12 @@ struct Difficulty: View {
     HStack {
       ForEach(ComputerLogic.Difficulty.allCases, id: \.self) { difficultyCase in
         Text(difficultyCase.rawValue)
-          .font(.orbitron(size: 20))
+          .font(.orbitron(size: UIConstants.fontVerySmall))
           .textCase(.uppercase)
           .onTapGesture { difficulty = difficultyCase }
           .overlay(alignment: .bottom) {
             if difficultyCase == difficulty {
-              RoundedRectangle(cornerRadius: 10)
+              RoundedRectangle(cornerRadius: 8)
                 .frame(height: 2)
             }
           }

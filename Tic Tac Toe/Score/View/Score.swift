@@ -23,16 +23,16 @@ struct Score: View {
         .prominent()
 
       Button("Play, again") { game.reset() }
-        .buttonStyle(.impact(rotationDegrees: 5))
+        .buttonStyle(.impact(rotationDegrees: UIConstants.rightRotation))
 
       Button("Home") { navigator.popToRoot() }
-        .buttonStyle(.impact(rotationDegrees: -5))
+        .buttonStyle(.impact(rotationDegrees: UIConstants.leftRotation))
 
       Spacer()
     }
     .backgroundConfiguration()
     .onAppear { AudioManager.session.play("Score.mp3") }
-    .hapticFeedback(winFeedback()) {
+    .hapticFeedback(.victoryFeedback) {
       game.result != .tie &&
       game.computerPlayer == nil ||
       game.result != game.computerPlayer
