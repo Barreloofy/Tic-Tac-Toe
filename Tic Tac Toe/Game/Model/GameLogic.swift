@@ -14,16 +14,16 @@ enum GameLogic {
   }
 
   /// Convenience method to determine the outcome of a game,
-  /// calls the 'checkColumn(for: Game)', 'checkRows(for: Game)', 'checkDiagonals(for: Game)', and 'checkTie(for: Game)' methods.
+  /// calls the 'checkColumns(for: Game)', 'checkRows(for: Game)', 'checkDiagonals(for: Game)', and 'checkTie(for: Game)' methods.
   static func checkOutcome(for game: Game) -> Outcome? {
-    return checkColumn(for: game.board) ??
+    return checkColumns(for: game.board) ??
     checkRows(for: game.board) ??
     checkDiagonals(for: game.board) ??
     checkTie(for: game.board)
   }
 
   /// Checks each column for consecutive mark's of the same symbol, if present, returns the appropriate mark else nil.
-  static func checkColumn(for board: Cells) -> Outcome? {
+  static func checkColumns(for board: Cells) -> Outcome? {
     let columns = [0, 1, 2]
 
     for offset in columns where board[offset] != nil {

@@ -44,3 +44,10 @@ extension Cell: Equatable {
     lhs != rhs.value
   }
 }
+
+
+extension Array where Element == Cell {
+  static func initializeBoard() -> Cells {
+    (1...9).map { _ in Cell() }
+  }
+}

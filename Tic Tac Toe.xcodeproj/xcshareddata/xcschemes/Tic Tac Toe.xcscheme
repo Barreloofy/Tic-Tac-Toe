@@ -35,7 +35,7 @@
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "294DFB002DD20844001150E2"
+               BlueprintIdentifier = "29FB01672E2F815A001D0E56"
                BuildableName = "Tic Tac ToeTests.xctest"
                BlueprintName = "Tic Tac ToeTests"
                ReferencedContainer = "container:Tic Tac Toe.xcodeproj">
