@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import Odio
 
 struct Score: View {
   @Environment(Navigator.self) private var navigator
+
+  @AudioPlayer("Score.mp3", after: 0.5) private var audioPlayer
 
   @Binding var game: Game
 
@@ -31,10 +34,9 @@ struct Score: View {
       Spacer()
     }
     .backgroundConfiguration()
-    .onAppear { AudioManager.session.play("Score.mp3") }
+    .onAppear { audioPlayer() }
     .hapticFeedback(.victoryFeedback) {
       game.result != .tie &&
-      game.computerPlayer == nil ||
       game.result != game.computerPlayer
     }
   }

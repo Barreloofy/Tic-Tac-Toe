@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Odio
 
 struct CellFeedback: ViewModifier {
   @State private var scale = 1.0
@@ -16,7 +17,7 @@ struct CellFeedback: ViewModifier {
     content
       .scaleEffect(scale)
       .sensoryFeedback(.impact, trigger: value)
-      .audio("CellTap.mp3", trigger: value)
+      .soundFeedback("CellTap.mp3", trigger: value)
       .onChange(of: value) {
         withAnimation(
           .spring.speed(2),

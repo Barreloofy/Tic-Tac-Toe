@@ -34,7 +34,7 @@ struct TurnAnimation<T: Equatable>: ViewModifier {
 
 
 extension View {
-  func turnAnimation<T: Equatable>(trigger: T, enabled: Bool) -> some View {
+  func turnAnimation(trigger: some Equatable, enabled: Bool) -> some View {
     modifier(TurnAnimation(value: trigger, enabled: enabled))
   }
 }
