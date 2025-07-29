@@ -6,8 +6,10 @@
 //
 
 enum ComputerLogic {
-  enum Difficulty: String, CaseIterable {
+  enum Difficulty: String, CaseIterable, Identifiable {
     case normal, hard, extreme
+
+    var id: Difficulty { self }
 
     /// The recursion depth limit represented as an int, controls the recursion depth of miniMax.
     var depthLimit: Int {

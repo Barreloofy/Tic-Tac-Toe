@@ -34,18 +34,16 @@ struct GameView: View {
 
       Spacer()
     }
-    .backgroundConfiguration()
+    .configureBackground()
     .navigationDestination(item: $game.result) { _ in
-      Score(game: $game, vsComputer: vsComputer)
+      Score(game: game, vsComputer: vsComputer)
     }
     .onAppear {
       game.initiate(vsComputer)
       initializationComplete = true
     }
     .onDisappear { initializationComplete = false }
-    .onChange(of: game.currentPlayer) {
-      game.result = GameLogic.checkOutcome(for: game)
-    }
+    .onChange(of: game.currentPlayer) { game.updateResult() }
     .task(id: game.currentPlayer) {
       guard game.result == nil && game.isComputerMove else { return }
 

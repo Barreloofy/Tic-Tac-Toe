@@ -9,12 +9,12 @@ import SwiftUI
 import Odio
 
 struct Score: View {
+  @Environment(\.dismiss) private var dismiss
   @Environment(Navigator.self) private var navigator
 
   @AudioPlayer("Score.mp3", after: 0.5) private var audioPlayer
 
-  @Binding var game: Game
-
+  let game: Game
   let vsComputer: Bool
 
   var body: some View {
@@ -25,16 +25,15 @@ struct Score: View {
       Text(game.resultDescription)
         .prominent()
 
-      Button("Play, again") { game.reset() }
-        .buttonStyle(.impact(rotationDegrees: UIConstants.rightRotation))
+      Button("Play, again") { dismiss() }
+        .buttonStyle(.impact(rotation: .rightRotation))
 
       Button("Home") { navigator.popToRoot() }
-        .buttonStyle(.impact(rotationDegrees: UIConstants.leftRotation))
+        .buttonStyle(.impact(rotation: .leftRotation))
 
       Spacer()
     }
-    .backgroundConfiguration()
-    .onAppear { audioPlayer() }
+    .configureBackground()
     .hapticFeedback(.victoryFeedback) {
       game.result != .tie &&
       game.result != game.computerPlayer

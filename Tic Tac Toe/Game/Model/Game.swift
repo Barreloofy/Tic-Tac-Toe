@@ -40,4 +40,8 @@ struct Game {
 
     currentPlayer = !currentPlayer
   }
+
+  mutating func updateResult() {
+    result = GameLogic.checkOutcome(for: self)
+  }
 }

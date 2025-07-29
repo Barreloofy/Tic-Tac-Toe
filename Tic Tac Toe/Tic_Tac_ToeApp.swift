@@ -14,13 +14,8 @@ struct Tic_Tac_ToeApp: App {
   var body: some Scene {
     WindowGroup {
       Home()
-        .font(.orbitron)
-        .fontWeight(.bold)
-        .foregroundStyle(UIConstants.foreground)
-        .statusBarHidden()
-        .dynamicTypeSize(.large)
-        .accessibilityHidden(true)
+        .configureApp()
     }
-    .environment(\.difficulty, difficulty)
+    .selectedDifficulty(difficulty)
   }
 }

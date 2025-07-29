@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct CellView: View {
+  @Environment(\.colorScheme) private var colorScheme
+
   let cell: Cell
 
   private let partialOpacity = 0.5
@@ -16,7 +18,7 @@ struct CellView: View {
   var body: some View {
     ZStack {
       RoundedRectangle(cornerRadius: 8)
-        .fill(UIConstants.background)
+        .fill(colorScheme.background)
         .shadow(color: .wistful.opacity(partialOpacity), radius: shadowBlur)
         .shadow(color: .white.opacity(partialOpacity), radius: shadowBlur)
         .scaledToFit()

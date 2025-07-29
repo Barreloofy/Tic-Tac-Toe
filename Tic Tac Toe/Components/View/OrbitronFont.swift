@@ -7,10 +7,22 @@
 
 import SwiftUI
 
-extension Font {
-  static var orbitron: Font { .custom("Orbitron", size: UIConstants.fontRegular) }
+enum FontSize: CGFloat {
+  case verySmall = 20
+  case small = 25
+  case regular = 30
+  case large = 35
+}
 
-  static func orbitron(size: CGFloat = UIConstants.fontRegular) -> Font {
+
+extension Font {
+  static var orbitron: Font { .custom("Orbitron", size: FontSize.regular.rawValue) }
+
+  static func orbitron(size: FontSize) -> Font {
+    .custom("Orbitron", size: size.rawValue)
+  }
+
+  static func orbitron(size: CGFloat) -> Font {
     .custom("Orbitron", size: size)
   }
 }

@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct Prominent: ViewModifier {
-  let fontSize: CGFloat
-  let rotationDegrees: Double
+  let fontSize: FontSize
+  let rotation: Angle
 
   func body(content: Content) -> some View {
     content
       .font(.orbitron(size: fontSize))
-      .rotationEffect(.degrees(rotationDegrees))
+      .rotationEffect(rotation)
   }
 }
 
 
 extension View {
   func prominent(
-    fontSize: CGFloat = UIConstants.fontLarge,
-    rotationDegrees: Double = UIConstants.leftRotation)
+    fontSize: FontSize = .large,
+    rotation: Angle = .leftRotation)
   -> some View {
-    modifier(Prominent(fontSize: fontSize, rotationDegrees: rotationDegrees))
+    modifier(Prominent(fontSize: fontSize, rotation: rotation))
   }
 }
