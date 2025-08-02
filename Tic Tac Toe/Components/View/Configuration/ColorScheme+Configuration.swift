@@ -10,4 +10,8 @@ import SwiftUI
 extension ColorScheme {
   var foreground: Color { .constructionOrange }
   var background: Color { .smokyBlack }
+  var secondary: Color { .darkOrange }
+  var grid: Color { .neonPurple }
+  var playerX: Color { .crewBlue }
+  var playerO: Color { .crewGreen }
 }

@@ -11,8 +11,10 @@ import os
 /// The underlying implementation for advanced haptic patterns for this App.
 class HapticManager {
   /// The shared session for HapticManager,
-  /// important, this property will always be initialized even when CoreHaptics is not available.
-  /// interacting with 'session' in such cases is safe, but will produce no effect.
+  ///
+  /// > Important:
+  /// This property will always be initialized even when CoreHaptics is not available.
+  /// interacting with `session` in such cases is safe, but will produce no effect.
   @MainActor static let session = HapticManager()
 
   private let engine: CHHapticEngine?
@@ -25,9 +27,9 @@ class HapticManager {
   }
 
   /// Fire-and-forget method to play a haptic pattern.
-  /// When this method is called, but the underlying engine couldn't be initialized this method just simply returns.
   /// - Parameters:
-  ///   - pattern: The CHHapticPattern to play, if the value is nil, returns and no haptics are played.
+  ///   - pattern: The CHHapticPattern to play.
+  /// - Throws: An error of `CHHapticError`.
   func play(pattern: CHHapticPattern?) {
     do {
       guard let engine = engine else { throw CHHapticError(.serverInitFailed) }

@@ -1,5 +1,5 @@
 //
-// ProminentTextStyle.swift
+// Prominent.swift
 // Tic Tac Toe
 //
 // Created by Barreloofy on 5/14/25 at 6:51 PM

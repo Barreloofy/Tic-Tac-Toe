@@ -25,7 +25,7 @@ struct CellView: View {
 
       Text(cell.description)
         .textCase(.uppercase)
-        .foregroundStyle(cell == .x ? .crewBlue : .crewGreen)
+        .foregroundStyle(cell == .x ? colorScheme.playerX : colorScheme.playerO)
     }
     .padding()
   }

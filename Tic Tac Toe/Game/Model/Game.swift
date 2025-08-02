@@ -18,10 +18,6 @@ struct Game {
     self = Game(computerPlayer: vsComputer ? .random() : nil)
   }
 
-  mutating func reset() {
-    result = nil
-  }
-
   var currentPlayer = Player.random()
   var computerPlayer: Player?
   var isComputerMove: Bool { currentPlayer == computerPlayer }

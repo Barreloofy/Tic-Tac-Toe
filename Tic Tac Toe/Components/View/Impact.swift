@@ -1,5 +1,5 @@
 //
-// ImpactButtonStyle.swift
+// Impact.swift
 // Tic Tac Toe
 //
 // Created by Barreloofy on 5/14/25 at 1:11 PM
@@ -20,7 +20,7 @@ struct Impact: ButtonStyle {
   func makeBody(configuration: Configuration) -> some View {
     ZStack {
       RoundedRectangle(cornerRadius: 8)
-        .fill(.darkOrange)
+        .fill(colorScheme.secondary)
         .offset(y: offset)
 
       RoundedRectangle(cornerRadius: 8)

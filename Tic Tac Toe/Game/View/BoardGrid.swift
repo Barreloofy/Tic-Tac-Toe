@@ -11,12 +11,12 @@ struct GridShape: Shape {
   func path(in rect: CGRect) -> Path {
     var path = Path()
     let factor: CGFloat = 1 / 3
+    let fractionalPositions = [1.0, 2.0]
 
-    path.drawLine(from: CGPoint(x: rect.maxX * (factor * 1), y: rect.minY), toY: rect.maxY)
-    path.drawLine(from: CGPoint(x: rect.maxX * (factor * 2), y: rect.minY), toY: rect.maxY)
-
-    path.drawLine(from: CGPoint(x: rect.minX, y: rect.maxY * (factor * 1)), toX: rect.maxX)
-    path.drawLine(from: CGPoint(x: rect.minX, y: rect.maxY * (factor * 2)), toX: rect.maxX)
+    fractionalPositions.forEach { position in
+      path.drawLine(from: .init(x: rect.maxX * (factor * position), y: rect.minY), toY: rect.maxY)
+      path.drawLine(from: .init(x: rect.minX, y: rect.maxY * (factor * position)), toX: rect.maxX)
+    }
 
     return path
   }
@@ -24,20 +24,17 @@ struct GridShape: Shape {
 
 
 struct BoardGrid: View {
-  var strokeStyle = Color.neonPurple
+  @Environment(\.colorScheme) private var colorScheme
 
   var body: some View {
     GridShape()
-      .stroke(strokeStyle, lineWidth: 5)
+      .stroke(colorScheme.grid, lineWidth: 5)
       .scaledToFit()
   }
 }
 
 
 extension Path {
-  /// Convenience method for drawing a line, then appending it to path,
-  /// combines 'move(to:)' and 'addLine(to:)' but only requires the starting point and the deviating end point to be defined.
-  /// In cases where the end point varies, e.g, one axes deviated, this method provides a streamlined interface.
   mutating func drawLine(from start: CGPoint, toX x: CGFloat? = nil, toY y: CGFloat? = nil) {
     self.move(to: start)
     self.addLine(to: CGPoint(x: x ?? start.x, y: y ?? start.y))

@@ -9,14 +9,15 @@ import SwiftUI
 
 struct BoardView<Content: View>: View {
   let board: Cells
-
   let cellContent: (Cell) -> Content
+
+  private let columnLayout = Array(repeating: GridItem(spacing: 0), count: 3)
 
   var body: some View {
     ZStack {
       BoardGrid()
 
-      LazyVGrid(columns: GridItem.threeColumnLayout, spacing: 5) {
+      LazyVGrid(columns: columnLayout, spacing: 0) {
         ForEach(board) { cellContent($0) }
       }
     }

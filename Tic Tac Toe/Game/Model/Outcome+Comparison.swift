@@ -1,5 +1,5 @@
 //
-// Outcome-Player+Overloading.swift
+// Outcome-Player+Comparison.swift
 // Tic Tac Toe
 //
 // Created by Barreloofy on 7/1/25 at 10:10 PM
