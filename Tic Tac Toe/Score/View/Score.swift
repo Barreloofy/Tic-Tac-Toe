@@ -34,6 +34,7 @@ struct Score: View {
       Spacer()
     }
     .configureBackground()
+    .onAppear { audioPlayer() }
     .hapticFeedback(.victoryFeedback) {
       game.result != .tie &&
       game.result != game.computerPlayer

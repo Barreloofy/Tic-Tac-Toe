@@ -26,7 +26,7 @@ struct HapticFeedback: ViewModifier {
 extension View {
   /// Plays a haptic pattern on-appear if the provided condition evaluates true.
   /// - Parameters:
-  ///   - pattern: The ``CHHapticPattern`` to play, if the value is nil, returns and no haptics are played.
+  ///   - pattern: The `CHHapticPattern` to play, if the value is nil, returns and no haptics are played.
   ///   - condition: The closure to evaluate, if evaluation fails, no haptics are played.
   /// - Returns: A view that allows haptics to be played on-appear.
   func hapticFeedback(_ pattern: CHHapticPattern?, condition: @escaping () -> Bool) -> some View {

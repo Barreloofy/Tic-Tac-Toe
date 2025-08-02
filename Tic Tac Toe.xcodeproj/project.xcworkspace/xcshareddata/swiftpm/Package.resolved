@@ -6,8 +6,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Barreloofy/Odio/",
       "state" : {
-        "revision" : "d8c99f005505156fa9f566ea2f2617d665cd9c1b",
-        "version" : "1.0.0"
+        "revision" : "247ad04952564f86954e57769557d164495e662f",
+        "version" : "2.0.0"
       }
     }
   ],
