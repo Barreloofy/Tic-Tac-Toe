@@ -1,0 +1,15 @@
+{
+  "originHash" : "1585dc79b72c1ab6890ea03316fe1baf3c92204a1d6aa872d7d3ea4bf4ac77e1",
+  "pins" : [
+    {
+      "identity" : "odio",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Barreloofy/Odio/",
+      "state" : {
+        "revision" : "247ad04952564f86954e57769557d164495e662f",
+        "version" : "2.0.0"
+      }
+    }
+  ],
+  "version" : 3
+}
