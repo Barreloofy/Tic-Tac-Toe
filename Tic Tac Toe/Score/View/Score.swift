@@ -12,7 +12,7 @@ struct Score: View {
   @Environment(\.dismiss) private var dismiss
   @Environment(Navigator.self) private var navigator
 
-  @AudioPlayer("Score.mp3", after: 0.5) private var audioPlayer
+  @AudioPlayer(.score, after: 0.5) private var audioPlayer
 
   let game: Game
   let vsComputer: Bool

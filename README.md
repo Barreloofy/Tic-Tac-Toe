@@ -6,7 +6,7 @@
 * **Xcode 16 or later.**
 * **iOS 17 or later.**
 * **Any Swift version supported by Xcode, build with Swift 6 in mind.**
-* [**Odio**](https://github.com/Barreloofy/Odio) **2.0 or later.**
+* [**Odio**](https://github.com/Barreloofy/Odio) **1.0 or later.**
 
 # Features
 * **Play against friends or family, maybe even strangers, in `VS Player` mode.**
