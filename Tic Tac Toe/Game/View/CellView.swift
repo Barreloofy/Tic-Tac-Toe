@@ -9,18 +9,22 @@ import SwiftUI
 
 struct CellView: View {
   @Environment(\.colorScheme) private var colorScheme
+  @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
   let cell: Cell
 
+  init(_ cell: Cell) {
+    self.cell = cell
+  }
+
   private let shadowBlur = 4.0
-  private let shadowOpacity = 0.25
 
   var body: some View {
     ZStack {
       RoundedRectangle(cornerRadius: 8)
         .fill(colorScheme.background)
         .shadow(color: .wistful, radius: shadowBlur)
-        .shadow(color: .neonPurple.opacity(shadowOpacity), radius: shadowBlur)
+        .shadow(color: .neonPurple.opacity(0.25), radius: shadowBlur)
         .scaledToFit()
 
       Text(cell.description)
@@ -28,6 +32,6 @@ struct CellView: View {
         .textCase(.uppercase)
         .foregroundStyle(cell == .x ? colorScheme.playerX : colorScheme.playerO)
     }
-    .padding()
+    .padding(.all, horizontalSizeClass == .regular ? 24 : 16)
   }
 }

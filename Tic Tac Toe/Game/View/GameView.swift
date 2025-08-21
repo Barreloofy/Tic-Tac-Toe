@@ -16,21 +16,20 @@ struct GameView: View {
   let vsComputer: Bool
 
   var body: some View {
-    VStack {
+    VStack(spacing: 24) {
       Text(game.turnDescription)
         .prominent(rotation: .leftRotation)
         .turnAnimation(
           trigger: game.currentPlayer,
           enabled: initializationComplete)
 
-      Board(board: game.board) { cell in
-        CellView(cell: cell)
+      Board(game.board) { cell in
+        CellView(cell)
           .cellFeedback(for: cell)
           .onTapGesture { game.makeMove(cell) }
           .disabled(game.isComputerMove)
       }
-      .padding(.horizontal)
-      .offset(y: 50)
+      .gameBoardSize()
 
       Spacer()
     }

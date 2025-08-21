@@ -20,13 +20,13 @@ struct Score: View {
   var body: some View {
     VStack(spacing: 24) {
       Board(board: game.board)
-        .resultBoardPadding()
+        .resultBoardSize()
 
       Text(game.resultDescription)
         .prominent(rotation: .rightRotation)
 
       VStack(spacing: 34) {
-        Button("Play, again") { dismiss() }
+        Button("Play again") { dismiss() }
           .buttonStyle(.impact(rotationEffect: .leftRotation))
 
         Button("Home") { navigator.popToRoot() }

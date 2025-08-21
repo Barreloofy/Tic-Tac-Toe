@@ -11,6 +11,11 @@ struct Board<Content: View>: View {
   let board: Cells
   let cellContent: (Cell) -> Content
 
+  init(_ board: Cells, cellContent: @escaping (Cell) -> Content) {
+    self.board = board
+    self.cellContent = cellContent
+  }
+
   private let columnLayout = Array(repeating: GridItem(spacing: 0), count: 3)
 
   var body: some View {
@@ -27,6 +32,6 @@ struct Board<Content: View>: View {
 
 extension Board where Content == CellView {
   init(board: Cells) {
-    self.init(board: board) { CellView(cell: $0) }
+    self.init(board) { CellView($0) }
   }
 }

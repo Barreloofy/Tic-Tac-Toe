@@ -21,7 +21,7 @@ struct Home: View {
           .prominent(rotation: .leftRotation)
 
         Board(board: board)
-          .resultBoardPadding()
+          .resultBoardSize()
 
         VStack(spacing: 34) {
           NavigationLink("VS Player", value: false)
@@ -37,6 +37,7 @@ struct Home: View {
           .sheet(isPresented: $presentDifficulty) {
             Difficulty()
               .presentationBackground(colorScheme.background)
+              .presentationCornerRadius(8)
               .presentationDetents([.fraction(0.10)])
               .dynamicTypeSize(.large)
           }
