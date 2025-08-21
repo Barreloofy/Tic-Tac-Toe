@@ -19,7 +19,7 @@ struct Score: View {
 
   var body: some View {
     VStack(spacing: 24) {
-      BoardView(board: game.board)
+      Board(board: game.board)
         .resultBoardPadding()
 
       Text(game.resultDescription)

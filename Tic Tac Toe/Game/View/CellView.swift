@@ -12,18 +12,19 @@ struct CellView: View {
 
   let cell: Cell
 
-  private let partialOpacity = 0.5
-  private let shadowBlur: CGFloat = 4
+  private let shadowBlur = 4.0
+  private let shadowOpacity = 0.25
 
   var body: some View {
     ZStack {
       RoundedRectangle(cornerRadius: 8)
         .fill(colorScheme.background)
-        .shadow(color: .wistful.opacity(partialOpacity), radius: shadowBlur)
-        .shadow(color: .white.opacity(partialOpacity), radius: shadowBlur)
+        .shadow(color: .wistful, radius: shadowBlur)
+        .shadow(color: .neonPurple.opacity(shadowOpacity), radius: shadowBlur)
         .scaledToFit()
 
       Text(cell.description)
+        .font(.orbitron(size: .large))
         .textCase(.uppercase)
         .foregroundStyle(cell == .x ? colorScheme.playerX : colorScheme.playerO)
     }

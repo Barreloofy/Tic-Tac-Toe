@@ -9,16 +9,18 @@ import SwiftUI
 
 struct GridShape: Shape {
   func path(in rect: CGRect) -> Path {
-    var path = Path()
-    let factor: CGFloat = 1 / 3
-    let fractionalPositions = [1.0, 2.0]
+    Path { path in
+      let xFraction = rect.maxX / 3
+      let yFraction = rect.maxY / 3
+      let fractionalPositions = [1.0, 2.0]
 
-    fractionalPositions.forEach { position in
-      path.drawLine(from: .init(x: rect.maxX * (factor * position), y: rect.minY), toY: rect.maxY)
-      path.drawLine(from: .init(x: rect.minX, y: rect.maxY * (factor * position)), toX: rect.maxX)
+      fractionalPositions.forEach { position in
+        path.drawLine(from: .init(x: xFraction * position, y: rect.minY), toY: rect.maxY)
+        path.drawLine(from: .init(x: rect.minX, y: yFraction * position), toX: rect.maxX)
+      }
+
+      path.closeSubpath()
     }
-
-    return path
   }
 }
 
@@ -28,7 +30,7 @@ struct BoardGrid: View {
 
   var body: some View {
     GridShape()
-      .stroke(colorScheme.grid, lineWidth: 5)
+      .stroke(colorScheme.grid, lineWidth: 8)
       .scaledToFit()
   }
 }
