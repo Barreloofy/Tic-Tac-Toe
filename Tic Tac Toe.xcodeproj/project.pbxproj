@@ -40,6 +40,7 @@
 		29E2398E2E4BA10C00608EE4 /* Odio in Frameworks */ = {isa = PBXBuildFile; productRef = 29E2398D2E4BA10C00608EE4 /* Odio */; };
 		29E239902E4BA23800608EE4 /* AudioFiles+FileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E2398F2E4BA22900608EE4 /* AudioFiles+FileKey.swift */; };
 		29E44C572DDB6C69009A5121 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E44C562DDB6C58009A5121 /* GameLogic.swift */; };
+		29E7D75C2E573EC30017A1CA /* Animation+Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E7D75B2E573E9B0017A1CA /* Animation+Game.swift */; };
 		29F4EB612E37A4CA00A3A1DC /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F4EB602E37A4CA00A3A1DC /* AppConfiguration.swift */; };
 		29F4EB632E37ADCA00A3A1DC /* ColorScheme+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F4EB622E37ADAE00A3A1DC /* ColorScheme+Configuration.swift */; };
 		29F4EB652E37ADF300A3A1DC /* Angle+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F4EB642E37ADED00A3A1DC /* Angle+Configuration.swift */; };
@@ -92,6 +93,7 @@
 		29CF8DF82E1C95A2007F8BEF /* ResultBoardPadding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBoardPadding.swift; sourceTree = "<group>"; };
 		29E2398F2E4BA22900608EE4 /* AudioFiles+FileKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioFiles+FileKey.swift"; sourceTree = "<group>"; };
 		29E44C562DDB6C58009A5121 /* GameLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
+		29E7D75B2E573E9B0017A1CA /* Animation+Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+Game.swift"; sourceTree = "<group>"; };
 		29F4EB602E37A4CA00A3A1DC /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		29F4EB622E37ADAE00A3A1DC /* ColorScheme+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorScheme+Configuration.swift"; sourceTree = "<group>"; };
 		29F4EB642E37ADED00A3A1DC /* Angle+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Angle+Configuration.swift"; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		2947F36D2E3E81AB0022CD57 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
+				29E7D75B2E573E9B0017A1CA /* Animation+Game.swift */,
 				2969B6D72DE5BC7A006199A8 /* OrbitronFont.swift */,
 				29F4EB622E37ADAE00A3A1DC /* ColorScheme+Configuration.swift */,
 				29F4EB642E37ADED00A3A1DC /* Angle+Configuration.swift */,
@@ -423,6 +426,7 @@
 				29F4EB652E37ADF300A3A1DC /* Angle+Configuration.swift in Sources */,
 				2907814D2DD5018800670935 /* Prominent.swift in Sources */,
 				294DFB242DD20928001150E2 /* Tic_Tac_ToeApp.swift in Sources */,
+				29E7D75C2E573EC30017A1CA /* Animation+Game.swift in Sources */,
 				298951BE2DD62B2E00B41EA5 /* Cell.swift in Sources */,
 				29CC3A092E14782C003FE83F /* Outcome+Comparison.swift in Sources */,
 				298951C22DD65C7C00B41EA5 /* CellFeedback.swift in Sources */,

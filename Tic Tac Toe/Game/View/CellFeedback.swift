@@ -20,7 +20,7 @@ struct CellFeedback: ViewModifier {
       .audioFeedback(.cellTap, trigger: value)
       .onChange(of: value) {
         withAnimation(
-          .default.speed(1.5),
+          .impact,
           { scale = 0.95 },
           completion: { scale = 1.0 })
       }

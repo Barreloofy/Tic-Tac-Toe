@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TurnAnimation<T: Equatable>: ViewModifier {
-  @State private var offset: CGFloat = 0
+  @State private var offset = 0.0
 
   let value: T
   let enabled: Bool
@@ -20,11 +20,9 @@ struct TurnAnimation<T: Equatable>: ViewModifier {
         .offset(x: offset)
         .onChange(of: value) {
           withAnimation(
-            .bouncy(duration: 0.2, extraBounce: 0.2),
+            .impact,
             { offset = 5 },
-            completion: {
-              withAnimation(.bouncy(duration: 0.2)) { offset = 0 }
-            })
+            completion: { offset = 0 })
         }
     case false:
       content
