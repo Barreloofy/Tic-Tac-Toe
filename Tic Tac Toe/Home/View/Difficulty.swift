@@ -14,7 +14,7 @@ struct Difficulty: View {
     HStack {
       ForEach(ComputerLogic.Difficulty.allCases) { difficultyCase in
         Text(difficultyCase.rawValue)
-          .font(.orbitron(size: .verySmall))
+          .font(.orbitron(size: .small))
           .textCase(.uppercase)
           .onTapGesture { difficulty = difficultyCase }
           .overlay(alignment: .bottom) {

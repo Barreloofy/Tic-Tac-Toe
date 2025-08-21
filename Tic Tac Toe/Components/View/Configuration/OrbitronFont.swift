@@ -8,21 +8,16 @@
 import SwiftUI
 
 enum FontSize: CGFloat {
-  case verySmall = 20
-  case small = 25
-  case regular = 30
-  case large = 35
+  case small = 20
+  case regular = 25
+  case large = 30
 }
 
 
 extension Font {
-  static var orbitron: Font { .custom("Orbitron", size: FontSize.regular.rawValue) }
+  static let orbitron: Font = .orbitron(size: .regular)
 
   static func orbitron(size: FontSize) -> Font {
     .custom("Orbitron", size: size.rawValue)
-  }
-
-  static func orbitron(size: CGFloat) -> Font {
-    .custom("Orbitron", size: size)
   }
 }

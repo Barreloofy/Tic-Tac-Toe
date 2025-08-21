@@ -16,26 +16,24 @@ struct Home: View {
 
   var body: some View {
     NavigationStack(path: $navigator.path) {
-      VStack(spacing: 50) {
+      VStack(spacing: 24) {
         Text("Tic Tac Toe")
-          .prominent()
+          .prominent(rotation: .leftRotation)
 
         BoardView(board: board)
           .resultBoardPadding()
 
-        NavigationLink("VS Player", value: false)
-          .buttonStyle(.impact(rotation: .rightRotation))
+        VStack(spacing: 34) {
+          NavigationLink("VS Player", value: false)
+            .buttonStyle(.impact(rotationEffect: .rightRotation))
 
-        NavigationLink("VS Computer", value: true)
-          .buttonStyle(.impact(rotation: .leftRotation))
+          NavigationLink("VS Computer", value: true)
+            .buttonStyle(.impact(rotationEffect: .leftRotation))
+        }
+        .fixedSize()
 
         Button("Difficulty") { presentDifficulty = true }
-          .buttonStyle(
-            .impact(
-              width: 125,
-              height: 30,
-              fontSize: .verySmall,
-              rotation: .rightRotation))
+          .buttonStyle(.plain)
           .sheet(isPresented: $presentDifficulty) {
             Difficulty()
               .presentationBackground(colorScheme.background)

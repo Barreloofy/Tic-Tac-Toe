@@ -18,7 +18,7 @@ struct GameView: View {
   var body: some View {
     VStack {
       Text(game.turnDescription)
-        .prominent()
+        .prominent(rotation: .leftRotation)
         .turnAnimation(
           trigger: game.currentPlayer,
           enabled: initializationComplete)

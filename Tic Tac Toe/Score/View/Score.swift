@@ -18,18 +18,21 @@ struct Score: View {
   let vsComputer: Bool
 
   var body: some View {
-    VStack(spacing: 50) {
+    VStack(spacing: 24) {
       BoardView(board: game.board)
         .resultBoardPadding()
 
       Text(game.resultDescription)
-        .prominent()
+        .prominent(rotation: .rightRotation)
 
-      Button("Play, again") { dismiss() }
-        .buttonStyle(.impact(rotation: .rightRotation))
+      VStack(spacing: 34) {
+        Button("Play, again") { dismiss() }
+          .buttonStyle(.impact(rotationEffect: .leftRotation))
 
-      Button("Home") { navigator.popToRoot() }
-        .buttonStyle(.impact(rotation: .leftRotation))
+        Button("Home") { navigator.popToRoot() }
+          .buttonStyle(.impact(rotationEffect: .rightRotation))
+      }
+      .fixedSize()
 
       Spacer()
     }
