@@ -13,7 +13,7 @@ struct CellView: View {
 
   let cell: Cell
 
-  init(_ cell: Cell) {
+  init(for cell: Cell) {
     self.cell = cell
   }
 

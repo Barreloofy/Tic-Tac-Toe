@@ -20,7 +20,7 @@ struct Home: View {
         Text("Tic Tac Toe")
           .prominent(rotation: .leftRotation)
 
-        Board(board)
+        BoardView(for: board)
           .resultBoardSize()
 
         VStack(spacing: 34) {

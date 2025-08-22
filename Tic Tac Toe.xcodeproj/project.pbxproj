@@ -26,7 +26,7 @@
 		297C352E2DD4B1D600A3E258 /* Impact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 297C352D2DD4B1AE00A3E258 /* Impact.swift */; };
 		298727892DDCB84D00470B66 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298727882DDCB84600470B66 /* Score.swift */; };
 		2987278B2DDCBB5E00470B66 /* ComputerLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987278A2DDCBB4500470B66 /* ComputerLogic.swift */; };
-		2987C9422DE120B90012B7D2 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987C9412DE120AC0012B7D2 /* Board.swift */; };
+		2987C9422DE120B90012B7D2 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987C9412DE120AC0012B7D2 /* BoardView.swift */; };
 		2987C9442DE123080012B7D2 /* Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2987C9432DE123070012B7D2 /* Difficulty.swift */; };
 		298951BE2DD62B2E00B41EA5 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298951BD2DD62B2C00B41EA5 /* Cell.swift */; };
 		298951C22DD65C7C00B41EA5 /* CellFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298951C12DD65C6F00B41EA5 /* CellFeedback.swift */; };
@@ -81,7 +81,7 @@
 		297C352D2DD4B1AE00A3E258 /* Impact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Impact.swift; sourceTree = "<group>"; };
 		298727882DDCB84600470B66 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		2987278A2DDCBB4500470B66 /* ComputerLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputerLogic.swift; sourceTree = "<group>"; };
-		2987C9412DE120AC0012B7D2 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		2987C9412DE120AC0012B7D2 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		2987C9432DE123070012B7D2 /* Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Difficulty.swift; sourceTree = "<group>"; };
 		298951BD2DD62B2C00B41EA5 /* Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
 		298951C12DD65C6F00B41EA5 /* CellFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellFeedback.swift; sourceTree = "<group>"; };
@@ -260,7 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				2907814A2DD4FE3E00670935 /* GameView.swift */,
-				2987C9412DE120AC0012B7D2 /* Board.swift */,
+				2987C9412DE120AC0012B7D2 /* BoardView.swift */,
 				29CB1C672DD373BD000A39AD /* BoardGrid.swift */,
 				2966EA4B2DE8D9E7009A7706 /* CellView.swift */,
 				298951C12DD65C6F00B41EA5 /* CellFeedback.swift */,
@@ -450,7 +450,7 @@
 				29F4EB632E37ADCA00A3A1DC /* ColorScheme+Configuration.swift in Sources */,
 				29E239902E4BA23800608EE4 /* AudioFiles+FileKey.swift in Sources */,
 				29CB1C682DD373C6000A39AD /* BoardGrid.swift in Sources */,
-				2987C9422DE120B90012B7D2 /* Board.swift in Sources */,
+				2987C9422DE120B90012B7D2 /* BoardView.swift in Sources */,
 				29CC3A0D2E149CEA003FE83F /* HapticFeedback.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

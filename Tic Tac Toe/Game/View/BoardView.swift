@@ -1,5 +1,5 @@
 //
-// Board.swift
+// BoardView.swift
 // Tic Tac Toe
 //
 // Created by Barreloofy on 5/23/25 at 11:31 PM
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct Board<Content: View>: View {
+struct BoardView<Content: View>: View {
   let board: Cells
   let cellContent: (Cell) -> Content
 
-  init(_ board: Cells, cellContent: @escaping (Cell) -> Content) {
+  init(for board: Cells, cellContent: @escaping (Cell) -> Content) {
     self.board = board
     self.cellContent = cellContent
   }
@@ -30,8 +30,8 @@ struct Board<Content: View>: View {
 }
 
 
-extension Board where Content == CellView {
-  init(_ board: Cells) {
-    self.init(board) { CellView($0) }
+extension BoardView where Content == CellView {
+  init(for board: Cells) {
+    self.init(for: board) { CellView(for: $0) }
   }
 }

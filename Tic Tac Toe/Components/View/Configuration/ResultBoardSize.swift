@@ -29,7 +29,7 @@ struct ResultBoardSize: ViewModifier {
 }
 
 
-extension Board {
+extension BoardView {
   func resultBoardSize() -> some View {
     self
       .modifier(ResultBoardSize())

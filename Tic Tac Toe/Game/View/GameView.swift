@@ -23,8 +23,8 @@ struct GameView: View {
           trigger: game.currentPlayer,
           enabled: initializationComplete)
 
-      Board(game.board) { cell in
-        CellView(cell)
+      BoardView(for: game.board) { cell in
+        CellView(for: cell)
           .cellFeedback(for: cell)
           .onTapGesture { game.makeMove(cell) }
           .disabled(game.isComputerMove)
