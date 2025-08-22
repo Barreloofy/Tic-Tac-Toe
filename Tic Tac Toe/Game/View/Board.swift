@@ -16,13 +16,13 @@ struct Board<Content: View>: View {
     self.cellContent = cellContent
   }
 
-  private let columnLayout = Array(repeating: GridItem(spacing: 0), count: 3)
+  private let boardLayout = Array(repeating: GridItem(spacing: 0), count: 3)
 
   var body: some View {
     ZStack {
       BoardGrid()
 
-      LazyVGrid(columns: columnLayout, spacing: 0) {
+      LazyVGrid(columns: boardLayout, spacing: 0) {
         ForEach(board) { cellContent($0) }
       }
     }
@@ -31,7 +31,7 @@ struct Board<Content: View>: View {
 
 
 extension Board where Content == CellView {
-  init(board: Cells) {
+  init(_ board: Cells) {
     self.init(board) { CellView($0) }
   }
 }
