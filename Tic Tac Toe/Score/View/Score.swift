@@ -9,13 +9,11 @@ import SwiftUI
 import Odio
 
 struct Score: View {
-  @Environment(\.dismiss) private var dismiss
   @Environment(Navigator.self) private var navigator
 
   @AudioPlayer(.score, after: 0.5) private var audioPlayer
 
   let game: Game
-  let vsComputer: Bool
 
   var body: some View {
     VStack(spacing: 24) {
@@ -26,7 +24,7 @@ struct Score: View {
         .prominent(rotation: .rightRotation)
 
       VStack(spacing: 34) {
-        Button("Play again") { dismiss() }
+        Button("Play again") { navigator.popLast() }
           .buttonStyle(.impact(rotationEffect: .leftRotation))
 
         Button("Home") { navigator.popToRoot() }

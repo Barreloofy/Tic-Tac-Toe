@@ -5,7 +5,7 @@
 // Created by Barreloofy on 5/15/25 at 11:52 AM
 //
 
-struct Game {
+struct Game: Hashable {
   enum Player: String, CaseIterable {
     case x, o
 
@@ -29,7 +29,7 @@ struct Game {
   var result: GameLogic.Outcome?
   var resultDescription: String { result?.rawValue ?? "" }
 
-  mutating func makeMove(_ cell: Cell?) {
+  mutating func makeMove(at cell: Cell?) {
     guard let cell = cell, cell == .none else { return }
 
     cell.value = currentPlayer
@@ -37,7 +37,7 @@ struct Game {
     currentPlayer = !currentPlayer
   }
 
-  mutating func updateResult() {
+  mutating func assess() {
     result = GameLogic.checkOutcome(for: self)
   }
 }

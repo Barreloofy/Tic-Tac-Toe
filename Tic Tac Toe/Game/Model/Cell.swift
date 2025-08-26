@@ -46,6 +46,13 @@ extension Cell: Equatable {
 }
 
 
+extension Cell: Hashable {
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(value)
+  }
+}
+
+
 extension Cells {
   static func initializeBoard() -> Cells {
     (1...9).map { _ in Cell() }

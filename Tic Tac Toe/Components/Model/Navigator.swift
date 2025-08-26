@@ -11,5 +11,15 @@ import SwiftUI
 class Navigator {
   var path = NavigationPath()
 
-  func popToRoot() { path = NavigationPath() }
+  func push(_ value: some Hashable) {
+    path.append(value)
+  }
+
+  func popLast() {
+    path.removeLast()
+  }
+
+  func popToRoot() {
+    path.removeLast(path.count)
+  }
 }

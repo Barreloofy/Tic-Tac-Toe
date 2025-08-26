@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameView: View {
   @Environment(\.difficulty) private var difficulty
+  @Environment(Navigator.self) private var navigator
 
   @State private var game = Game()
   @State private var initializationComplete = false
@@ -26,7 +27,7 @@ struct GameView: View {
       BoardView(for: game.board) { cell in
         CellView(for: cell)
           .cellFeedback(for: cell)
-          .onTapGesture { game.makeMove(cell) }
+          .onTapGesture { game.makeMove(at: cell) }
           .disabled(game.isComputerMove)
       }
       .gameBoardSize()
@@ -34,21 +35,27 @@ struct GameView: View {
       Spacer()
     }
     .configureBackground()
-    .navigationDestination(item: $game.result) { _ in
-      Score(game: game, vsComputer: vsComputer)
-    }
     .onAppear {
       game.initiate(vsComputer)
       initializationComplete = true
     }
-    .onDisappear { initializationComplete = false }
-    .onChange(of: game.currentPlayer) { game.updateResult() }
+    .onDisappear {
+      initializationComplete = false
+    }
+    .onChange(of: game.currentPlayer) {
+      game.assess()
+
+      guard game.result != nil else { return }
+
+      navigator.push(game)
+    }
     .task(id: game.currentPlayer) {
       guard game.result == nil && game.isComputerMove else { return }
 
       guard (try? await Task.sleep(for: .seconds(1))) != nil else { return }
 
-      game.makeMove(ComputerLogic.bestMove(for: game, difficulty: difficulty))
+      game.makeMove(at: ComputerLogic.bestMove(for: game, difficulty: difficulty))
     }
+    .navigationDestination(for: Game.self) { game in Score(game: game) }
   }
 }
