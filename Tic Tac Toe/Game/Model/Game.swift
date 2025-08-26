@@ -1,5 +1,5 @@
 //
-// GameState.swift
+// Game.swift
 // Tic Tac Toe
 //
 // Created by Barreloofy on 5/15/25 at 11:52 AM

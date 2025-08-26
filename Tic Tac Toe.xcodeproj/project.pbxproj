@@ -40,7 +40,7 @@
 		29E2398E2E4BA10C00608EE4 /* Odio in Frameworks */ = {isa = PBXBuildFile; productRef = 29E2398D2E4BA10C00608EE4 /* Odio */; };
 		29E239902E4BA23800608EE4 /* AudioFiles+FileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E2398F2E4BA22900608EE4 /* AudioFiles+FileKey.swift */; };
 		29E44C572DDB6C69009A5121 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E44C562DDB6C58009A5121 /* GameLogic.swift */; };
-		29E7D75C2E573EC30017A1CA /* Animation+Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E7D75B2E573E9B0017A1CA /* Animation+Game.swift */; };
+		29E7D75C2E573EC30017A1CA /* Animation+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E7D75B2E573E9B0017A1CA /* Animation+Configuration.swift */; };
 		29E7D7602E57B2410017A1CA /* GameBoardSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E7D75F2E57B23B0017A1CA /* GameBoardSize.swift */; };
 		29F4EB612E37A4CA00A3A1DC /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F4EB602E37A4CA00A3A1DC /* AppConfiguration.swift */; };
 		29F4EB632E37ADCA00A3A1DC /* ColorScheme+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29F4EB622E37ADAE00A3A1DC /* ColorScheme+Configuration.swift */; };
@@ -94,7 +94,7 @@
 		29CF8DF82E1C95A2007F8BEF /* ResultBoardSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBoardSize.swift; sourceTree = "<group>"; };
 		29E2398F2E4BA22900608EE4 /* AudioFiles+FileKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioFiles+FileKey.swift"; sourceTree = "<group>"; };
 		29E44C562DDB6C58009A5121 /* GameLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
-		29E7D75B2E573E9B0017A1CA /* Animation+Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+Game.swift"; sourceTree = "<group>"; };
+		29E7D75B2E573E9B0017A1CA /* Animation+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+Configuration.swift"; sourceTree = "<group>"; };
 		29E7D75F2E57B23B0017A1CA /* GameBoardSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardSize.swift; sourceTree = "<group>"; };
 		29F4EB602E37A4CA00A3A1DC /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		29F4EB622E37ADAE00A3A1DC /* ColorScheme+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ColorScheme+Configuration.swift"; sourceTree = "<group>"; };
@@ -135,13 +135,12 @@
 		2947F36D2E3E81AB0022CD57 /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				29E7D75B2E573E9B0017A1CA /* Animation+Game.swift */,
 				2969B6D72DE5BC7A006199A8 /* OrbitronFont.swift */,
 				29F4EB622E37ADAE00A3A1DC /* ColorScheme+Configuration.swift */,
 				29F4EB642E37ADED00A3A1DC /* Angle+Configuration.swift */,
+				29E7D75B2E573E9B0017A1CA /* Animation+Configuration.swift */,
 				29F4EB602E37A4CA00A3A1DC /* AppConfiguration.swift */,
 				292693D52DEB3D5A0067B6EF /* BackgroundConfiguration.swift */,
-				29CF8DF82E1C95A2007F8BEF /* ResultBoardSize.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -217,6 +216,15 @@
 			path = Score;
 			sourceTree = "<group>";
 		};
+		295F64D02E5E0C37005557FF /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				2907814C2DD5018700670935 /* Prominent.swift */,
+				297C352D2DD4B1AE00A3E258 /* Impact.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		2975E48E2DD3C7CC006E5DBC /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,8 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				2947F36D2E3E81AB0022CD57 /* Configuration */,
-				2907814C2DD5018700670935 /* Prominent.swift */,
-				297C352D2DD4B1AE00A3E258 /* Impact.swift */,
+				295F64D02E5E0C37005557FF /* Modifiers */,
 				29CC3A0C2E149CD7003FE83F /* HapticFeedback.swift */,
 				29715E512DDF7F2A000C6F2F /* Difficulty+EnvironmentValues.swift */,
 			);
@@ -266,6 +273,7 @@
 				298951C12DD65C6F00B41EA5 /* CellFeedback.swift */,
 				29FA53582E1C3DBF009D37B2 /* TurnAnimation.swift */,
 				29E7D75F2E57B23B0017A1CA /* GameBoardSize.swift */,
+				29CF8DF82E1C95A2007F8BEF /* ResultBoardSize.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -429,7 +437,7 @@
 				29F4EB652E37ADF300A3A1DC /* Angle+Configuration.swift in Sources */,
 				2907814D2DD5018800670935 /* Prominent.swift in Sources */,
 				294DFB242DD20928001150E2 /* Tic_Tac_ToeApp.swift in Sources */,
-				29E7D75C2E573EC30017A1CA /* Animation+Game.swift in Sources */,
+				29E7D75C2E573EC30017A1CA /* Animation+Configuration.swift in Sources */,
 				298951BE2DD62B2E00B41EA5 /* Cell.swift in Sources */,
 				29E7D7602E57B2410017A1CA /* GameBoardSize.swift in Sources */,
 				29CC3A092E14782C003FE83F /* Outcome+Comparison.swift in Sources */,

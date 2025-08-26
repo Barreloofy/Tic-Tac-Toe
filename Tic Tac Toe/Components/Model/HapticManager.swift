@@ -8,7 +8,7 @@
 import CoreHaptics
 import os
 
-/// The underlying implementation for advanced haptic patterns for this App.
+/// The underlying implementation for playback of haptic patterns for this app.
 class HapticManager {
   /// The shared session for HapticManager,
   ///
@@ -19,17 +19,21 @@ class HapticManager {
 
   private let engine: CHHapticEngine?
 
-  private let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "HapticManager")
+  private let logger = Logger(
+    subsystem: Bundle.main.bundleIdentifier!,
+    category: "HapticManager")
 
   private init() {
     self.engine = try? CHHapticEngine()
     self.engine?.isAutoShutdownEnabled = true
   }
 
-  /// Fire-and-forget method to play a haptic pattern.
-  /// - Parameters:
-  ///   - pattern: The CHHapticPattern to play.
-  /// - Throws: An error of `CHHapticError`.
+  /// Play haptics from the provided pattern.
+  ///
+  /// > Note:
+  /// If no haptics are played, check the output of `HapticManager` logger.
+  ///
+  /// - Parameter pattern: The pattern to play.
   func play(pattern: CHHapticPattern?) {
     do {
       guard let engine = engine else { throw CHHapticError(.serverInitFailed) }

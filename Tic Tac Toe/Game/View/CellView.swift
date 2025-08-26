@@ -32,6 +32,6 @@ struct CellView: View {
         .textCase(.uppercase)
         .foregroundStyle(cell == .x ? colorScheme.playerX : colorScheme.playerO)
     }
-    .padding(.all, horizontalSizeClass == .regular ? 24 : 16)
+    .padding(horizontalSizeClass == .regular ? 24 : 16)
   }
 }

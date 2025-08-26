@@ -18,8 +18,6 @@ struct GridShape: Shape {
         path.drawLine(from: .init(x: xFraction * position, y: rect.minY), toY: rect.maxY)
         path.drawLine(from: .init(x: rect.minX, y: yFraction * position), toX: rect.maxX)
       }
-
-      path.closeSubpath()
     }
   }
 }

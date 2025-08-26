@@ -23,3 +23,9 @@ extension View {
     modifier(Prominent(rotation: rotation))
   }
 }
+
+
+#Preview {
+  Text("Hello, World!")
+    .configureApp()
+}
