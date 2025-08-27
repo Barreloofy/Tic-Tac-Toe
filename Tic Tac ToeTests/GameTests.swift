@@ -24,7 +24,7 @@ struct GameTests {
       let cell = Cell()
 
       // Act
-      game.makeMove(cell)
+      game.makeMove(at: cell)
 
       // Assert
       #expect(cell == initialPlayer)
@@ -38,7 +38,7 @@ struct GameTests {
       cell.value = .x
 
       // Act
-      game.makeMove(cell)
+      game.makeMove(at: cell)
 
       // Assert
       #expect(cell == .x)
