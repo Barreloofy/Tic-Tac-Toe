@@ -1,5 +1,5 @@
 //
-// Animation+Configuration.swift
+// Animation+Impact.swift
 // Tic Tac Toe
 //
 // Created by Barreloofy on 8/21/25 at 1:47 PM
