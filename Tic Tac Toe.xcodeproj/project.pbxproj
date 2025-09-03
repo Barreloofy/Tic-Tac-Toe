@@ -16,10 +16,11 @@
 		294DFB222DD20928001150E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 294DFB1E2DD20928001150E2 /* Assets.xcassets */; };
 		294DFB242DD20928001150E2 /* Tic_Tac_ToeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294DFB202DD20928001150E2 /* Tic_Tac_ToeApp.swift */; };
 		294DFB352DD20D5D001150E2 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 294DFB332DD20D5D001150E2 /* .gitignore */; };
+		295A3A0B2E689EBE00B7CDE8 /* RoundedRectangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295A3A0A2E689EB800B7CDE8 /* RoundedRectangle.swift */; };
 		295E67372DDE1F88009287DF /* Player+Negation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 295E67362DDE1F73009287DF /* Player+Negation.swift */; };
 		2966EA4C2DE8D9F2009A7706 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2966EA4B2DE8D9E7009A7706 /* CellView.swift */; };
 		2969B6D82DE5BC86006199A8 /* OrbitronFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2969B6D72DE5BC7A006199A8 /* OrbitronFont.swift */; };
-		29715E522DDF7F50000C6F2F /* Difficulty+EnvironmentValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29715E512DDF7F2A000C6F2F /* Difficulty+EnvironmentValues.swift */; };
+		29715E522DDF7F50000C6F2F /* Environment+Difficulty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29715E512DDF7F2A000C6F2F /* Environment+Difficulty.swift */; };
 		29715E542DDFB107000C6F2F /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29715E532DDFB0F7000C6F2F /* Navigator.swift */; };
 		2975E4802DD3B1CD006E5DBC /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2975E47F2DD3B1CB006E5DBC /* Home.swift */; };
 		2975E4822DD3B4FD006E5DBC /* Orbitron.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2975E4812DD3B4FD006E5DBC /* Orbitron.ttf */; };
@@ -71,10 +72,11 @@
 		294DFB1E2DD20928001150E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		294DFB202DD20928001150E2 /* Tic_Tac_ToeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tic_Tac_ToeApp.swift; sourceTree = "<group>"; };
 		294DFB332DD20D5D001150E2 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		295A3A0A2E689EB800B7CDE8 /* RoundedRectangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangle.swift; sourceTree = "<group>"; };
 		295E67362DDE1F73009287DF /* Player+Negation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Player+Negation.swift"; sourceTree = "<group>"; };
 		2966EA4B2DE8D9E7009A7706 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		2969B6D72DE5BC7A006199A8 /* OrbitronFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitronFont.swift; sourceTree = "<group>"; };
-		29715E512DDF7F2A000C6F2F /* Difficulty+EnvironmentValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Difficulty+EnvironmentValues.swift"; sourceTree = "<group>"; };
+		29715E512DDF7F2A000C6F2F /* Environment+Difficulty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+Difficulty.swift"; sourceTree = "<group>"; };
 		29715E532DDFB0F7000C6F2F /* Navigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		2975E47F2DD3B1CB006E5DBC /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		2975E4812DD3B4FD006E5DBC /* Orbitron.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Orbitron.ttf; sourceTree = "<group>"; };
@@ -257,7 +259,8 @@
 				29F4EB642E37ADED00A3A1DC /* Angle+Setup.swift */,
 				29F4EB622E37ADAE00A3A1DC /* ColorScheme+Setup.swift */,
 				29E7D75B2E573E9B0017A1CA /* Animation+Impact.swift */,
-				29715E512DDF7F2A000C6F2F /* Difficulty+EnvironmentValues.swift */,
+				29715E512DDF7F2A000C6F2F /* Environment+Difficulty.swift */,
+				295A3A0A2E689EB800B7CDE8 /* RoundedRectangle.swift */,
 			);
 			path = Setup;
 			sourceTree = "<group>";
@@ -439,13 +442,14 @@
 				2966EA4C2DE8D9F2009A7706 /* CellView.swift in Sources */,
 				298727892DDCB84D00470B66 /* Score.swift in Sources */,
 				297C352E2DD4B1D600A3E258 /* Impact.swift in Sources */,
-				29715E522DDF7F50000C6F2F /* Difficulty+EnvironmentValues.swift in Sources */,
+				29715E522DDF7F50000C6F2F /* Environment+Difficulty.swift in Sources */,
 				2907814B2DD4FE4600670935 /* GameView.swift in Sources */,
 				29F4EB612E37A4CA00A3A1DC /* AppConfiguration.swift in Sources */,
 				29F4EB652E37ADF300A3A1DC /* Angle+Setup.swift in Sources */,
 				2907814D2DD5018800670935 /* Prominent.swift in Sources */,
 				294DFB242DD20928001150E2 /* Tic_Tac_ToeApp.swift in Sources */,
 				29E7D75C2E573EC30017A1CA /* Animation+Impact.swift in Sources */,
+				295A3A0B2E689EBE00B7CDE8 /* RoundedRectangle.swift in Sources */,
 				298951BE2DD62B2E00B41EA5 /* Cell.swift in Sources */,
 				29E7D7602E57B2410017A1CA /* GameBoardSize.swift in Sources */,
 				29CC3A092E14782C003FE83F /* Outcome+Comparison.swift in Sources */,

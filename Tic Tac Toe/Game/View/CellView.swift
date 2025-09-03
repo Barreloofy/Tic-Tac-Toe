@@ -21,7 +21,7 @@ struct CellView: View {
 
   var body: some View {
     ZStack {
-      RoundedRectangle(cornerRadius: 8)
+      RoundedRectangle()
         .fill(colorScheme.background)
         .shadow(color: .wistful, radius: shadowBlur)
         .shadow(color: .neonPurple.opacity(0.25), radius: shadowBlur)

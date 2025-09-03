@@ -16,11 +16,12 @@ struct Impact: ButtonStyle {
 
   func makeBody(configuration: Configuration) -> some View {
     ZStack {
-      RoundedRectangle(cornerRadius: 8)
+      RoundedRectangle()
         .fill(colorScheme.secondary)
         .offset(y: offset)
 
-      RoundedRectangle(cornerRadius: 8)
+      RoundedRectangle()
+        .fill(colorScheme.foreground)
         .offset(y: configuration.isPressed ? offset : 0)
 
       configuration.label

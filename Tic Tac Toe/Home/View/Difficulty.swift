@@ -18,7 +18,7 @@ struct Difficulty: View {
           .textCase(.uppercase)
           .onTapGesture { difficulty = difficultyCase }
           .overlay(alignment: .bottom) {
-            RoundedRectangle(cornerRadius: 8)
+            RoundedRectangle()
               .frame(height: difficultyCase == difficulty ? 2 : 0)
           }
       }
