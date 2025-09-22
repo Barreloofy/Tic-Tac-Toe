@@ -11,6 +11,7 @@
 		2907814B2DD4FE4600670935 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907814A2DD4FE3E00670935 /* GameView.swift */; };
 		2907814D2DD5018800670935 /* Prominent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2907814C2DD5018700670935 /* Prominent.swift */; };
 		290D4EAA2E1407BE0098ED85 /* VictoryFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290D4EA92E1407BE0098ED85 /* VictoryFeedback.swift */; };
+		292216702E80E33900864EE0 /* SheetConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2922166F2E80E32400864EE0 /* SheetConfiguration.swift */; };
 		292693D62DEB3D740067B6EF /* BackgroundConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 292693D52DEB3D5A0067B6EF /* BackgroundConfiguration.swift */; };
 		29281E042E30CFCE0069F3F5 /* OverloadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29281E032E30CFCE0069F3F5 /* OverloadTests.swift */; };
 		294DFB222DD20928001150E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 294DFB1E2DD20928001150E2 /* Assets.xcassets */; };
@@ -66,6 +67,7 @@
 		2907814A2DD4FE3E00670935 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		2907814C2DD5018700670935 /* Prominent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prominent.swift; sourceTree = "<group>"; };
 		290D4EA92E1407BE0098ED85 /* VictoryFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryFeedback.swift; sourceTree = "<group>"; };
+		2922166F2E80E32400864EE0 /* SheetConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SheetConfiguration.swift; sourceTree = "<group>"; };
 		292693D52DEB3D5A0067B6EF /* BackgroundConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundConfiguration.swift; sourceTree = "<group>"; };
 		29281E032E30CFCE0069F3F5 /* OverloadTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverloadTests.swift; sourceTree = "<group>"; };
 		294DFAF42DD20843001150E2 /* Tic Tac Toe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tic Tac Toe.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -139,6 +141,7 @@
 			children = (
 				29F4EB602E37A4CA00A3A1DC /* AppConfiguration.swift */,
 				292693D52DEB3D5A0067B6EF /* BackgroundConfiguration.swift */,
+				2922166F2E80E32400864EE0 /* SheetConfiguration.swift */,
 			);
 			path = Configuration;
 			sourceTree = "<group>";
@@ -378,7 +381,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					294DFAF32DD20843001150E2 = {
 						CreatedOnToolsVersion = 16.3;
@@ -471,6 +474,7 @@
 				29E239902E4BA23800608EE4 /* AudioFiles+FileKey.swift in Sources */,
 				29CB1C682DD373C6000A39AD /* BoardGrid.swift in Sources */,
 				2987C9422DE120B90012B7D2 /* BoardView.swift in Sources */,
+				292216702E80E33900864EE0 /* SheetConfiguration.swift in Sources */,
 				29CC3A0D2E149CEA003FE83F /* HapticFeedback.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -555,6 +559,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 6.0;
@@ -613,6 +618,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_VERSION = 6.0;
 				VALIDATE_PRODUCT = YES;

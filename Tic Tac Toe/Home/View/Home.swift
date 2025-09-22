@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct Home: View {
-  @Environment(\.colorScheme) private var colorScheme
-
   @State private var navigator = Navigator()
   @State private var presentDifficulty = false
   @State private var board = Cells()
@@ -36,10 +34,7 @@ struct Home: View {
           .buttonStyle(.plain)
           .sheet(isPresented: $presentDifficulty) {
             Difficulty()
-              .presentationBackground(colorScheme.background)
-              .presentationCornerRadius(8)
-              .presentationDetents([.fraction(0.10)])
-              .dynamicTypeSize(.large)
+              .configureSheet()
           }
 
         Spacer()
