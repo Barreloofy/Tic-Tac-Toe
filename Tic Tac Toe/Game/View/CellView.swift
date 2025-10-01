@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CellView: View {
   @Environment(\.colorScheme) private var colorScheme
-  @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
   let cell: Cell
 
@@ -24,14 +23,14 @@ struct CellView: View {
       RoundedRectangle()
         .fill(colorScheme.background)
         .shadow(color: .wistful, radius: shadowBlur)
-        .shadow(color: .neonPurple.opacity(0.25), radius: shadowBlur)
-        .scaledToFit()
+        .shadow(color: .neonPurple.opacity(0.25), radius: shadowBlur * 2)
+        .scaledToFill()
 
       Text(cell.description)
         .font(.orbitron(size: .large))
         .textCase(.uppercase)
-        .foregroundStyle(cell == .x ? colorScheme.playerX : colorScheme.playerO)
+        .foregroundStyle(colorScheme.playerColor(cell.value))
     }
-    .padding(horizontalSizeClass == .regular ? 24 : 16)
+    .padding(20)
   }
 }

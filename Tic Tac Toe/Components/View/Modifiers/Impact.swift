@@ -30,6 +30,7 @@ struct Impact: ButtonStyle {
         .offset(y: configuration.isPressed ? offset : 0)
     }
     .rotationEffect(rotation)
+    .padding(.vertical, abs(rotation.degrees) + offset)
     .sensoryFeedback(
       .impact,
       trigger: configuration.isPressed)

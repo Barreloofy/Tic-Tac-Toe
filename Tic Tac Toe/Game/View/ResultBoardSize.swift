@@ -11,7 +11,7 @@ struct ResultBoardSize: ViewModifier {
   @Environment(\.horizontalSizeClass) private var horizontalSizeClass
 
   private let largeSizeThreshold = 1032.0
-  private let largeSizeFraction = 0.3
+  private let largeSizeFraction = 0.25
 
   private let regularSizeFraction = 0.5
   private let compactSizeFraction = 0.75

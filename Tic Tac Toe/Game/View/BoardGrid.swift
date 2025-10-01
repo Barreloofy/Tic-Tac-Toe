@@ -8,6 +8,14 @@
 import SwiftUI
 
 struct GridShape: Shape {
+  nonisolated func sizeThatFits(_ proposal: ProposedViewSize) -> CGSize {
+    let knownSize = proposal.replacingUnspecifiedDimensions()
+
+    let size = min(knownSize.width, knownSize.height)
+
+    return .init(width: size, height: size)
+  }
+
   func path(in rect: CGRect) -> Path {
     Path { path in
       let xFraction = rect.maxX / 3
@@ -29,7 +37,6 @@ struct BoardGrid: View {
   var body: some View {
     GridShape()
       .stroke(colorScheme.grid, lineWidth: 8)
-      .scaledToFit()
   }
 }
 

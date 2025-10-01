@@ -14,4 +14,11 @@ extension ColorScheme {
   var grid: Color { .neonPurple }
   var playerX: Color { .crewBlue }
   var playerO: Color { .crewGreen }
+
+  /// Provides the appropriate color for the specified player.
+  /// - Parameter player: The specified player.
+  /// - Returns: The appropriate color.
+  func playerColor(_ player: Game.Player?) -> Color {
+    player == nil ? background : player == .x ? playerX : playerO
+  }
 }

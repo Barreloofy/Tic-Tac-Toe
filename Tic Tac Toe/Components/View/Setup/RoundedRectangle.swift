@@ -8,6 +8,7 @@
 import SwiftUI
 
 extension RoundedRectangle {
+  /// Creates a new rounded rectangle shape with the default `cornerRadius` of 8.
   init() {
     self.init(cornerRadius: 8)
   }

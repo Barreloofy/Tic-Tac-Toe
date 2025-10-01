@@ -14,6 +14,7 @@ struct Prominent: ViewModifier {
     content
       .font(.orbitron(size: .large))
       .rotationEffect(rotation)
+      .padding(.vertical, abs(rotation.degrees))
   }
 }
 

@@ -16,14 +16,14 @@ struct Score: View {
   let game: Game
 
   var body: some View {
-    VStack(spacing: 24) {
+    VStack(spacing: 15) {
       BoardView(for: game.board)
         .resultBoardSize()
 
       Text(game.resultDescription)
         .prominent(rotation: .rightRotation)
 
-      VStack(spacing: 34) {
+      VStack(spacing: 15) {
         Button("Play again") { navigator.popLast() }
           .buttonStyle(.impact(rotationEffect: .leftRotation))
 

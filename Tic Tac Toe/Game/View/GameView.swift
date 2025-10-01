@@ -17,7 +17,7 @@ struct GameView: View {
   let vsComputer: Bool
 
   var body: some View {
-    VStack(spacing: 24) {
+    VStack(spacing: 50) {
       Text(game.turnDescription)
         .prominent(rotation: .leftRotation)
         .turnAnimation(

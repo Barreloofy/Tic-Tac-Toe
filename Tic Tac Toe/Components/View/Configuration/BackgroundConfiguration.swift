@@ -12,7 +12,7 @@ struct BackgroundConfiguration: ViewModifier {
 
   func body(content: Content) -> some View {
     content
-      .safeAreaPadding()
+      .padding()
       .containerRelativeFrame([.vertical, .horizontal])
       .background(colorScheme.background)
       .navigationBarBackButtonHidden()

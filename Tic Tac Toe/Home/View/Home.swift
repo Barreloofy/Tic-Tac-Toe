@@ -14,14 +14,14 @@ struct Home: View {
 
   var body: some View {
     NavigationStack(path: $navigator.path) {
-      VStack(spacing: 24) {
+      VStack(spacing: 15) {
         Text("Tic Tac Toe")
           .prominent(rotation: .leftRotation)
 
         BoardView(for: board)
           .resultBoardSize()
 
-        VStack(spacing: 34) {
+        VStack(spacing: 15) {
           NavigationLink("VS Player", value: false)
             .buttonStyle(.impact(rotationEffect: .rightRotation))
 
