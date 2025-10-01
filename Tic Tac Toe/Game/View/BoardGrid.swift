@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GridShape: Shape {
-  nonisolated func sizeThatFits(_ proposal: ProposedViewSize) -> CGSize {
+  func sizeThatFits(_ proposal: ProposedViewSize) -> CGSize {
     let knownSize = proposal.replacingUnspecifiedDimensions()
 
     let size = min(knownSize.width, knownSize.height)
@@ -42,8 +42,11 @@ struct BoardGrid: View {
 
 
 extension Path {
-  mutating func drawLine(from start: CGPoint, toX x: CGFloat? = nil, toY y: CGFloat? = nil) {
-    self.move(to: start)
-    self.addLine(to: CGPoint(x: x ?? start.x, y: y ?? start.y))
-  }
+  nonisolated mutating func drawLine(
+    from start: CGPoint,
+    toX x: CGFloat? = nil,
+    toY y: CGFloat? = nil) {
+      self.move(to: start)
+      self.addLine(to: CGPoint(x: x ?? start.x, y: y ?? start.y))
+    }
 }
