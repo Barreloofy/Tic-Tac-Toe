@@ -9,11 +9,16 @@
 struct Game: Hashable {
   /// The type representing a Player in a game of Tic Tac Toe.
   ///
-  /// > Important: `Player` has multiple different operator implementations for the following operators:
+  /// > Important:
+  /// `Player` implements multiple different operators:
   /// `!`, `==`, `!=` review the implementations before use.
   enum Player: String, Equatable, CaseIterable {
     case x, o
 
+    
+    /// Returns a random `Player` case.
+    ///
+    /// - Returns: A random `Player` case.
     static func random() -> Player {
       allCases.randomElement()!
     }
@@ -45,7 +50,7 @@ struct Game: Hashable {
   ///
   /// - Parameter cell: The cell to set to `currentPlayer`.
   mutating func makeMove(at cell: Cell?) {
-    guard let cell = cell, cell == .none else { return }
+    guard let cell, cell == .none else { return }
 
     cell.value = currentPlayer
 

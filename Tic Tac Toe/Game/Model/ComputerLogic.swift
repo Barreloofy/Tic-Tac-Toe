@@ -27,6 +27,7 @@ enum ComputerLogic {
   static let tieScore = 0
 
   /// Minimax algorithm with Alpha–beta pruning and depth limit.
+  ///
   /// - Parameters:
   ///   - game: Instance of type 'Game' to use.
   ///   - depth: The current depth of recursion.
@@ -103,6 +104,7 @@ enum ComputerLogic {
 
   /// Returns the best move determined by minimax,
   /// used by the computer-player for each of its turns.
+  ///
   /// - Returns: The best possible move as a cell.
   static func bestMove(for game: Game, difficulty: Difficulty) -> Cell? {
     var bestScore = Int.min
@@ -131,6 +133,7 @@ enum ComputerLogic {
   }
 
   /// Simulates a Tic-Tac-Toe game with the computer playing both sides, alternating turns.
+  ///
   /// - Returns: The final board state.
   static func makeBoard() -> Cells {
     var game = Game(computerPlayer: .random())

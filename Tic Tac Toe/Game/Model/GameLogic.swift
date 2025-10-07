@@ -9,7 +9,8 @@
 enum GameLogic {
   /// The type representing the outcome of a game of Tic Tac Toe.
   ///
-  /// > Important: `Outcome` conforms to Equatable and has multiple comparison operator overloads,
+  /// > Important:
+  /// `Outcome` conforms to Equatable and has multiple comparison operator overloads,
   /// review the implementations before use.
   enum Outcome: String, Equatable {
     case xWon = "Player X Won"
@@ -75,6 +76,7 @@ enum GameLogic {
   }
 
   /// Checks for empty cells, if all cells are occupied, returns '.tie' else nil.
+  ///
   /// > Important:
   /// Calling this method before other GameLogic methods or solely this one may return's a false value.
   /// Call this method as the last of the four GameLogic methods.
