@@ -6,18 +6,18 @@
 //
 
 extension Game.Player {
-  static prefix func ! (value: Game.Player) -> Game.Player {
-    value == .x ? .o : .x
+  static prefix func ! (player: Game.Player) -> Game.Player {
+    player == .x ? .o : .x
   }
 }
 
 
-extension Optional where Self == Game.Player? {
-  static prefix func ! (value: Game.Player?) -> Game.Player? {
-    switch value {
+extension Optional where Wrapped == Game.Player {
+  static prefix func ! (player: Game.Player?) -> Game.Player? {
+    switch player {
     case .x: .o
     case .o: .x
-    default: nil
+    case .none: nil
     }
   }
 }

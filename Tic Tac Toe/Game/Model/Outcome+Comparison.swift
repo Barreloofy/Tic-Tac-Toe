@@ -1,11 +1,11 @@
 //
-// Outcome-Player+Comparison.swift
+// Outcome+Comparison.swift
 // Tic Tac Toe
 //
 // Created by Barreloofy on 7/1/25 at 10:10 PM
 //
 
-extension Optional where Self == GameLogic.Outcome? {
+extension Optional where Wrapped == GameLogic.Outcome {
   static func == (lhs: GameLogic.Outcome?, rhs: Game.Player?) -> Bool {
     switch lhs {
     case .xWon: rhs == .x

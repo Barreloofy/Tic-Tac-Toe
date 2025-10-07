@@ -7,6 +7,10 @@
 
 import Foundation
 
+/// The type representing a single board position in a game of Tic Tac Toe.
+///
+/// > Important: `Cell` conforms to Equatable and has multiple comparison operator overloads,
+/// as well as a fitting `Hashable` implementation, review the overload implementations before use.
 @Observable
 class Cell: Identifiable, CustomStringConvertible {
   let id = UUID()
