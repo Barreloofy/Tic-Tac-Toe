@@ -9,8 +9,8 @@ import CoreHaptics
 import os
 
 /// The underlying implementation for playback of haptic patterns for this app.
-class HapticManager {
-  /// The shared session for HapticManager,
+final class HapticManager {
+  /// The shared singleton session.
   ///
   /// > Important:
   /// This property will always be initialized even when CoreHaptics is not available.

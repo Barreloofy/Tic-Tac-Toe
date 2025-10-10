@@ -13,7 +13,7 @@ import Foundation
 /// `Cell` conforms to Equatable and has multiple comparison operator overloads,
 /// as well as a fitting `Hashable` implementation, review the overload implementations before use.
 @Observable
-class Cell: Identifiable, CustomStringConvertible {
+final class Cell: Identifiable, CustomStringConvertible {
   let id = UUID()
   var value: Game.Player?
 
@@ -59,6 +59,9 @@ extension Cell: Hashable {
 
 
 extension Cells {
+  /// Initializes a new board of empty cells.
+  ///
+  /// - Returns: The initialized board.
   static func initializeBoard() -> Cells {
     (1...9).map { _ in Cell() }
   }
