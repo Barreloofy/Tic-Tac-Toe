@@ -34,12 +34,12 @@
 		298951C22DD65C7C00B41EA5 /* CellFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 298951C12DD65C6F00B41EA5 /* CellFeedback.swift */; };
 		299A27682DE4991E00ADF382 /* CellTap.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 299A27672DE4991E00ADF382 /* CellTap.mp3 */; };
 		299A276A2DE4991E00ADF382 /* Score.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 299A27652DE4991E00ADF382 /* Score.mp3 */; };
+		29B2168F2EC8C22E000F3EAA /* Odio in Frameworks */ = {isa = PBXBuildFile; productRef = 29B2168E2EC8C22E000F3EAA /* Odio */; };
 		29CB1C682DD373C6000A39AD /* BoardGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CB1C672DD373BD000A39AD /* BoardGrid.swift */; };
 		29CC3A092E14782C003FE83F /* Outcome+Comparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CC3A082E14782C003FE83F /* Outcome+Comparison.swift */; };
 		29CC3A0B2E149518003FE83F /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CC3A0A2E1494DB003FE83F /* HapticManager.swift */; };
 		29CC3A0D2E149CEA003FE83F /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CC3A0C2E149CD7003FE83F /* HapticFeedback.swift */; };
 		29CF8DF92E1C95F2007F8BEF /* ResultBoardSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CF8DF82E1C95A2007F8BEF /* ResultBoardSize.swift */; };
-		29E2398E2E4BA10C00608EE4 /* Odio in Frameworks */ = {isa = PBXBuildFile; productRef = 29E2398D2E4BA10C00608EE4 /* Odio */; };
 		29E239902E4BA23800608EE4 /* AudioFiles+FileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E2398F2E4BA22900608EE4 /* AudioFiles+FileKey.swift */; };
 		29E44C572DDB6C69009A5121 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E44C562DDB6C58009A5121 /* GameLogic.swift */; };
 		29E7D75C2E573EC30017A1CA /* Animation+Impact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E7D75B2E573E9B0017A1CA /* Animation+Impact.swift */; };
@@ -114,7 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				29E2398E2E4BA10C00608EE4 /* Odio in Frameworks */,
+				29B2168F2EC8C22E000F3EAA /* Odio in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +347,7 @@
 			);
 			name = "Tic Tac Toe";
 			packageProductDependencies = (
-				29E2398D2E4BA10C00608EE4 /* Odio */,
+				29B2168E2EC8C22E000F3EAA /* Odio */,
 			);
 			productName = "Tic Tac Toe";
 			productReference = 294DFAF42DD20843001150E2 /* Tic Tac Toe.app */;
@@ -402,7 +402,7 @@
 			mainGroup = 294DFAEB2DD20843001150E2;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				29605CF52E4B9C5400C18263 /* XCRemoteSwiftPackageReference "Odio" */,
+				29B2168D2EC8C22E000F3EAA /* XCRemoteSwiftPackageReference "Odio" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 294DFAF52DD20843001150E2 /* Products */;
@@ -772,20 +772,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		29605CF52E4B9C5400C18263 /* XCRemoteSwiftPackageReference "Odio" */ = {
+		29B2168D2EC8C22E000F3EAA /* XCRemoteSwiftPackageReference "Odio" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Barreloofy/Odio";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 2.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		29E2398D2E4BA10C00608EE4 /* Odio */ = {
+		29B2168E2EC8C22E000F3EAA /* Odio */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 29605CF52E4B9C5400C18263 /* XCRemoteSwiftPackageReference "Odio" */;
+			package = 29B2168D2EC8C22E000F3EAA /* XCRemoteSwiftPackageReference "Odio" */;
 			productName = Odio;
 		};
 /* End XCSwiftPackageProductDependency section */

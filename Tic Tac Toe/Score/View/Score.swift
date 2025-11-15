@@ -11,8 +11,6 @@ import Odio
 struct Score: View {
   @Environment(Navigator.self) private var navigator
 
-  @AudioPlayer(.score, after: 0.5) private var audioPlayer
-
   let game: Game
 
   var body: some View {
@@ -35,7 +33,7 @@ struct Score: View {
       Spacer()
     }
     .configureBackground()
-    .onAppear { audioPlayer() }
+    .audioFeedback(\.score, after: 0.5) { true }
     .hapticFeedback(.victoryFeedback) {
       game.result != .tie &&
       game.result != game.computerPlayer

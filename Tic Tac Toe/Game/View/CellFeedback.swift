@@ -17,7 +17,7 @@ struct CellFeedback: ViewModifier {
     content
       .scaleEffect(scale)
       .sensoryFeedback(.impact, trigger: value)
-      .audioFeedback(.cellTap, trigger: value)
+      .audioFeedback(\.cellTap, trigger: value)
       .onChange(of: value) {
         withAnimation(
           .impact,

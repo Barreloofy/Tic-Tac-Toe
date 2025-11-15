@@ -8,6 +8,6 @@
 import Odio
 
 extension FileKey {
-  static let cellTap = FileKey(value: "CellTap.mp3")
-  static let score = FileKey(value: "Score.mp3")
+  @Entry var cellTap = "CellTap.mp3"
+  @Entry var score = "Score.mp3"
 }

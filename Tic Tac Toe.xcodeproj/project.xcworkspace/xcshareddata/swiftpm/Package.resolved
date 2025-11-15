@@ -6,8 +6,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/Barreloofy/Odio",
       "state" : {
-        "revision" : "8ba7e74450a21060202f1308a72bd43755c0b9d6",
-        "version" : "1.0.1"
+        "revision" : "49cd8de930b5292e0d83256e97fe83116393c860",
+        "version" : "2.0.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax.git",
+      "state" : {
+        "revision" : "4799286537280063c85a32f09884cfbca301b1a1",
+        "version" : "602.0.0"
       }
     }
   ],
