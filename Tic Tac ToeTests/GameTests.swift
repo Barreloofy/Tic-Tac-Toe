@@ -12,7 +12,7 @@ struct GameTests {
   @Suite("Validate the makeMove(_:) method of Game")
   struct MakeMoveTests {
     var game = Game()
-    let initialPlayer: Game.Player
+    let initialPlayer: Player
 
     init() {
       self.initialPlayer = game.currentPlayer

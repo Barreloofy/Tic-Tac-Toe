@@ -11,7 +11,7 @@ import Odio
 struct CellFeedback: ViewModifier {
   @State private var scale = 1.0
 
-  let value: Game.Player?
+  let value: Player?
 
   func body(content: Content) -> some View {
     content

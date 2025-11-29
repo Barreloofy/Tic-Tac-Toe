@@ -18,7 +18,7 @@ extension ColorScheme {
   /// Provides the appropriate color for the specified player.
   /// - Parameter player: The specified player.
   /// - Returns: The appropriate color.
-  func playerColor(_ player: Game.Player?) -> Color {
+  func playerColor(_ player: Player?) -> Color {
     player == nil ? background : player == .x ? playerX : playerO
   }
 }

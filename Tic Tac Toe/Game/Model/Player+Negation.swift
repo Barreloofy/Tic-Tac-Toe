@@ -5,15 +5,15 @@
 // Created by Barreloofy on 5/21/25 at 4:49 PM
 //
 
-extension Game.Player {
-  static prefix func ! (player: Game.Player) -> Game.Player {
+extension Player {
+  static prefix func ! (player: Player) -> Player {
     player == .x ? .o : .x
   }
 }
 
 
-extension Optional where Wrapped == Game.Player {
-  static prefix func ! (player: Game.Player?) -> Game.Player? {
+extension Optional where Wrapped == Player {
+  static prefix func ! (player: Player?) -> Player? {
     switch player {
     case .x: .o
     case .o: .x

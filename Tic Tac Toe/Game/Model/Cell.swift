@@ -15,7 +15,7 @@ import Foundation
 @Observable
 final class Cell: Identifiable, CustomStringConvertible {
   let id = UUID()
-  var value: Game.Player?
+  var value: Player?
 
   var description: String {
     value?.rawValue ?? ""
@@ -29,11 +29,11 @@ extension Cell: Equatable {
     lhs.value == rhs.value
   }
 
-  static func == (lhs: Cell, rhs: Game.Player?) -> Bool {
+  static func == (lhs: Cell, rhs: Player?) -> Bool {
     lhs.value == rhs
   }
 
-  static func == (lhs: Game.Player?, rhs: Cell) -> Bool {
+  static func == (lhs: Player?, rhs: Cell) -> Bool {
     lhs == rhs.value
   }
 
@@ -41,11 +41,11 @@ extension Cell: Equatable {
     lhs.value != rhs.value
   }
 
-  static func != (lhs: Cell, rhs: Game.Player?) -> Bool {
+  static func != (lhs: Cell, rhs: Player?) -> Bool {
     lhs.value != rhs
   }
 
-  static func != (lhs: Game.Player?, rhs: Cell) -> Bool {
+  static func != (lhs: Player?, rhs: Cell) -> Bool {
     lhs != rhs.value
   }
 }

@@ -7,23 +7,6 @@
 
 /// The type representing a game of Tic Tac Toe.
 struct Game: Hashable {
-  /// The type representing a Player in a game of Tic Tac Toe.
-  ///
-  /// > Important:
-  /// `Player` implements multiple different operators:
-  /// `!`, `==`, `!=` review the implementations before use.
-  enum Player: String, Equatable, CaseIterable {
-    case x, o
-
-    
-    /// Returns a random `Player` case.
-    ///
-    /// - Returns: A random `Player` case.
-    static func random() -> Player {
-      allCases.randomElement()!
-    }
-  }
-
   /// Initializes a new instance of `Game` as a mutation of `self`.
   ///
   /// - Parameter vsComputer: Specify if the newly initialized instance is set for PvP or PvE.
@@ -33,14 +16,18 @@ struct Game: Hashable {
 
   var currentPlayer = Player.random()
   var computerPlayer: Player?
-  var isComputerMove: Bool { currentPlayer == computerPlayer }
+  var isComputerMove: Bool {
+    currentPlayer == computerPlayer
+  }
   var turnDescription: String {
-    isComputerMove ? "Computer's turn" : "Player \(currentPlayer.rawValue.uppercased())'s turn"
+    isComputerMove ? "Computer's turn" : "Player \(currentPlayer.rawValue)'s turn"
   }
 
   let board: Cells = .initializeBoard()
   var result: GameLogic.Outcome?
-  var resultDescription: String { result?.rawValue ?? "" }
+  var resultDescription: String {
+    result?.rawValue ?? ""
+  }
 
   /// Mutates the state of the `Game` instance.
   ///

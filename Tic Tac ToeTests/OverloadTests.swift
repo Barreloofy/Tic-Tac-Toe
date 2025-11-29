@@ -51,51 +51,51 @@ struct OverloadTests {
     @Test(
       "Validate '==' operator overload for type-pair (GameLogic.Outcome, Game.Player)",
       arguments: [
-        (GameLogic.Outcome.xWon, Game.Player.x),
-        (GameLogic.Outcome.oWon, Game.Player.o),
+        (GameLogic.Outcome.xWon, Player.x),
+        (GameLogic.Outcome.oWon, Player.o),
         (nil, nil),
       ])
-    func validateOutcomeEquality(lhs: GameLogic.Outcome?, rhs: Game.Player?) async throws {
+    func validateOutcomeEquality(lhs: GameLogic.Outcome?, rhs: Player?) async throws {
       #expect(lhs == rhs)
     }
 
     @Test(
       "Validate '!=' operator overload for type-pair (GameLogic.Outcome, Game.Player)",
       arguments: [
-        (GameLogic.Outcome.xWon, Game.Player.o),
-        (GameLogic.Outcome.oWon, Game.Player.x),
-        (GameLogic.Outcome.tie, Game.Player.x),
-        (GameLogic.Outcome.tie, Game.Player.o),
-        (nil, Game.Player.x),
-        (nil, Game.Player.o),
+        (GameLogic.Outcome.xWon, Player.o),
+        (GameLogic.Outcome.oWon, Player.x),
+        (GameLogic.Outcome.tie, Player.x),
+        (GameLogic.Outcome.tie, Player.o),
+        (nil, Player.x),
+        (nil, Player.o),
       ])
-    func validateOutcomeInequality(lhs: GameLogic.Outcome?, rhs: Game.Player?) async throws {
+    func validateOutcomeInequality(lhs: GameLogic.Outcome?, rhs: Player?) async throws {
       #expect(lhs != rhs)
     }
 
     @Test(
       "Validate '==' operator overload for type-pair (Game.Player, GameLogic.Outcome)",
       arguments: [
-        (Game.Player.x, GameLogic.Outcome.xWon),
-        (Game.Player.o, GameLogic.Outcome.oWon),
+        (Player.x, GameLogic.Outcome.xWon),
+        (Player.o, GameLogic.Outcome.oWon),
         (nil, nil),
       ])
-    func validatePlayerEquality(lhs: Game.Player?, rhs: GameLogic.Outcome?) async throws {
+    func validatePlayerEquality(lhs: Player?, rhs: GameLogic.Outcome?) async throws {
       #expect(lhs == rhs)
     }
 
     @Test(
       "Validate '!=' operator overload for type-pair (Game.Player, GameLogic.Outcome)",
       arguments: [
-        (Game.Player.x, GameLogic.Outcome.oWon),
-        (Game.Player.o, GameLogic.Outcome.xWon),
-        (Game.Player.x, GameLogic.Outcome.tie),
-        (Game.Player.o, GameLogic.Outcome.tie),
+        (Player.x, GameLogic.Outcome.oWon),
+        (Player.o, GameLogic.Outcome.xWon),
+        (Player.x, GameLogic.Outcome.tie),
+        (Player.o, GameLogic.Outcome.tie),
         (nil, GameLogic.Outcome.xWon),
         (nil, GameLogic.Outcome.oWon),
         (nil, GameLogic.Outcome.tie),
       ])
-    func validatePlayerInequality(lhs: Game.Player?, rhs: GameLogic.Outcome?) async throws {
+    func validatePlayerInequality(lhs: Player?, rhs: GameLogic.Outcome?) async throws {
       #expect(lhs != rhs)
     }
   }
@@ -106,27 +106,27 @@ struct OverloadTests {
     @Test(
       "Pairs of opposite values are passed in",
       arguments: [
-        (Game.Player.x, Game.Player.o),
-        (Game.Player.o, Game.Player.x),
+        (Player.x, Player.o),
+        (Player.o, Player.x),
       ])
-    func validateNegationOperatorOnInequalityValues(lhs: Game.Player?, rhs: Game.Player?) async throws {
+    func validateNegationOperatorOnInequalityValues(lhs: Player?, rhs: Player?) async throws {
       #expect(!lhs == rhs, "Negation is applied to the left, thus equality is expected")
     }
 
     @Test(
       "Pairs of the same value are passed in",
       arguments: [
-        (Game.Player.x, Game.Player.x),
-        (Game.Player.o, Game.Player.o),
-      ]) func validateNegationOperatorOnEqualityValues(lhs: Game.Player?, rhs: Game.Player?) async throws {
+        (Player.x, Player.x),
+        (Player.o, Player.o),
+      ]) func validateNegationOperatorOnEqualityValues(lhs: Player?, rhs: Player?) async throws {
         #expect(!lhs != rhs, "Negation is applied to the left, thus inequality is expected")
     }
 
     @Test(
       "Pair of nil is passed in",
       arguments: [
-        (Game.Player?.none, Game.Player?.none),
-      ]) func validateNegationOperatorOnNil(lhs: Game.Player?, rhs: Game.Player?) async throws {
+        (Player?.none, Player?.none),
+      ]) func validateNegationOperatorOnNil(lhs: Player?, rhs: Player?) async throws {
       #expect(!lhs == rhs, "Negating nil will return nil, thus equality is expected")
     }
   }
