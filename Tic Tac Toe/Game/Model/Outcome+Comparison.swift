@@ -5,8 +5,8 @@
 // Created by Barreloofy on 7/1/25 at 10:10 PM
 //
 
-extension Optional where Wrapped == GameLogic.Outcome {
-  static func == (lhs: GameLogic.Outcome?, rhs: Player?) -> Bool {
+extension Optional where Wrapped == Outcome {
+  static func == (lhs: Outcome?, rhs: Player?) -> Bool {
     switch lhs {
     case .xWon: rhs == .x
     case .oWon: rhs == .o
@@ -15,7 +15,7 @@ extension Optional where Wrapped == GameLogic.Outcome {
     }
   }
 
-  static func == (lhs: Player?, rhs: GameLogic.Outcome?) -> Bool {
+  static func == (lhs: Player?, rhs: Outcome?) -> Bool {
     switch lhs {
     case .x: rhs == .xWon
     case .o: rhs == .oWon
@@ -23,7 +23,7 @@ extension Optional where Wrapped == GameLogic.Outcome {
     }
   }
 
-  static func != (lhs: GameLogic.Outcome?, rhs: Player?) -> Bool {
+  static func != (lhs: Outcome?, rhs: Player?) -> Bool {
     switch lhs {
     case .xWon: rhs != .x
     case .oWon: rhs != .o
@@ -32,7 +32,7 @@ extension Optional where Wrapped == GameLogic.Outcome {
     }
   }
 
-  static func != (lhs: Player?, rhs: GameLogic.Outcome?) -> Bool {
+  static func != (lhs: Player?, rhs: Outcome?) -> Bool {
     switch lhs {
     case .x: rhs != .xWon
     case .o: rhs != .oWon

@@ -51,51 +51,51 @@ struct OverloadTests {
     @Test(
       "Validate '==' operator overload for type-pair (GameLogic.Outcome, Game.Player)",
       arguments: [
-        (GameLogic.Outcome.xWon, Player.x),
-        (GameLogic.Outcome.oWon, Player.o),
+        (Outcome.xWon, Player.x),
+        (Outcome.oWon, Player.o),
         (nil, nil),
       ])
-    func validateOutcomeEquality(lhs: GameLogic.Outcome?, rhs: Player?) async throws {
+    func validateOutcomeEquality(lhs: Outcome?, rhs: Player?) async throws {
       #expect(lhs == rhs)
     }
 
     @Test(
       "Validate '!=' operator overload for type-pair (GameLogic.Outcome, Game.Player)",
       arguments: [
-        (GameLogic.Outcome.xWon, Player.o),
-        (GameLogic.Outcome.oWon, Player.x),
-        (GameLogic.Outcome.tie, Player.x),
-        (GameLogic.Outcome.tie, Player.o),
+        (Outcome.xWon, Player.o),
+        (Outcome.oWon, Player.x),
+        (Outcome.tie, Player.x),
+        (Outcome.tie, Player.o),
         (nil, Player.x),
         (nil, Player.o),
       ])
-    func validateOutcomeInequality(lhs: GameLogic.Outcome?, rhs: Player?) async throws {
+    func validateOutcomeInequality(lhs: Outcome?, rhs: Player?) async throws {
       #expect(lhs != rhs)
     }
 
     @Test(
       "Validate '==' operator overload for type-pair (Game.Player, GameLogic.Outcome)",
       arguments: [
-        (Player.x, GameLogic.Outcome.xWon),
-        (Player.o, GameLogic.Outcome.oWon),
+        (Player.x, Outcome.xWon),
+        (Player.o, Outcome.oWon),
         (nil, nil),
       ])
-    func validatePlayerEquality(lhs: Player?, rhs: GameLogic.Outcome?) async throws {
+    func validatePlayerEquality(lhs: Player?, rhs: Outcome?) async throws {
       #expect(lhs == rhs)
     }
 
     @Test(
       "Validate '!=' operator overload for type-pair (Game.Player, GameLogic.Outcome)",
       arguments: [
-        (Player.x, GameLogic.Outcome.oWon),
-        (Player.o, GameLogic.Outcome.xWon),
-        (Player.x, GameLogic.Outcome.tie),
-        (Player.o, GameLogic.Outcome.tie),
-        (nil, GameLogic.Outcome.xWon),
-        (nil, GameLogic.Outcome.oWon),
-        (nil, GameLogic.Outcome.tie),
+        (Player.x, Outcome.oWon),
+        (Player.o, Outcome.xWon),
+        (Player.x, Outcome.tie),
+        (Player.o, Outcome.tie),
+        (nil, Outcome.xWon),
+        (nil, Outcome.oWon),
+        (nil, Outcome.tie),
       ])
-    func validatePlayerInequality(lhs: Player?, rhs: GameLogic.Outcome?) async throws {
+    func validatePlayerInequality(lhs: Player?, rhs: Outcome?) async throws {
       #expect(lhs != rhs)
     }
   }

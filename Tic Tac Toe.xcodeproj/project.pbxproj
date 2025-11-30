@@ -41,6 +41,7 @@
 		29CC3A0B2E149518003FE83F /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CC3A0A2E1494DB003FE83F /* HapticManager.swift */; };
 		29CC3A0D2E149CEA003FE83F /* HapticFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CC3A0C2E149CD7003FE83F /* HapticFeedback.swift */; };
 		29CF8DF92E1C95F2007F8BEF /* ResultBoardSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29CF8DF82E1C95A2007F8BEF /* ResultBoardSize.swift */; };
+		29D7D0AB2EDC6C1500223712 /* Outcome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D7D0AA2EDC6C1500223712 /* Outcome.swift */; };
 		29E239902E4BA23800608EE4 /* AudioFiles+FileKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E2398F2E4BA22900608EE4 /* AudioFiles+FileKey.swift */; };
 		29E44C572DDB6C69009A5121 /* GameLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E44C562DDB6C58009A5121 /* GameLogic.swift */; };
 		29E7D75C2E573EC30017A1CA /* Animation+Impact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E7D75B2E573E9B0017A1CA /* Animation+Impact.swift */; };
@@ -98,6 +99,7 @@
 		29CC3A0A2E1494DB003FE83F /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		29CC3A0C2E149CD7003FE83F /* HapticFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticFeedback.swift; sourceTree = "<group>"; };
 		29CF8DF82E1C95A2007F8BEF /* ResultBoardSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultBoardSize.swift; sourceTree = "<group>"; };
+		29D7D0AA2EDC6C1500223712 /* Outcome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Outcome.swift; sourceTree = "<group>"; };
 		29E2398F2E4BA22900608EE4 /* AudioFiles+FileKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AudioFiles+FileKey.swift"; sourceTree = "<group>"; };
 		29E44C562DDB6C58009A5121 /* GameLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameLogic.swift; sourceTree = "<group>"; };
 		29E7D75B2E573E9B0017A1CA /* Animation+Impact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation+Impact.swift"; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 			children = (
 				292830822EDBB53B00D24B7B /* Player.swift */,
 				298951BD2DD62B2C00B41EA5 /* Cell.swift */,
+				29D7D0AA2EDC6C1500223712 /* Outcome.swift */,
 				29FAAE4B2DD5F0D200FB17D7 /* Game.swift */,
 				29E44C562DDB6C58009A5121 /* GameLogic.swift */,
 				2987278A2DDCBB4500470B66 /* ComputerLogic.swift */,
@@ -465,6 +468,7 @@
 				2969B6D82DE5BC86006199A8 /* OrbitronFont.swift in Sources */,
 				292830832EDBB53B00D24B7B /* Player.swift in Sources */,
 				29FAAE4C2DD5F0D600FB17D7 /* Game.swift in Sources */,
+				29D7D0AB2EDC6C1500223712 /* Outcome.swift in Sources */,
 				290D4EAA2E1407BE0098ED85 /* VictoryFeedback.swift in Sources */,
 				29715E542DDFB107000C6F2F /* Navigator.swift in Sources */,
 				292693D62DEB3D740067B6EF /* BackgroundConfiguration.swift in Sources */,

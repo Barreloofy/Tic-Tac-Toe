@@ -52,7 +52,7 @@ struct GameView: View {
     .task(id: game.currentPlayer) {
       guard game.result == nil && game.isComputerMove else { return }
 
-      guard (try? await Task.sleep(for: .seconds(1))) != nil else { return }
+      guard let _ = try? await Task.sleep(for: .seconds(1)) else { return }
 
       game.makeMove(at: ComputerLogic.bestMove(for: game, difficulty: difficulty))
     }

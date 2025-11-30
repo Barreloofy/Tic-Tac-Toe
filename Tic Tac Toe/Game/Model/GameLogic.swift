@@ -7,17 +7,6 @@
 
 /// An interface to determine the state of a game of Tic Tac Toe.
 enum GameLogic {
-  /// The type representing the outcome of a game of Tic Tac Toe.
-  ///
-  /// > Important:
-  /// `Outcome` conforms to Equatable and has multiple comparison operator overloads,
-  /// review the implementations before use.
-  enum Outcome: String, Equatable {
-    case xWon = "Player X Won"
-    case oWon = "Player O Won"
-    case tie = "Tie"
-  }
-
   /// Determines if an outcome was reached and thus the game is over.
   ///
   /// > Important:

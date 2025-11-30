@@ -24,7 +24,7 @@ struct Game: Hashable {
   }
 
   let board: Cells = .initializeBoard()
-  var result: GameLogic.Outcome?
+  var result: Outcome?
   var resultDescription: String {
     result?.rawValue ?? ""
   }
