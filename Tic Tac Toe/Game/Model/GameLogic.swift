@@ -37,8 +37,11 @@ enum GameLogic {
     let columns = [0, 1, 2]
 
     for offset in columns where board[offset] != nil {
-      guard board[offset] == board[offset + 3] &&
-            board[offset] == board[offset + 6] else { continue }
+      guard
+        board[offset] == board[offset + 3] &&
+        board[offset] == board[offset + 6]
+      else { continue }
+
       return board[offset].value == .x ? .xWon : .oWon
     }
 
@@ -50,8 +53,11 @@ enum GameLogic {
     let rows = [0, 3, 6]
 
     for offset in rows where board[offset] != nil {
-      guard board[offset] == board[offset + 1] &&
-            board[offset] == board[offset + 2] else { continue }
+      guard
+        board[offset] == board[offset + 1] &&
+        board[offset] == board[offset + 2]
+      else { continue }
+
       return board[offset].value == .x ? .xWon : .oWon
     }
 
@@ -78,7 +84,7 @@ enum GameLogic {
   /// Checks for empty cells, if all cells are occupied, returns '.tie' else nil.
   ///
   /// > Important:
-  /// Calling this method before other GameLogic methods or solely this one may return's a false value.
+  /// Calling this method before the other GameLogic methods or solely this one, may return a false value.
   /// Call this method as the last of the four GameLogic methods.
   static private func checkTie(for board: Cells) -> Outcome? {
     board.filter { $0 == nil }.isEmpty ? .tie : nil
